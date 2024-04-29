@@ -3,13 +3,13 @@ title: "Josh Gregory"
 
 links:
     - text: LinkedIn
-        href: https://www.linkedin.com/in/josh-a-gregory
+      href: https://www.linkedin.com/in/josh-a-gregory
     - text: Twitter
-        href: https://twitter.com/josh_a_gregory
+      href: https://twitter.com/josh_a_gregory
     - text: GitHub
-        href: https://github.com/joshgregory42
+      href: https://github.com/joshgregory42
     - text: Email
-        href: mailto:josh.gregory@colorado.edu
+      href: mailto:josh.gregory@colorado.edu
 ---
 
 This is a Quarto website.
