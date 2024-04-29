@@ -1,5 +1,15 @@
 ---
-title: "quarto_website"
+title: "Josh Gregory"
+
+links:
+    - text: LinkedIn
+        href: https://www.linkedin.com/in/josh-a-gregory
+    - text: Twitter
+        href: https://twitter.com/josh_a_gregory
+    - text: GitHub
+        href: https://github.com/joshgregory42
+    - text: Email
+        href: mailto:josh.gregory@colorado.edu
 ---
 
 This is a Quarto website.
