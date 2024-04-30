@@ -23,7 +23,7 @@ about:
 
 # Hi there!
 
-I am currently a graduate student at the University of Colorado Boulder pursuing a Master's of Science in Mechanical Engineering. My thesis is focusing on using vision transformers to more effectively extract cerebrovasculature that could lead to stroke. I have been a member of [FLOWLab](https://www.flowphysicslab.com/) at CU Boulder for a few years, focusing on blood clots, stroke mechanics, and dveloping better computational tools to understand them.
+I am currently a graduate student at the University of Colorado Boulder pursuing a Master's of Science in Mechanical Engineering. My thesis is focusing on using vision transformers to more effectively extract cerebrovasculature that could lead to stroke. I have been a member of [FLOWLab](https://www.flowphysicslab.com/) at CU Boulder for a few years, focusing on blood clots, stroke mechanics, and developing better computational tools to understand them.
 
 I am passionate about helping people and creating tools and technologies to improve the lives of those around me. Take a look around to see what I've been up to!
 
