@@ -3,12 +3,30 @@ project:
   output-dir: docs
 
 website:
-  title: "Josh Gregory"
   navbar:
-    left:
+    title: "Josh Gregory" # this is the website title as it appears in the top left corner -- clicking on this will jump you back to your landing page from where ever you are
+    left: # align navbar items to the right/left/center
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: Home # use 'text' option to update the name as you want it to appear in your navbar
+      - href: about.qmd
+        text: About
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/josh-a-gregory
+      - icon: github # add icons that link to social media, etc.
+        href: https://github.com/joshgregory42
+      - icon: twitter
+        href: https://twitter.com/josh_a_gregory
+
+  page-footer:
+    background: light # or dark
+    left:
+      - "Copyright 2024, Josh Gregory"
+    right:
+      - icon: github
+        href: https://github.com/joshgregory42
+      - icon: twitter
+        href: https://twitter.com/josh_a_gregory
 
 format:
   html:
@@ -16,6 +34,3 @@ format:
     css: styles.css
     toc: true
     page-layout: full
-
-
-
