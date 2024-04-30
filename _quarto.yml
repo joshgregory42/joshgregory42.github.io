@@ -11,6 +11,8 @@ website:
       - href: about.qmd
         text: About
       - posts.qmd
+      - href: resume_jag.pdf
+        text: Resume
     right:
       - icon: linkedin
         href: https://www.linkedin.com/in/josh-a-gregory
