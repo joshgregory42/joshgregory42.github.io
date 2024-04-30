@@ -32,8 +32,13 @@ website:
 format:
   html:
     theme: 
-      light: cosmo
-      dark: cyborg
-    css: styles.css
+      light: [litera]
+      dark: [darkly]
+    highlight-style: a11y-dark
+    # mainfont: 'Atkinson Hyperlegible'
     toc: true
+    code-copy: true
+    code-overflow: wrap
     page-layout: full
+
+editor: visual
