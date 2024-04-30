@@ -1,4 +1,20 @@
 ---
 title: "About"
+title-block-banner: true
 ---
 
+# Current work
+
+I am currently a graduate student at University of Colorado Boulder studying Mechanical Engineering with a focus on artificial intelligence applied to biomedical imaging. I am a member of CU Boulder's Biofluidics Laboratory (FlowLab), where I am researching the computational fluid dynamics (CFD) of blood clots. The goal of this research is to model the blood clotting process much more accurately than previously done, to allow medical professionals to make better clinical decisions.
+
+# Past work
+
+I have worked at corporations such as Collins Aerospace and the National Renewable Energy Laboratory (NREL). At Collins Aerospace, I aided senior engineers in testing prototype optical devices for future usage on both commercial and military aircraft. I used my knowledge of computer-aided design (CAD) and 3D printing to design and manufacture testing apparatuses that enabled rapid prototyping and characterization of the prototype optical devices. At NREL my work focused on additively-manufacturing microencapsulated phase-change materials (MEPCMs) for use in thermal batteries and heat exchangers.
+
+After transferring to CU Boulder, I joined the liquid engine sub-team of CU's Sounding Rocket Lab (SRL), where I ran the computational fluid dynamics (CFD) team simulating the nozzle and injector assemblies, specifically focusing on the mathematical models used to run the simulations.
+
+At my previous institution, I was a member of Oregon State's High Altitude Liquid Engine (HALE) team, where I ran multiphase CFD simulations on both the injector and nozzle assemblies using Oregon State's supercomuter cluster to perform more detailed analyses.
+
+I was also a member of the Oregon State College of Psychology's CARVE Laboratory, where I worked on the software necessary to better understand the interaction between pedestrians and autonomous vehicles.
+
+During high school, I wrote a paper where I derived a fundamental equation relating to rocket nozzle theory, which I then verified experimentally via computer simulations. I also worked on a new sounding rocket launch system, which will allow for a reduction in cost of up to 90% compared to regular sounding rocket launch systems.
