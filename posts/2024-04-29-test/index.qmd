@@ -1,0 +1,15 @@
+---
+title: "test"
+description: "blog post description (appears underneath the title in smaller text) which is included on the listing page"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 04-29-2024
+categories: [Quarto, R, College] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2022-10-24-my-blog-post/ 
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---

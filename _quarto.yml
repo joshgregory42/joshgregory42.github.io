@@ -10,6 +10,7 @@ website:
         text: Home # use 'text' option to update the name as you want it to appear in your navbar
       - href: about.qmd
         text: About
+      - posts.qmd
     right:
       - icon: linkedin
         href: https://www.linkedin.com/in/josh-a-gregory
