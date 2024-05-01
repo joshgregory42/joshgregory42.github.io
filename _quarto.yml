@@ -24,11 +24,7 @@ website:
   page-footer:
     background: light # or dark
     # left:
-<<<<<<< HEAD
-      # - "Copyright 2024, Josh Gregory"
-=======
     #   - "Copyright 2024, Josh Gregory"
->>>>>>> dev
     right:
       - icon: github
         href: https://github.com/joshgregory42
