@@ -21,21 +21,21 @@ website:
 
   page-footer:
     background: light # or dark
-    left:
-      - "Copyright 2024, Josh Gregory"
+    # left:
+    #   - "Copyright 2024, Josh Gregory"
     right:
       - icon: github
         href: https://github.com/joshgregory42
-      - icon: twitter
-        href: https://twitter.com/josh_a_gregory
+      # - icon: twitter
+        # href: https://twitter.com/josh_a_gregory
 
 format:
   html:
     theme: 
-      light: [litera]
-      dark: [darkly]
+      light: [litera, styles.scss]
+      dark: [darkly, styles-dark.scss]
     highlight-style: a11y-dark
-    # mainfont: 'Atkinson Hyperlegible'
+    mainfont: 'SF Pro'
     toc: true
     code-copy: true
     code-overflow: wrap
