@@ -24,18 +24,27 @@ website:
   page-footer:
     background: light # or dark
     # left:
+<<<<<<< HEAD
       # - "Copyright 2024, Josh Gregory"
+=======
+    #   - "Copyright 2024, Josh Gregory"
+>>>>>>> dev
     right:
       - icon: github
         href: https://github.com/joshgregory42
-      - icon: twitter
-        href: https://twitter.com/josh_a_gregory
+      # - icon: twitter
+        # href: https://twitter.com/josh_a_gregory
 
 format:
   html:
     theme: 
-      light: cosmo
-      dark: cyborg
-    css: styles.css
+      light: [litera, styles.scss]
+      dark: [darkly, styles-dark.scss]
+    highlight-style: a11y-dark
+    mainfont: 'SF Pro'
     toc: true
+    code-copy: true
+    code-overflow: wrap
     page-layout: full
+
+editor: visual
