@@ -5,6 +5,15 @@
   },
   {
     "listing": "/projects.html",
-    "items": []
+    "items": [
+      "/projects/index.html",
+      "/projects/senior_design.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/senior_design.html"
+    ]
   }
 ]

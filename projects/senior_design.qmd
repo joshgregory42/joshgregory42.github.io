@@ -1,0 +1,15 @@
+---
+title: 3mm Mini Laparoscopic Port
+description: |
+    Collaboration with Children's Hospital Colorado to create a novel surgical port
+# image: /images/amphia-sensium.jpg
+categories: [surgery, medical devices]
+---
+
+#
+
+Description here
+
+Stay tuned, more to follow soon.
+
+Meanwhile, read an interview with Frank Niemantsverdriet and myself on how Amphia uses AI to combat scarcity in healthcare ([English](https://www.jads.nl/news/combating-healthcare-scarcity-with-data-what-role-will-your-hospital-play/), [Dutch](https://www.deondernemer.nl/innovatie/advertorial-jads-zorgschaarste-data~4152485)).
