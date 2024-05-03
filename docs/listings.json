@@ -2,5 +2,19 @@
   {
     "listing": "/posts.html",
     "items": []
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/index.html",
+      "/projects/senior_design.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/nrel_internship.html",
+      "/projects/senior_design.html"
+    ]
   }
 ]

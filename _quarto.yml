@@ -5,11 +5,13 @@ project:
 website:
   navbar:
     title: "Josh Gregory" # this is the website title as it appears in the top left corner -- clicking on this will jump you back to your landing page from where ever you are
+    # collapse-level: 1
     left: # align navbar items to the right/left/center
       - href: index.qmd
         text: Home # use 'text' option to update the name as you want it to appear in your navbar
       - href: about.qmd
         text: About
+      - projects/index.qmd  
       - posts.qmd
       - href: resume_jag.pdf
         text: Resume
@@ -27,7 +29,7 @@ website:
     #   - "Copyright 2024, Josh Gregory"
     right:
       - icon: github
-        href: https://github.com/joshgregory42
+        href: https://github.com/joshgregory42/joshgregory42.github.io
       # - icon: twitter
         # href: https://twitter.com/josh_a_gregory
 
