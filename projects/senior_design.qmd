@@ -10,7 +10,35 @@ Download a copy of the poster [here](senior_design/senior_design_poster.pdf)
 
 ![3mm laparoscopic port render](senior_design/lap_port.png){width=20%}
 
-# Description
+# Motivation
+
+Laparoscopic surgery is a type of minimally-invasive surgery whereby incisions are made into the umbilicus (the belly button) and then several other incisions are made near this first incision. The umbilicus incision is made first, and then a 5 mm camera and light is inserted. The abdominal cavity is then insufflated, which is the process whereby gas (usually carbon dioxide) is pumped into the abdominal cavity to allow for easier manupulation of surgical instruments.
+
+![Laparoscopic surgery. [Source](https://healthjade.com/laparoscopy/)](senior_design/lap_surgery_clipart.jpg){width=60%}
+
+Core to all of these procedures is the laparoscopic port, one of which can be seen below:
+
+![VersaOne Optical Trocar, made by [MedTronic](https://www.medtronic.com/covidien/en-us/products/trocars-access/versaone-access-system.html). Note the insufflation valve on the right image on the left side of the port.](senior_design/trocar_image.png){width=50%}
 
 
+These ports come in various ranges, such as 5 mm, 10 mm, and 12 mm. This number refers to the size of the instrument that can be used with the port itself, meaning that the diameter of a 10 mm port would be somewhere around 10.75 mm to allow for insertion and removal of 10 mm laparoscopic instruments.
 
+## Babies in the Neonatal Itensive Care Unit (NICU)
+
+These ports work great for adults, when the thickness of the abdominal cavity is enough to keep the port in place and the patient is large enough that there is enough room to maneuver the laparoscopic tools without the surgical field getting too crowded. Both of these go completely out the window when working on babies in the NICU, which is where Colorado Children's Hospital comes into the picture.
+
+Our client for this project was a pediatric surgeon from Colorado Children's Hospital, and one of the first things he told us was the size of the surgical field. It's the size of a grapefruit. You read that right. A grapefruit.
+
+# The design challenge
+
+The design challenge corresponded of two main issues: crowding of the surgical field and port dislogement. The former arises from the incredibly small size of the surgical field, with the latter arising from the incredibly thin abdominal walls found in neonates.
+
+# A (nearly) blank piece of paper
+
+One thing that is important to mention here: none of us on the team had any experience with the design or testing of medical devices. Most of us didn't even know what laparoscopic **was**, much less how to design an instrument that would be helpful for a surgeon who has already been performing these operations for years. On top of that, the surgeon came to us with a sketch that he had made on his dining room table. No specifications, no bill of materials. Nothing. Just a nearly blank piece of paper and an idea. Most of the other teams had clients that came to them with lists of specifications, other designs the company had tried, and usually a team of engineers. Not here. To be honest, that freedom and lightness allowed us as a team to create a design that was unique and one that each of us is proud of.
+
+# The solution
+
+The novelty in the design was that it features a large air channel towards the top which features a bumper that slides down, forcing the air into a reservoir below the abdominal wall that inflates a retention mechanism. Once the procedure has finished, the retaining mechanisms are removed and the air moves back up the shaft of the port and the procedure is completed. This is shown in pictoral form in the poster download at the top of this page. One of the highlights of this project was the feedback from other surgeons at CU's Engineering Projects Expo. Multiple surgeons with decades of experience held the port and commented on how familiar it felt and how it addressed many of their personal concerns when working on smaller patients.
+
+This design is currently patent pending.
