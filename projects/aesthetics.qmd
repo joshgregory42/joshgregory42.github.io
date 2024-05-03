@@ -1,8 +1,0 @@
----
-title: The Coaster
-description: |
-    
-image: senior_design/port_render_2.jpg
-image-width: 10em
-categories: [surgery, medical devices]
----
