@@ -1,7 +1,9 @@
 [
   {
     "listing": "/posts.html",
-    "items": []
+    "items": [
+      "/posts/2024-05-05-research-award/index.html"
+    ]
   },
   {
     "listing": "/projects.html",

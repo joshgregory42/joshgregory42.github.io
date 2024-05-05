@@ -1,0 +1,22 @@
+---
+title: "Transformers and Attention"
+description: "Notes on the transformer architecture and the attention mechanism"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory42.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 05-04-2024
+categories: [Machine learning, Artificial intelligence, Thesis] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2022-10-24-my-blog-post/ 
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+This is going to be the first post in a series where I'm taking the notes from learning about the transformer architecture and synthesizing them, both for myself in the future and if they're helpful for others. The paper where the transformer architecture was first introduced is by the Google Brain team and is titled ["Attention is All You Need"](https://research.google/pubs/attention-is-all-you-need/).
+
+These notes are based on the amazing YouTube videos by Grant Sanderson of 3Blue1Brown fame. The entire playlist can be found [here](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi).
+
+
+# Overview
