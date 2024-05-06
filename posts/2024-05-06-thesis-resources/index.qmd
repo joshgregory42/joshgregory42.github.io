@@ -1,0 +1,27 @@
+---
+title: "MS Thesis Resources"
+description: "Resrouces for my MS Thesis"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 05-06-2024
+categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence, Thesis] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2024-05-06-thesis-resources/ 
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+This is a collection of resources I'm using for my MS Thesis concerning vision transformers (VTs) applied to brain vasculature. This page will probably be updated over time.
+
+# ML Resources
+
+[Coding problems](https://www.gptandchill.ai/codingproblems)
+
+[3Blue1Brown Deep Learning YouTube playlist](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
+[A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html)
+
+[Creating a Transformer from Scratch](https://benjaminwarner.dev/2023/07/01/attention-mechanism)
