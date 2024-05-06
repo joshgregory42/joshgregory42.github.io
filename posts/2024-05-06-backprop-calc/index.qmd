@@ -11,7 +11,7 @@ date: 05-06-2024
 categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence] # self-defined categories
 citation: 
   url: https://joshgregory42.github.io/posts/2024-05-06-backprop-calc/ 
-draft: flase # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 > The video where these notes come from can be found [here](https://www.youtube.com/watch?time_continue=1&v=tIeHLnjs5U8&embeds_referring_euri=https%3A%2F%2Fwww.3blue1brown.com%2F&feature=emb_logo). The corresponding notes (which are probably better than mine) can be found [here](https://www.3blue1brown.com/lessons/backpropagation-calculus).
