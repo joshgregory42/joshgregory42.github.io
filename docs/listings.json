@@ -3,6 +3,10 @@
     "listing": "/posts.html",
     "items": [
       "/posts/2024-05-06-backprop-calc/index.html",
+<<<<<<< HEAD
+=======
+      "/posts/2024-05-06-thesis-resources/index.html",
+>>>>>>> dev
       "/posts/2024-05-05-research-award/index.html"
     ]
   },
