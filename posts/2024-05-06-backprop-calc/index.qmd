@@ -1,0 +1,120 @@
+---
+title: "Backpropagation Calculus"
+description: "My notes from the 3Blue1Brown video on the calculus behind backpropagation"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 05-06-2024
+categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2024-05-06-backprop-calc/ 
+draft: flase # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+> The video where these notes come from can be found [here](https://www.youtube.com/watch?time_continue=1&v=tIeHLnjs5U8&embeds_referring_euri=https%3A%2F%2Fwww.3blue1brown.com%2F&feature=emb_logo). The corresponding notes (which are probably better than mine) can be found [here](https://www.3blue1brown.com/lessons/backpropagation-calculus).
+
+Let's say that we have a really simple neural network, just neurons connected to each other in series like this:
+
+```{mermaid}
+flowchart LR
+    A( ) -->|1| B( )
+    B --> |2| C( )
+    C --> |3| D( )
+```
+
+We want to see how sensitivbe the cost function is to $w_1$, $w_2$, $w_3$ and $b_1$, $b_2$, $b_3$. Knowledge of how the sensitivity of the weights and biases affects the cost function allows us to figure out how to minimize it. Here we're just going to focus on the last two neurons. Call the weight of the current layer (labeled with a 3) $w^{(L)}$, the activation of layer $L$ being $a^{(L)}$, and the activation of the previous layer $a^{(L-1)}$, with the desired output $y$ supplied by the training data. Assuming mean squared error (MSE), the cost function for this network for a single training example is
+
+$$
+C_0 = \left( a^{(L)} - y \right)^2
+$$
+
+But we need to get $a^{(L)}$ somehow. We can get that via
+
+$$
+a^{(L)} = \sigma \left( w^{(L)} a^{(L-1)} + b^{(L)} \right)
+$$
+where $\sigma$ is the activation function. Let's call everything inside of the parantheses $z^{(L)}$, therefore
+
+$$
+\begin{align*}
+a^{(L)} &= \sigma \left( w^{(L)} a^{(L-1)} + b^{(L)} \right)\\
+&= \sigma \left( z^{(L)} \right)
+\end{align*}
+$$
+
+Notice what this means: if we give the network a single test data point $y$, to calculate the cost function for that test point, we need to find $a^{(L)}$, which in turn requires us to use all of the weights, biases, and activations of all the previous layers. We need to propagate backwards through our network.
+
+
+So we have a few steps for each layer. We first need to get $z^{(L)}$ with $w^{(L)}$, $a^{(L-1)}$, and $b^{(L)}$. Then we go from $z^{(L)}$ to $a^{(L)}$. Then we use both $a^{(L)}$ and $y$ to calculate $C_0$.
+
+Obviously need to find $\frac{ \partial C_0 }{ \partial w^{(L)} }$ to minimize the cost function. Can use the chain rule for this:
+
+$$
+\frac{\partial C_0}{ \partial w^{(L)} } = \frac{\partial z^{(L)}}{ \partial w^{(L)} } \frac{\partial a^{(L)}}{ \partial z^{(L)} } \frac{\partial C_0}{ \partial a^{(L)} }
+$$
+here we're going to again assume MSE, so
+
+$$
+C_0 = \left( a^{(L)} - y \right)^2
+$$
+however this found change depending on the cost function. Therefore,
+
+$$
+\begin{align*}
+\frac{\partial C_0}{ \partial a^{(L)} } &= 2 \left( a^{(L)} - y \right)\\
+\frac{\partial a^{(L)}}{ \partial z^{L} } &= \sigma ' \left( z^{(L)} \right) = \sigma ' \left( w^{(L)} a^{(L-1)} + b^{(L)} \right)\\
+\frac{\partial z^{(L)}}{ \partial w^{(L)} } &= a^{(L-1)}
+\end{align*}
+$$
+Therefore,
+
+$$
+\frac{ \partial C_0 }{ \partial w^{(L)} } = a^{(L-1)} \sigma ' \left( z^{(L)} \right) 2 \left( a^{(L)} - y \right)
+$$
+For all training examples, we take the average:
+
+$$
+\frac{ \partial C }{ \partial w^{(L)} } = \frac{1}{n} \sum_{k=0}^{n-1} \frac{ \partial C_k }{ \partial w^{(L)} }
+$$
+Note that this is just one component in the $\nabla C$ vector, however:
+
+$$
+\nabla C = 
+\begin{bmatrix}
+\frac{\partial C}{\partial w^{(1)}} \\
+\frac{\partial C}{\partial b^{(1)}}\\
+\vdots\\
+\frac{\partial C}{\partial w^{(L)}}\\
+\frac{\partial C}{\partial b^{(L)}}\\
+\end{bmatrix}
+$$
+
+We can also do the same thing for the biases:
+
+$$
+\frac{ \partial C_0 }{ \partial b^{(L)} } = \frac{ \partial z^{(L)} }{ \partial b^{(L)} } \frac{ \partial a^{(L)} }{ \partial z^{(L)} } \frac{ \partial C_0 }{ \partial a^{(L)} }
+$$
+The first term on the RHS goes to 1, giving us
+$$
+\frac{ \partial C_0 }{ \partial b^{(L)} } = \sigma ' \left( z^{(L)} \right) 2 \left( a^{(L)} - y \right)
+$$
+If we have multiple neurons per layer and output layers $y_0$ and $y_1$, activations $a_0$ and $a_1$, and $w_{jk}^{(L)}$ which is the weight of the $k^{\text{th}}$ neuron connecting the $j^{\text{th}}$ neuron, we get (again assuming MSE)
+
+$$
+C_0 = \sum_{j=0}^{n_{L-1}} \left( a_j^{(L)} - y_j \right)^2
+$$
+
+which gives us the following for $z$:
+
+$$
+z_{j}^{(L)} = w_{j0}^{(L)} a_0^{(L-1)} + w_{j1}^{(L)} a_1^{(L-1)} + w_{j2}^{(L)} a_2^{(L-1)} + \ldots + b_j^{(L)}
+$$
+
+which results in
+
+$$
+a_j^{(L)} = \sigma \left( z_j^{(L)} \right)
+$$

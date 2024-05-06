@@ -10,7 +10,7 @@ author:
 date: 05-05-2024
 categories: [Research, College] # self-defined categories
 citation: 
-  url: https://joshgregory42.github.io/posts/2022-10-24-my-blog-post/ 
+  url: https://joshgregory42.github.io/posts/2024-05-05-research-award/ 
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 > Every year, CU Boulder's College of Engineering & Applied Science hands out [awards](https://www.colorado.edu/engineering/academics/graduation/graduating-student-awards) to certain graduating students. Faculty and students from the engineering deparments within the College (i.e. mechanical, aerospace, civil, etc.) nominates students, who then submit statements for their individual award. Some of them are then selected by the College as a whole. One of them is the Research Excellence Award, which I was fortunate enough to receive from the College after being nominated by a few faculty members. As part of the selection process, each nominee had to write a statement about research and any advice they would give to other students. What follows is my statement.
