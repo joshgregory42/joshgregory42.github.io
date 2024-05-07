@@ -173,7 +173,7 @@ This is drawing a bit from two posts ago, but I figured it was worth repeating h
 
 In a similar vein, I own a mug by Kinto Japan that is made using local artisan techniques that have been around for hundreds of years. The mug itself is an absolute joy to hold, even though it looks so simple:
 
-![Coffee mug by Kinto Japan. [Source](https://kinto-usa.com/collections/mug-cup/products/29517?variant=22206884085808)](aesthetics/kinto_mug.png){width=70%}
+![Coffee mug by Kinto Japan. [Source](https://kinto-usa.com/collections/mug-cup/products/29517?variant=22206884085808)](aesthetics/kinto_mug.png){width=40%}
 
 These are what formed the basis of my design aesthetics. I really wanted to try and push myself to use as few 90 degree angles as possible, focusing as much on curves as I possibly could and using as little material as possible.
 
