@@ -7,10 +7,10 @@ author:
     orcid: 0000-0002-4368-1171
     affiliation: College of Engineering & Applied Science, University of Colorado Boulder
     affiliation-url: https://www.colorado.edu/mechanical/ 
-date: 06-04-2024
+date: 06-05-2024
 categories: [Research, Advice] # self-defined categories
 citation: 
-  url: https://joshgregory42.github.io/posts/2024-06-04-undergrad-advice/ 
+  url: https://joshgregory42.github.io/posts/2024-06-05-undergrad-advice/ 
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 > After recently graduating from my undergraduate program in mechanical engineering at CU Boulder, I thought of reflecting a bit and sharing some things that I learned besides just the schooling. Hopefully it's helpful for others at any point on their journey :)
