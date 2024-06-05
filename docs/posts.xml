@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Josh Gregory</title>
+<link>https://www.joshgregory42.github.io/posts.html</link>
+<atom:link href="https://www.joshgregory42.github.io/posts.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.4.554</generator>
+<lastBuildDate>Wed, 05 Jun 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Advice for Undergrads</title>
+  <dc:creator>Josh Gregory</dc:creator>
+  <link>https://www.joshgregory42.github.io/posts/2024-06-05-undergrad-advice/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<blockquote class="blockquote">
+<p>After recently graduating from my undergraduate program in mechanical engineering at CU Boulder, I thought of reflecting a bit and sharing some things that I learned besides just the schooling. Hopefully it’s helpful for others at any point on their journey :)</p>
+</blockquote>
+<section id="picking-the-right-school" class="level1">
+<h1>Picking the right school</h1>
+<p>First, some background: I transferred schools during COVID. I began at Oregon State University (OSU), but then transferred my sophomore year in the middle of COVID to CU Boulder, where I then finished my degree. Because of that, I had to do a lot of reflecting as to where the best school would be to transfer to. I had always wanted to go to CU Boulder (there were a few other reasons that are more personal), so my decision was easy, but here are some things to consider if you’re making a similar choice.</p>
+<section id="the-schools-non-academic-qualities-matter-too" class="level2">
+<h2 class="anchored" data-anchor-id="the-schools-non-academic-qualities-matter-too">The school’s non-academic qualities matter too</h2>
+<p>This is one that most people seem to not think about as much as they should. Put simply, <strong>a school’s academics mean nothing if you hate the environment</strong>. You could be going to the best university in the world for your field, but if you are demeaned by the faculty, made to feel like an outsider, or just generally don’t like the environment, the academics don’t matter. You won’t be able to take full advantage of them because mentally you will be distracted by how much you hate dealing with other students, the horrible weather, etc. For me, the academics are more of a check box. Yes, they should be strong. But I don’t think they should be a majority of the discussion. Most schools will brag about their academics, but I would ask more about mentorship opportunities. How easy is it for you to get involved in research (if you want to, of course)? How available are professors? Also look at the department as a whole. CU’s Mechanical Engineering Department is incredible. Yes, there are a lot of students, but the department does a great job at making it feel small and connected. Many professors know my by name and we frequently talk in the hallways about anything and everything. I’ve emailed quite a few of them being both confused but curious about something we discussed in class, and 100% of them were willing to give hours of their time to share their passion with me. Those kinds of interactions are meaningful and go a long way to making someone feel welcome.</p>
+<p>Another major aspect to consider is the weather and surrounding city and your preferences there. At OSU, I was an hour and a half away from the nearest major city. OSU is in Corvallis, Oregon, which is a pretty small college town. Really the only thing I found to do there was to drink. For some people that’s fine, but for me I wanted to do other things.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.joshgregory42.github.io/posts/2024-06-05-undergrad-advice/images/cu_campus.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>University of Colorado Boulder campus in Boulder, CO. <a href="https://bizwest.com/2023/09/10/cu-boulder-develops-system-to-3d-print-with-coffee-grounds/">Source</a></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.joshgregory42.github.io/posts/2024-06-05-undergrad-advice/images/osu_campus.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Oregon State University campus in Corvallis, OR. <a href="https://wvporegon.com/project/oregon-state-university-master-plan/">Source</a></figcaption>
+</figure>
+</div>
+<p>For me, Boulder as a city was exactly what I was looking for. As a runner, access to easy running trails was a huge bonus (a path I frequently ran on was literally right outside my door), but Pearl Street and nearby places to visit was also amazing. The community felt alive, and there were other things to do and see besides the college campus. Denver was also a half hour away, so if I wanted to go into a major city for whatever reason, that was something I could easily do as well.</p>
+<p>In short, it is always a good idea to live in a place that has options so that you don’t limit yourself accidentally. There are also some things you don’t realize you want until you’re experiencing them. For me, one of the more surprising things about moving to Boulder was its food scene. In Corvallis, there aren’t many restaurants that offer a diverse set of cuisine. Boulder is the opposite of that. I could have excellent Indian food, Nepalese, Korean, and many others whenever I felt like it. Again, that wasn’t something that I thought about a lot while I was in Corvallis, but was something I realized I loved when transferring to CU.</p>
+</section>
+</section>
+<section id="curiosity-is-key" class="level1">
+<h1>Curiosity is key</h1>
+<p>One of the things I have seen, both in high school and university, is people losing their curiosity. Not only is this sad, but in my opinion, takes away from one of the main areas of potential innovation. Remaining curious is a superpower that many people have beaten out of them</p>
+<section id="follow-your-interests" class="level2">
+<h2 class="anchored" data-anchor-id="follow-your-interests">Follow your interests</h2>
+<p>Said another way, be wary of becoming pigeonholed. Academia thrives on people having deep specializations, which for some people is exactly what they want. It’s important to recognize that academia will tend to push you towards a narrow specialization unless you do something about it.</p>
+<p>For me, that was in rocketry. My background in computational fluid dynamics (CFD) was originally applied to liquid-fuelled rocket engines. However, at the onset of the COVID pandemic, I decided that I wanted to use my engineering skills to help people in a more direct way, so I switched to a lab that focuses on CFD applied to the human body. I didn’t know anything about biomedical engineering, but knew that fundamentally, the math behind fluid mechanics applied to rocket engines and the body would be the same. I let my interest in helping people from a biomedical perspective carry me through many of the difficult times of having absolutely no idea what was going on.</p>
+<p>In retrospect, being able to switch fields like this is extremely important. Having the flexibility to be cross-disciplinary is something that I have found I really enjoy, although your mileage may vary.</p>
+</section>
+</section>
+<section id="its-hard.-really-hard." class="level1">
+<h1>It’s hard. Really hard.</h1>
+<p>You will work harder than your non-engineering peers. You will have many long nights. I typically woke up around 7:30am and would go to bed around 12:30am, but that was just my schedule and what worked for me. It’s a crazy amount of work, and there’s no way around that.</p>
+<p>That being said, your ability to work more efficiently and effectively will also go up. Yes, more advanced classes like heat transfer are more difficult than freshman-level classes like statics, but by the time you take heat transfer you have study skills that allow you to study more effectively than you did in statics. For me, this meant that–on the whole–I felt as though I was putting in the same amount of effort throughout my degree. While the classes did get harder, my study and learning skills also got better.</p>
+<p>I remember hearing somewhere that engineering will humble you at some point, no matter how smart you are. That is true. You can come in being the top of your class, but guess what, so is pretty much everyone else here. And that’s not a bad thing, just something to keep in mind.</p>
+<section id="no-one-gets-through-it-alone" class="level2">
+<h2 class="anchored" data-anchor-id="no-one-gets-through-it-alone">No one gets through it alone</h2>
+<p>This might be something more specific to CU, but I suspect that it isn’t. Everyone here wants to help everyone else. Each person who gets past freshman year in this program knows that it’s gruelling. For most people, that brings out the best in them. 99% of people want to help everyone else succeed. If you’re struggling, there is a culture of asking for help. If you struggle on an exam but know someone who did well, I’m confident that 99% of the time they will be more than happy to meet with you and talk things over. I’m convinced that it’s pretty much impossible to get through an engineering degree by yourself without some kind of outside help.</p>
+</section>
+<section id="relationships-and-friends" class="level2">
+<h2 class="anchored" data-anchor-id="relationships-and-friends">Relationships and friends</h2>
+<p>I had a frew relationships during my time as an undergraduate, and to answer your question, yes it can happen. And yes, it’s hard. If you’re going to do one, making sure that your partner knows that you’re going to be working a lot is really key. Communication, as much as people say is important, becomes critical. It will make or break the relationship. I also found it helpful to schedule dates that I didn’t move and to try and check in about once a week with my girlfriend to see how the relationship was going. Everything was on the table and each person had the space to bring up anything they wanted, good or bad.</p>
+<p>All of this being said, both people need to be willing to work through difficult times. The honeymoon phase wears off. Surprise assignments come up. I once was spending time with a girl I was dating and we were eating dinner together after a long week when someone on a group project texted me saying that he couldn’t finish the code. He had a week and had written three lines. It was due that night. So I had to finish it myself. Having a partner that understands that things like that come up is really important, but also as equally important is being able to communicate openly and honestly with each other if it ever becomes too much.</p>
+</section>
+<section id="values" class="level2">
+<h2 class="anchored" data-anchor-id="values">Values</h2>
+<p>Because the program is so rigorous, you’ll quickly learn the value of hard work, dedication, not giving up (both on yourself and others), thinking through problems, and learning how to balance life and school (as best as you can, at least). The value placed on hard work is one I’ve found to be specific in STEM, although it could definitely be present in other majors. Because everyone works so hard, you will go through hell and back multiple times with your friends. And you’ll all be stronger because of it and have a deeper relationship with each other. Those people will go to the ends of the earth for you, and I know that for the friends I have made through this program, if I were to need any of them for any kind of emergency, they would drop everything and help me. And they know I would do the same for them. No questions asked.</p>
+</section>
+</section>
+<section id="but-incredibly-worth-it" class="level1">
+<h1>But incredibly worth it</h1>
+<p>Engineering is much harder than other majors, but it also gives you access to cooler shit than many other majors too. Do finance majors get to build rockets? Nope. Do communication majors get to design artificial hearts? Also no.</p>
+<p>I was lucky enough to work with a pediatric surgeon on designing a new kind of surgical device (a laparoscopic port) for use in babies that are born premature and typically are in the neonatal intensive care unit (NICU). It was incredible, and knowing that what my team worked on would help the most vulnerable among us was a feeling that will always stay with me. Oh yeah, and some people care about the money side. We filed a patent for our design, and many surgeons who held the port said it was incredible and potentially disruptive. The laparoscopic device industry is projected to be worth about $19 billion by <a href="https://www.alliedmarketresearch.com/laparoscopy-devices-market">2027</a>. A laparoscopic device designed from the ground up for patients in the NICU doesn’t currently exist. You can do the math.</p>
+</section>
+<section id="three-things-to-never-skimp-on" class="level1">
+<h1>Three things to never skimp on</h1>
+<p>Sleep, exercise, and diet will solve 90% of your problems. If something feels off for a while, check that you’re doing <strong>all three of these well</strong>. Not one of them or two of them, but all three. Once you have made sure you’ve been getting enough sleep, exercising enough, and eating well, then start looking at other things (i.e.&nbsp;going to the doctor).</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
+  author = {Gregory, Josh},
+  title = {Advice for {Undergrads}},
+  date = {2024-06-05},
+  url = {https://joshgregory42.github.io/posts/2024-06-05-undergrad-advice/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gregory2024" class="csl-entry quarto-appendix-citeas">
+Gregory, Josh. 2024. <span>“Advice for Undergrads.”</span> June 5, 2024.
+<a href="https://joshgregory42.github.io/posts/2024-06-05-undergrad-advice/">https://joshgregory42.github.io/posts/2024-06-05-undergrad-advice/</a>.
+</div></div></section></div> ]]></description>
+  <category>Research</category>
+  <category>Advice</category>
+  <guid>https://www.joshgregory42.github.io/posts/2024-06-05-undergrad-advice/</guid>
+  <pubDate>Wed, 05 Jun 2024 06:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Backpropagation Calculus</title>
+  <dc:creator>Josh Gregory</dc:creator>
+  <link>https://www.joshgregory42.github.io/posts/2024-05-06-backprop-calc/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<blockquote class="blockquote">
+<p>The video where these notes come from can be found <a href="https://www.youtube.com/watch?time_continue=1&amp;v=tIeHLnjs5U8&amp;embeds_referring_euri=https%3A%2F%2Fwww.3blue1brown.com%2F&amp;feature=emb_logo">here</a>. The corresponding notes (which are probably better than mine) can be found <a href="https://www.3blue1brown.com/lessons/backpropagation-calculus">here</a>.</p>
+</blockquote>
+<p>Let’s say that we have a really simple neural network, just neurons connected to each other in series like this:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A( ) --&gt;|1| B( )
+    B --&gt; |2| C( )
+    C --&gt; |3| D( )
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>We want to see how sensitivbe the cost function is to <img src="https://latex.codecogs.com/png.latex?w_1">, <img src="https://latex.codecogs.com/png.latex?w_2">, <img src="https://latex.codecogs.com/png.latex?w_3"> and <img src="https://latex.codecogs.com/png.latex?b_1">, <img src="https://latex.codecogs.com/png.latex?b_2">, <img src="https://latex.codecogs.com/png.latex?b_3">. Knowledge of how the sensitivity of the weights and biases affects the cost function allows us to figure out how to minimize it. Here we’re just going to focus on the last two neurons. Call the weight of the current layer (labeled with a 3) <img src="https://latex.codecogs.com/png.latex?w%5E%7B(L)%7D">, the activation of layer <img src="https://latex.codecogs.com/png.latex?L"> being <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L)%7D">, and the activation of the previous layer <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L-1)%7D">, with the desired output <img src="https://latex.codecogs.com/png.latex?y"> supplied by the training data. Assuming mean squared error (MSE), the cost function for this network for a single training example is</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AC_0%20=%20%5Cleft(%20a%5E%7B(L)%7D%20-%20y%20%5Cright)%5E2%0A"></p>
+<p>But we need to get <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L)%7D"> somehow. We can get that via</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Aa%5E%7B(L)%7D%20=%20%5Csigma%20%5Cleft(%20w%5E%7B(L)%7D%20a%5E%7B(L-1)%7D%20+%20b%5E%7B(L)%7D%20%5Cright)%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Csigma"> is the activation function. Let’s call everything inside of the parantheses <img src="https://latex.codecogs.com/png.latex?z%5E%7B(L)%7D">, therefore</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0Aa%5E%7B(L)%7D%20&amp;=%20%5Csigma%20%5Cleft(%20w%5E%7B(L)%7D%20a%5E%7B(L-1)%7D%20+%20b%5E%7B(L)%7D%20%5Cright)%5C%5C%0A&amp;=%20%5Csigma%20%5Cleft(%20z%5E%7B(L)%7D%20%5Cright)%0A%5Cend%7Balign*%7D%0A"></p>
+<p>Notice what this means: if we give the network a single test data point <img src="https://latex.codecogs.com/png.latex?y">, to calculate the cost function for that test point, we need to find <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L)%7D">, which in turn requires us to use all of the weights, biases, and activations of all the previous layers. We need to propagate backwards through our network.</p>
+<p>So we have a few steps for each layer. We first need to get <img src="https://latex.codecogs.com/png.latex?z%5E%7B(L)%7D"> with <img src="https://latex.codecogs.com/png.latex?w%5E%7B(L)%7D">, <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L-1)%7D">, and <img src="https://latex.codecogs.com/png.latex?b%5E%7B(L)%7D">. Then we go from <img src="https://latex.codecogs.com/png.latex?z%5E%7B(L)%7D"> to <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L)%7D">. Then we use both <img src="https://latex.codecogs.com/png.latex?a%5E%7B(L)%7D"> and <img src="https://latex.codecogs.com/png.latex?y"> to calculate <img src="https://latex.codecogs.com/png.latex?C_0">.</p>
+<p>Obviously need to find <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%20%5Cpartial%20C_0%20%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D"> to minimize the cost function. Can use the chain rule for this:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cpartial%20C_0%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D%20=%20%5Cfrac%7B%5Cpartial%20z%5E%7B(L)%7D%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D%20%5Cfrac%7B%5Cpartial%20a%5E%7B(L)%7D%7D%7B%20%5Cpartial%20z%5E%7B(L)%7D%20%7D%20%5Cfrac%7B%5Cpartial%20C_0%7D%7B%20%5Cpartial%20a%5E%7B(L)%7D%20%7D%0A"> here we’re going to again assume MSE, so</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AC_0%20=%20%5Cleft(%20a%5E%7B(L)%7D%20-%20y%20%5Cright)%5E2%0A"> however this found change depending on the cost function. Therefore,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0A%5Cfrac%7B%5Cpartial%20C_0%7D%7B%20%5Cpartial%20a%5E%7B(L)%7D%20%7D%20&amp;=%202%20%5Cleft(%20a%5E%7B(L)%7D%20-%20y%20%5Cright)%5C%5C%0A%5Cfrac%7B%5Cpartial%20a%5E%7B(L)%7D%7D%7B%20%5Cpartial%20z%5E%7BL%7D%20%7D%20&amp;=%20%5Csigma%20'%20%5Cleft(%20z%5E%7B(L)%7D%20%5Cright)%20=%20%5Csigma%20'%20%5Cleft(%20w%5E%7B(L)%7D%20a%5E%7B(L-1)%7D%20+%20b%5E%7B(L)%7D%20%5Cright)%5C%5C%0A%5Cfrac%7B%5Cpartial%20z%5E%7B(L)%7D%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D%20&amp;=%20a%5E%7B(L-1)%7D%0A%5Cend%7Balign*%7D%0A"> Therefore,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%20%5Cpartial%20C_0%20%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D%20=%20a%5E%7B(L-1)%7D%20%5Csigma%20'%20%5Cleft(%20z%5E%7B(L)%7D%20%5Cright)%202%20%5Cleft(%20a%5E%7B(L)%7D%20-%20y%20%5Cright)%0A"> For all training examples, we take the average:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%20%5Cpartial%20C%20%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D%20=%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bk=0%7D%5E%7Bn-1%7D%20%5Cfrac%7B%20%5Cpartial%20C_k%20%7D%7B%20%5Cpartial%20w%5E%7B(L)%7D%20%7D%0A"> Note that this is just one component in the <img src="https://latex.codecogs.com/png.latex?%5Cnabla%20C"> vector, however:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cnabla%20C%20=%0A%5Cbegin%7Bbmatrix%7D%0A%5Cfrac%7B%5Cpartial%20C%7D%7B%5Cpartial%20w%5E%7B(1)%7D%7D%20%5C%5C%0A%5Cfrac%7B%5Cpartial%20C%7D%7B%5Cpartial%20b%5E%7B(1)%7D%7D%5C%5C%0A%5Cvdots%5C%5C%0A%5Cfrac%7B%5Cpartial%20C%7D%7B%5Cpartial%20w%5E%7B(L)%7D%7D%5C%5C%0A%5Cfrac%7B%5Cpartial%20C%7D%7B%5Cpartial%20b%5E%7B(L)%7D%7D%5C%5C%0A%5Cend%7Bbmatrix%7D%0A"></p>
+<p>We can also do the same thing for the biases:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%20%5Cpartial%20C_0%20%7D%7B%20%5Cpartial%20b%5E%7B(L)%7D%20%7D%20=%20%5Cfrac%7B%20%5Cpartial%20z%5E%7B(L)%7D%20%7D%7B%20%5Cpartial%20b%5E%7B(L)%7D%20%7D%20%5Cfrac%7B%20%5Cpartial%20a%5E%7B(L)%7D%20%7D%7B%20%5Cpartial%20z%5E%7B(L)%7D%20%7D%20%5Cfrac%7B%20%5Cpartial%20C_0%20%7D%7B%20%5Cpartial%20a%5E%7B(L)%7D%20%7D%0A"> The first term on the RHS goes to 1, giving us <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%20%5Cpartial%20C_0%20%7D%7B%20%5Cpartial%20b%5E%7B(L)%7D%20%7D%20=%20%5Csigma%20'%20%5Cleft(%20z%5E%7B(L)%7D%20%5Cright)%202%20%5Cleft(%20a%5E%7B(L)%7D%20-%20y%20%5Cright)%0A"> If we have multiple neurons per layer and output layers <img src="https://latex.codecogs.com/png.latex?y_0"> and <img src="https://latex.codecogs.com/png.latex?y_1">, activations <img src="https://latex.codecogs.com/png.latex?a_0"> and <img src="https://latex.codecogs.com/png.latex?a_1">, and <img src="https://latex.codecogs.com/png.latex?w_%7Bjk%7D%5E%7B(L)%7D"> which is the weight of the <img src="https://latex.codecogs.com/png.latex?k%5E%7B%5Ctext%7Bth%7D%7D"> neuron connecting the <img src="https://latex.codecogs.com/png.latex?j%5E%7B%5Ctext%7Bth%7D%7D"> neuron, we get (again assuming MSE)</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AC_0%20=%20%5Csum_%7Bj=0%7D%5E%7Bn_%7BL-1%7D%7D%20%5Cleft(%20a_j%5E%7B(L)%7D%20-%20y_j%20%5Cright)%5E2%0A"></p>
+<p>which gives us the following for <img src="https://latex.codecogs.com/png.latex?z">:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bj%7D%5E%7B(L)%7D%20=%20w_%7Bj0%7D%5E%7B(L)%7D%20a_0%5E%7B(L-1)%7D%20+%20w_%7Bj1%7D%5E%7B(L)%7D%20a_1%5E%7B(L-1)%7D%20+%20w_%7Bj2%7D%5E%7B(L)%7D%20a_2%5E%7B(L-1)%7D%20+%20%5Cldots%20+%20b_j%5E%7B(L)%7D%0A"></p>
+<p>which results in</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Aa_j%5E%7B(L)%7D%20=%20%5Csigma%20%5Cleft(%20z_j%5E%7B(L)%7D%20%5Cright)%0A"></p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
+  author = {Gregory, Josh},
+  title = {Backpropagation {Calculus}},
+  date = {2024-05-06},
+  url = {https://joshgregory42.github.io/posts/2024-05-06-backprop-calc/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gregory2024" class="csl-entry quarto-appendix-citeas">
+Gregory, Josh. 2024. <span>“Backpropagation Calculus.”</span> May 6,
+2024. <a href="https://joshgregory42.github.io/posts/2024-05-06-backprop-calc/">https://joshgregory42.github.io/posts/2024-05-06-backprop-calc/</a>.
+</div></div></section></div> ]]></description>
+  <category>Notes</category>
+  <category>Deep Learning</category>
+  <category>Machine Learning</category>
+  <category>Artificial Intelligence</category>
+  <guid>https://www.joshgregory42.github.io/posts/2024-05-06-backprop-calc/</guid>
+  <pubDate>Mon, 06 May 2024 06:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>MS Thesis Resources</title>
+  <dc:creator>Josh Gregory</dc:creator>
+  <link>https://www.joshgregory42.github.io/posts/2024-05-06-thesis-resources/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is a collection of resources I’m using for my MS Thesis concerning vision transformers (VTs) applied to brain vasculature. This page will probably be updated over time.</p>
+<section id="ml-resources" class="level1">
+<h1>ML Resources</h1>
+<p><a href="https://www.gptandchill.ai/codingproblems">Coding problems</a></p>
+<p><a href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">3Blue1Brown Deep Learning YouTube playlist</a></p>
+<p><a href="https://transformer-circuits.pub/2021/framework/index.html">A Mathematical Framework for Transformer Circuits</a></p>
+<p><a href="https://benjaminwarner.dev/2023/07/01/attention-mechanism">Creating a Transformer from Scratch</a></p>
+<p><a href="https://benjaminwarner.dev/2023/07/01/attention-mechanism">Andrej Karpathy GPT</a></p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
+  author = {Gregory, Josh},
+  title = {MS {Thesis} {Resources}},
+  date = {2024-05-06},
+  url = {https://joshgregory42.github.io/posts/2024-05-06-thesis-resources/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gregory2024" class="csl-entry quarto-appendix-citeas">
+Gregory, Josh. 2024. <span>“MS Thesis Resources.”</span> May 6, 2024. <a href="https://joshgregory42.github.io/posts/2024-05-06-thesis-resources/">https://joshgregory42.github.io/posts/2024-05-06-thesis-resources/</a>.
+</div></div></section></div> ]]></description>
+  <category>Notes</category>
+  <category>Deep Learning</category>
+  <category>Machine Learning</category>
+  <category>Artificial Intelligence</category>
+  <category>Thesis</category>
+  <guid>https://www.joshgregory42.github.io/posts/2024-05-06-thesis-resources/</guid>
+  <pubDate>Mon, 06 May 2024 06:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Research Excellence Award Statement</title>
+  <dc:creator>Josh Gregory</dc:creator>
+  <link>https://www.joshgregory42.github.io/posts/2024-05-05-research-award/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<blockquote class="blockquote">
+<p>Every year, CU Boulder’s College of Engineering &amp; Applied Science hands out <a href="https://www.colorado.edu/engineering/academics/graduation/graduating-student-awards">awards</a> to certain graduating students. Faculty and students from the engineering deparments within the College (i.e.&nbsp;mechanical, aerospace, civil, etc.) nominates students, who then submit statements for their individual award. Some of them are then selected by the College as a whole. One of them is the Research Excellence Award, which I was fortunate enough to receive from the College after being nominated by a few faculty members. As part of the selection process, each nominee had to write a statement about research and any advice they would give to other students. What follows is my statement.</p>
+</blockquote>
+<p>Research lets me act like a curious five-year-old. An unwavering sense of wonder and curiosity about the world is what led me to conducting research in various fields for each year of my undergraduate career. During my time at CU, I have contributed to research at the intersection of biology and mechanical engineering under <a href="https://www.flowphysicslab.com/">Dr.&nbsp;Debanjan Mukherjee</a>, worked with the National Renewable Energy Laboratory (<a href="https://www.nrel.gov/">NREL</a>) on fundamental research in heat transfer and thermodynamics, and more recently began my Master’s thesis on the topic of artificial neural networks applied to brain vasculature to better predict and understand strokes. The commonality between all of these projects is an understanding and application of fundamentals across varying fields, a perspective that is helpful in both uniting different fields and forging new paths at their intersections.</p>
+<p>My work with Dr.&nbsp;Mukherjee is currently investigating the mechanical properties of blood clots in a dynamic and transient sense. That is, using <em>in vitro</em> experiments to inform <em>in silico</em> models of blood clots. The novel fusion of these two typically disparate approaches allows us to extract the boundaries of blood clots as they develop over time, allowing for significantly more accurate computational modeling of blood clot dynamics. My contribution has been on the image processing side, assisting PhD student Chayut Teeraratkul in determining the techniques to extract the blood clot boundaries. My work enabled the group to obtain correct image processing parameters for a wide range of experiments, allowing for our code to be applied to more datasets. This work is currently being written for publication and is going to be published in the following months, with the code set for an open-source release to the community. It is inherently transdisciplinary, utilizing knowlege from mechanical engineering, biology, and computer science. This has allowed me to gain familiarity with diverse areas such as blood clot hemodynamics, image processing, and software development. Recognizing the importance of this work, CU awarded it a <a href="https://www.colorado.edu/urop/">UROP</a> grant in the summer of 2023.</p>
+<p>Also during the summer of 2023, I interned at NREL, working on additively manufacturing heat exchangers for use in energy storage. Sometimes called a “thermal battery”, these materials utilize microscopic phase-change materials to store energy in the form of heat, in contrast to the status quo that is a chemical reaction. This work required knowledge of heat transfer, materials science, thermodynamics, and fluid mechanics, but also allowed me to work with scientists in other fields, such as chemistry. Throughout the summer, I was able to determine the optimal 3D printing settings for these heat exchangers and also gained experience in thermodynamic characterization, utilizing machines such as differential scanning calorimeters. This work has the potential to contribute significantly to energy storage issues of our time. Current lithium-ion batteries are not adequate for large scale storage of energy, such as that generated by solar panels. Furthermore, it allows the insulation of houses to store incoming sunlight, drastically reducing the cost of the monthly utility bill. Due to its manufacturing process, it also allows for cheaper cooling and heating solutions for lower-income communities in a world beset by climate change. My work was presented in a poster session within NREL and is currently in manuscript form to be published soon.</p>
+<p>More recently, I have begun work on my Master’s Thesis, which focuses on one of the most crucial tasks in Dr.&nbsp;Mukherjee’s lab: automated segmentation of the M2, P2, and A2 vessels of the brain, which are increasingly found to be the locations of stroke. As such, understanding the fluid mechanics of these vessels is vital to predicting stroke risk. The goal of my thesis is to take CT images from clinicians and feed them to a neural network to extract these vessels, allowing for significantly better stroke risk assessment in the research and clinical settings. This is also a collaboration between our lab and others, namely Drs. Timothy Stalker and Maruzio Pacifici from Thomas Jefferson University, Dr.&nbsp;Vincent Tutino from the University of Buffalo, and other collaborators from UMC Amsterdam and CU Anschutz. This is a collaboration across fields as well as researchers, requiring knowledge not only of the mechanical engineering for which I am familiar, but also computer science, image processing, and biology.</p>
+<p>My best advice to a future student is to embrace curiosity and approach challenges with the mindset of a five-year-old. Be curious, insatiably so. Research allows you to work on problems you never thought possible with people in incredible fields. It allows you to learn how to think through problems with others, collaborating to uncover or create something new in this world. On the other hand, resist the temptation to become overly specialized. Put yourself in a position to learn new things. Ignorance can be helpful when utilized in the correct way. The fundamentals of engineering are just that; the fundamentals. How you apply them is up to you. My career trajectory initially pointed towards the aerospace industry. As a freshman, I ran computational fluid dynamics simulations of rocket engines, eventually progressing to the simulation lead for various rocket teams. However, the pandemic sparked a desire to contribute to the medical field. Recognizing the shared fundamentals of fluid mechanics between rocket engines and the cardiovascular system, I pivoted, embracing my curiosity and desire to help others, despite my ignorance in the field.</p>
+<p>Two other lessons that I found useful in both research and life: question assumptions and find the nuance. Assumptions in research are often the most challenging part of a project, so gaining experience in making them helps you become better in your field as well as in life. Finding nuance is also key. In today’s world it is easy to make blanket statements and assume that either you know everything, or the person you are working for does. Research has a way of humbling everyone, no matter their stature. Not only will you learn to find nuance in your own ideas, but finding nuance in the ideas of others leads to new avenues of exploration in ways no one anticipates. This non-linear path is truly one of the most rewarding areas of research. Yes, it is littered with disappointing days, failed experiments, and false hopes. But it is also marked by success, new ideas, perseverance, and a curiosity to better understand the world around us.</p>
+<p>Participation in research is participation in the scientific process. The same scientific process that Isaac Newton, Galileo Galilei, Madame Curie, and Jennifer Doudna all were a part of. It is a uniquely human experience that ties you to a lineage of people who create discoveries and technologies that cause the world to fundamentally change. Act like a five-year-old and celebrate your ignorance. Not knowing how difficult something is might be the very reason you end up doing it and changing the world.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
+  author = {Gregory, Josh},
+  title = {Research {Excellence} {Award} {Statement}},
+  date = {2024-05-05},
+  url = {https://joshgregory42.github.io/posts/2024-05-05-research-award/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gregory2024" class="csl-entry quarto-appendix-citeas">
+Gregory, Josh. 2024. <span>“Research Excellence Award Statement.”</span>
+May 5, 2024. <a href="https://joshgregory42.github.io/posts/2024-05-05-research-award/">https://joshgregory42.github.io/posts/2024-05-05-research-award/</a>.
+</div></div></section></div> ]]></description>
+  <category>Research</category>
+  <category>College</category>
+  <guid>https://www.joshgregory42.github.io/posts/2024-05-05-research-award/</guid>
+  <pubDate>Sun, 05 May 2024 06:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
