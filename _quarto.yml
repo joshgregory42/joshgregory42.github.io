@@ -3,6 +3,8 @@ project:
   output-dir: docs
 
 website:
+  site-url: https://www.joshgregory42.github.io
+  # title: 'Josh Gregory'
   navbar:
     title: "Josh Gregory" # this is the website title as it appears in the top left corner -- clicking on this will jump you back to your landing page from where ever you are
     # collapse-level: 1
@@ -22,6 +24,8 @@ website:
         href: https://github.com/joshgregory42
       - icon: twitter
         href: https://twitter.com/josh_a_gregory
+      - icon: rss
+        href: index.html
 
   page-footer:
     background: light # or dark
