@@ -1,6 +1,6 @@
 ---
 title: "Research Excellence Award Statement"
-description: "Reflections on my research and advice for future undergraduate researchers"
+description: "Reflections on my research"
 author:
   - name: Josh Gregory
     url: https://joshgregory42.github.io/

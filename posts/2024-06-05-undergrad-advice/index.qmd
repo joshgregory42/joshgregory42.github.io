@@ -1,0 +1,87 @@
+---
+title: "Advice for Undergrads"
+description: "Reflections on my undergraduate mechanical engineering career since graduating"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory42.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 06-05-2024
+categories: [Research, Advice] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2024-06-05-undergrad-advice/ 
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+> After recently graduating from my undergraduate program in mechanical engineering at CU Boulder, I thought of reflecting a bit and sharing some things that I learned besides just the schooling. Hopefully it's helpful for others at any point on their journey :)
+
+
+# Picking the right school
+
+First, some background: I transferred schools during COVID. I began at Oregon State University (OSU), but then transferred my sophomore year in the middle of COVID to CU Boulder, where I then finished my degree. Because of that, I had to do a lot of reflecting as to where the best school would be to transfer to. I had always wanted to go to CU Boulder (there were a few other reasons that are more personal), so my decision was easy, but here are some things to consider if you're making a similar choice.
+
+## The school's non-academic qualities matter too
+
+This is one that most people seem to not think about as much as they should. Put simply, **a school's academics mean nothing if you hate the environment**. You could be going to the best university in the world for your field, but if you are demeaned by the faculty, made to feel like an outsider, or just generally don't like the environment, the academics don't matter. You won't be able to take full advantage of them because mentally you will be distracted by how much you hate dealing with other students, the horrible weather, etc. For me, the academics are more of a check box. Yes, they should be strong. But I don't think they should be a majority of the discussion. Most schools will brag about their academics, but I would ask more about mentorship opportunities. How easy is it for you to get involved in research (if you want to, of course)? How available are professors? Also look at the department as a whole. CU's Mechanical Engineering Department is incredible. Yes, there are a lot of students, but the department does a great job at making it feel small and connected. Many professors know my by name and we frequently talk in the hallways about anything and everything. I've emailed quite a few of them being both confused but curious about something we discussed in class, and 100% of them were willing to give hours of their time to share their passion with me. Those kinds of interactions are meaningful and go a long way to making someone feel welcome.
+
+Another major aspect to consider is the weather and surrounding city and your preferences there. At OSU, I was an hour and a half away from the nearest major city. OSU is in Corvallis, Oregon, which is a pretty small college town. Really the only thing I found to do there was to drink. For some people that's fine, but for me I wanted to do other things.
+
+![Oregon State University campus in Corvallis, OR. [Source](https://wvporegon.com/project/oregon-state-university-master-plan/)](images/osu_campus.jpg){width=80%}
+
+
+![University of Colorado Boulder campus in Boulder, CO. [Source](https://bizwest.com/2023/09/10/cu-boulder-develops-system-to-3d-print-with-coffee-grounds/)](images/cu_campus.jpg){width=80%}
+
+
+For me, Boulder as a city was exactly what I was looking for. As a runner, access to easy running trails was a huge bonus (a path I frequently ran on was literally right outside my door), but Pearl Street and nearby places to visit was also amazing. The community felt alive, and there were other things to do and see besides the college campus. Denver was also a half hour away, so if I wanted to go into a major city for whatever reason, that was something I could easily do as well.
+
+In short, it is always a good idea to live in a place that has options so that you don't limit yourself accidentally. There are also some things you don't realize you want until you're experiencing them. For me, one of the more surprising things about moving to Boulder was its food scene. In Corvallis, there aren't many restaurants that offer a diverse set of cuisine. Boulder is the opposite of that. I could have excellent Indian food, Nepalese, Korean, and many others whenever I felt like it. Again, that wasn't something that I thought about a lot while I was in Corvallis, but was something I realized I loved when transferring to CU.
+
+# Curiosity is key
+
+One of the things I have seen, both in high school and university, is people losing their curiosity. Not only is this sad, but in my opinion, takes away from one of the main areas of potential innovation. Remaining curious is a superpower that many people have beaten out of them
+
+## Follow your interests
+
+Said another way, be wary of becoming pigeonholed. Academia thrives on people having deep specializations, which for some people is exactly what they want. It's important to recognize that academia will tend to push you towards a narrow specialization unless you do something about it.
+
+For me, that was in rocketry. My background in computational fluid dynamics (CFD) was originally applied to liquid-fuelled rocket engines. However, at the onset of the COVID pandemic, I decided that I wanted to use my engineering skills to help people in a more direct way, so I switched to a lab that focuses on CFD applied to the human body. I didn't know anything about biomedical engineering, but knew that fundamentally, the math behind fluid mechanics applied to rocket engines and the body would be the same. I let my interest in helping people from a biomedical perspective carry me through many of the difficult times of having absolutely no idea what was going on.
+
+In retrospect, being able to switch fields like this is extremely important. Having the flexibility to be cross-disciplinary is something that I have found I really enjoy, although your mileage may vary.
+
+# It's hard. Really hard.
+
+You will work harder than your non-engineering peers. You will have many long nights. I typically woke up around 7:30am and would go to bed around 12:30am, but that was just my schedule and what worked for me. It's a crazy amount of work, and there's no way around that. 
+
+That being said, your ability to work more efficiently and effectively will also go up. Yes, more advanced classes like heat transfer are more difficult than freshman-level classes like statics, but by the time you take heat transfer you have study skills that allow you to study more effectively than you did in statics. For me, this meant that--on the whole--I felt as though I was putting in the same amount of effort throughout my degree. While the classes did get harder, my study and learning skills also got better.
+
+I remember hearing somewhere that engineering will humble you at some point, no matter how smart you are. That is true. You can come in being the top of your class, but guess what, so is pretty much everyone else here. And that's not a bad thing, just something to keep in mind. 
+
+
+
+## No one gets through it alone
+
+This might be something more specific to CU, but I suspect that it isn't. Everyone here wants to help everyone else. Each person who gets past freshman year in this program knows that it's gruelling. For most people, that brings out the best in them. 99% of people want to help everyone else succeed. If you're struggling, there is a culture of asking for help. If you struggle on an exam but know someone who did well, I'm confident that 99% of the time they will be more than happy to meet with you and talk things over. I'm convinced that it's pretty much impossible to get through an engineering degree by yourself without some kind of outside help.
+
+
+## Relationships and friends
+
+I had a frew relationships during my time as an undergraduate, and to answer your question, yes it can happen. And yes, it's hard. If you're going to do one, making sure that your partner knows that you're going to be working a lot is really key. Communication, as much as people say is important, becomes critical. It will make or break the relationship. I also found it helpful to schedule dates that I didn't move and to try and check in about once a week with my girlfriend to see how the relationship was going. Everything was on the table and each person had the space to bring up anything they wanted, good or bad.
+
+All of this being said, both people need to be willing to work through difficult times. The honeymoon phase wears off. Surprise assignments come up. I once was spending time with a girl I was dating and we were eating dinner together after a long week when someone on a group project texted me saying that he couldn't finish the code. He had a week and had written three lines. It was due that night. So I had to finish it myself. Having a partner that understands that things like that come up is really important, but also as equally important is being able to communicate openly and honestly with each other if it ever becomes too much.
+
+
+## Values
+
+Because the program is so rigorous, you'll quickly learn the value of hard work, dedication, not giving up (both on yourself and others), thinking through problems, and learning how to balance life and school (as best as you can, at least). The value placed on hard work is one I've found to be specific in STEM, although it could definitely be present in other majors. Because everyone works so hard, you will go through hell and back multiple times with your friends. And you'll all be stronger because of it and have a deeper relationship with each other. Those people will go to the ends of the earth for you, and I know that for the friends I have made through this program, if I were to need any of them for any kind of emergency, they would drop everything and help me. And they know I would do the same for them. No questions asked.
+
+
+# But incredibly worth it
+
+Engineering is much harder than other majors, but it also gives you access to cooler shit than many other majors too. Do finance majors get to build rockets? Nope. Do communication majors get to design artificial hearts? Also no.
+
+I was lucky enough to work with a pediatric surgeon on designing a new kind of surgical device (a laparoscopic port) for use in babies that are born premature and typically are in the neonatal intensive care unit (NICU). It was incredible, and knowing that what my team worked on would help the most vulnerable among us was a feeling that will always stay with me. Oh yeah, and some people care about the money side. We filed a patent for our design, and many surgeons who held the port said it was incredible and potentially disruptive. The laparoscopic device industry is projected to be worth about $19 billion by [2027](https://www.alliedmarketresearch.com/laparoscopy-devices-market). A laparoscopic device designed from the ground up for patients in the NICU doesn't currently exist. You can do the math.
+
+
+# Three things to never skimp on
+
+Sleep, exercise, and diet will solve 90% of your problems. If something feels off for a while, check that you're doing **all three of these well**. Not one of them or two of them, but all three. Once you have made sure you've been getting enough sleep, exercising enough, and eating well, then start looking at other things (i.e. going to the doctor).
