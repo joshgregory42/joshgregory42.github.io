@@ -2,10 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.joshgregory42.github.io/posts.html</loc>
-    <lastmod>2024-06-05T19:29:10.172Z</lastmod>
+    <lastmod>2024-06-05T19:47:29.011Z</lastmod>
   </url>
   <url>
     <loc>https://www.joshgregory42.github.io/index.html</loc>
     <lastmod>2024-05-03T04:43:39.258Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.joshgregory42.github.io/about.html</loc>
+    <lastmod>2024-04-30T01:00:01.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.joshgregory42.github.io/projects/index.html</loc>
+    <lastmod>2024-05-03T04:40:19.958Z</lastmod>
   </url>
 </urlset>
