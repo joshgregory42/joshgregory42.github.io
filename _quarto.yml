@@ -24,8 +24,8 @@ website:
         href: https://github.com/joshgregory42
       - icon: twitter
         href: https://twitter.com/josh_a_gregory
-      - icon: rss
-        href: index.html
+      # - icon: rss
+      #   href: index.html
 
   page-footer:
     background: light # or dark
