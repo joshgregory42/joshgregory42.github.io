@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.joshgregory42.github.io/posts.html</loc>
-    <lastmod>2024-06-05T19:47:29.011Z</lastmod>
+    <lastmod>2024-06-05T19:48:30.041Z</lastmod>
   </url>
   <url>
     <loc>https://www.joshgregory42.github.io/index.html</loc>
@@ -15,5 +15,13 @@
   <url>
     <loc>https://www.joshgregory42.github.io/projects/index.html</loc>
     <lastmod>2024-05-03T04:40:19.958Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.joshgregory42.github.io/posts/2024-06-07-gpt-chill/index.html</loc>
+    <lastmod>2024-06-11T21:21:15.052Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.joshgregory42.github.io/posts/2024-06-07-gpt-chill/vid1_scripts/grad_descent.html</loc>
+    <lastmod>2024-06-11T18:38:08.113Z</lastmod>
   </url>
 </urlset>
