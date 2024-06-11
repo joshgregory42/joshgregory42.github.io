@@ -1,0 +1,251 @@
+---
+title: "GPT and Chill Notes"
+description: "Notes from the GPT and Chill [playlist](https://www.gptandchill.ai/codingproblems)"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 06-07-2024
+last-modified: today
+categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2024-06-07-gpt-chill/ 
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# [Video 1](https://www.youtube.com/watch?v=bbYdqd6wemI): How Neural Networks Learn (Gradient Descent)
+
+
+
+Let's assume that we have a model that takes two inputs: $x_1$ (your weight at age 10) and $x_2$ (your height at age 10) and outputs a prediction $y$ for your final height as an adult.
+
+Gradient descent is just a way to minimize a function. That's it. So if I have a function like $y = x^2$, we can minimize this pretty easily by taking the derivative and setting it equal to zero:
+
+$$
+\begin{align*}
+y &= x^2\\
+y' &= 2x\\
+2x &= 0\\
+x &= 0
+\end{align*}
+$$
+
+which corresponds to the minimum of $y = x^2$. But that's only for one input and one output. We usually have multiple inputs (like here it's height and weight). So how can we handle that? What if we can't even take the derivative?
+
+Let's back up and ask a more important question first. Why do we even **need** to minimize a function to train a model?
+
+The function we're minimizing is the **error function**. Aka the **loss** or the **cost function**, it is the error between the model's prediction and the **label** (the actual value). In our example here, the error would be the difference between what the model *thinks* the final height should be given a 10 year-old's weight ($x_1$) and height ($x_2$), and what the height *actually* is (the label). There are different ways we can calculate the error, but here we could do something simple like the absolute difference:
+
+$$
+\begin{equation*}
+\text{Error} \approx \left| \text{Prediction} - \text{label} \right|
+\end{equation*}
+$$
+Let's build some intuition. Let's return to $y = x^2$. Gradient descent is typically called "stochastic gradient descent" (SGD), with "stochastic" referring to a random guess for the minimum. Let's apply that here to $y = x^2$. Let's have an initial guess of $x=3$ (remember that we know the actual minimum is $x = 0$). Let's look at the slope of the tangent line at $x = 3$, which is the same thing as the *derivative* or the *gradient*. Here it is positive:
+
+$$
+\begin{align*}
+f' &= 2 x\\
+f' (x = 3) &= (2)(3) = 6
+\end{align*}
+$$
+
+which means that the function is **increasing**. If we want to minimize a function, we want to go in the opposite direction. We want to find where there is no change ($f'=0$), assuming the boundaries of the function do not contain the minima (that's an easy check though). So our new guess:
+
+$$
+\text{New guess} = \text{old guess} - \left( \text{slope} \right) \left( \text{step size} \right)
+$$
+Let's call the step size $\alpha$. So more succinctly:
+
+$$
+\text{Guess} -= \text{slope} \cdot \alpha
+$$
+In Python, we could write a class that implements this:
+
+```python
+class GradDescent:
+    def get_minimizer(self, iterations: int, learning_rate: float, guess: int) -> float:
+        for i in range(0, iterations):
+            guess -= (2*guess)*learning_rate
+
+        x = round(guess, 5)
+        
+        return x
+
+sol = GradDescent()
+
+x = sol.get_minimizer(iterations=10, learning_rate=0.01, guess=5)
+
+print(x)
+```
+## Multivariate Gradient Descent
+
+Let's say that we have a new function related with two variables:
+
+$$
+f(x,y) = x^2 + y^2
+$$
+Now we have an actual gradient, that is
+
+$$
+\begin{align*}
+\nabla f(x,y) &= \left \langle \frac{\partial f}{ \partial x }, \frac{\partial f}{ \partial y } \right \rangle\\
+&= \left \langle 2x, 2y \right \rangle
+\end{align*}
+$$
+So now we have two values to update (one for each component, $x$ and $y$), which means that we also need two initial guesses for $x$ and $y$. So our updating algorithm now looks like this for $x$:
+
+$$
+\begin{align*}
+\text{guess} &-= \frac{\partial f}{ \partial x } \bigg|_{x=x_{\text{guess}}} \cdot \alpha\\
+&-= 2 x \bigg|_{x=x_{\text{guess}}} \alpha 
+\end{align*}
+$$
+and for $y$:
+$$
+\begin{align*}
+\text{guess} &-= \frac{\partial f}{ \partial y } \bigg|_{y=y_{\text{guess}}} \cdot \alpha\\
+&-= 2 y \bigg|_{y=y_{\text{guess}}} \alpha 
+\end{align*}
+$$
+Note that the partial derivatives being the same here is purely a coincidence and is only because $f(x,y)$ is defined as $f(x, y)=x^2 + y^2$. If we had changed it to something like $f(x, y) = x^3 - y^{1/2}$ or something like that, then the partial derivatives would obviously not be equal.
+
+If you do the calculus, you find that the minimum of $f(x,y)$ is at (0, 0). Here's the code verifying that:
+
+```python
+class GradDescentMulti:
+    def get_min(self, iterations: int, learning_rate: float, guess_x: int, guess_y: int) -> float:
+        for _ in range(0, iterations):
+            guess_x -= 2*guess_x * learning_rate
+            guess_y -= 2*guess_y * learning_rate
+
+            guess_x = round(guess_x, 5)
+            guess_y = round(guess_y, 5)
+        return guess_x, guess_y
+
+gd = GradDescentMulti()
+
+x_min, y_min = gd.get_min(iterations=1000, learning_rate=0.1, guess_x = 2, guess_y = 5)
+
+print(f'x_min: {x_min}, y_min: {y_min}')
+```
+
+```bash
+x_min: 2e-05, y_min: 2e-05
+```
+which within rounding precision is equal to zero for both $x$ and $y$.
+
+# [Video 2](https://www.youtube.com/watch?v=K9xTjTP0vVw): Linear Regression: Full Explanation & Coding Problem
+
+Linear regression is the foundation of neural networks and it behind many of the recent advancements in ChatGPT, self-driving, and deepfakes.
+
+## The "Regression" part
+
+### Classification
+
+Let's start with a more intuitive example, which is actually the opposite of regression and it's **classification**. As an example, let's say that we're building a model that detects whether someone has diabetes. There are two (simplified) outcomes here: the person has diabetes or they don't. So we're classifying our input (maybe an image) into two classification "buckets".
+
+A more complicated example would be an object-detection model. So you give your model an input image and it tells you whether it's a cat, a dog, an apple, or an orange. This is the same as the diabetes example, just with more classification buckets.
+
+### Regression
+
+For regression, the output is a number that is real (between negative and positive infinity). So if you want a model that will predict someone's final height given their current height, current weight, how tall their parent's are (and possibly any other relevant features), the output exists on some scale (so a number). Unlike classification, regression returns a number (for our example, something like 70, for 70 inches in height which is 5'10") instead of a category (like "orange").
+
+
+## The "Linear" part
+
+When we're building our model, we want it to make some kind of prediction given some piece of information we provide. The **linear** part here is saying that the relationship between the input to the model (like the current height, current weight, parent's height, etc.) and the output (final height) is linear, so it looks something like this:
+
+$$
+h(x, y, z) = w_1 x + w_2 y + w_3 z + b
+$$
+where
+
+$$
+\begin{align*}
+h &\text{ is the final height}\\
+x &\text{ is the current weight}\\
+y &\text{ is the current height}\\
+z &\text{ is the parents' height}\\
+w_n &\text{ is the model weight}\\
+w_n &\text{ is the model bias}\\
+\end{align*}
+$$
+The "linear" part is from $h(x, y, z)$ being a linear equation. So there isn't anythng like $w_1 x^4$ or $w_2 \cos{y}$. This means that, in short, we have a *really fancy version of* $y = mx + b$, but $m$ and $x$ can have an arbitrary number of components or inputs.
+
+Then, during training via gradient descent, the model will improve $w_1, w_2, w_3, \ldots, w_n$ and $b$ over some fixed number of iterations until the model is a pretty good way to predict someone's final height given their current height, weight, and that of their parents.
+
+The pseudocode for this would look something like:
+
+```python
+for num_iterations:
+  get_model_prediction()
+  get_error() # want this to approach zero
+  get_derivatives()
+  update_weights()
+```
+
+Focusing a bit more on the `get_error()` part, there are many different ways we can determine the error in a model, but one of the most common ones is called **Mean Squared Error** (MSE):
+
+$$
+\text{MSE} = \sum_{i = 1}^{N} \frac{\left( \text{prediction}_i - \text{label}_i \right)^2}{N}
+$$
+where $N$ is the number of training examples, and recall that the label is defined as the "true" answer that we're comparing our model's prediction against.
+
+A common question to ask here is why don't we use the absolute value instead of squaring to get our error? This is because the derivative won't exist somewhere. If we look at the most basic absolute value function, $y = |x|$, we get something like this:
+
+```{python, fig.align='center'}
+#| eval: true
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(start=-10, stop=10, num=10000)
+
+y = np.abs(x)
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.plot(x, y)
+plt.grid(True)
+```
+which has an undefined derivative at the origin (technically, this makes the absolute value function "non-differentiable"). In other words, for $y = |x|$, $y'$ doesn't exist at $x=0$, which would break the algorithm that we've developed so far. Squaring solves this problem and still gives us the same general idea as the absolute value, that is, tells us how good/bad the error is.
+
+Implementing this in code, we use vectors and matrices:
+
+$$
+\begin{bmatrix}
+x & y & z
+\end{bmatrix}
+\begin{bmatrix}
+w_1\\
+w_2\\
+w_3
+\end{bmatrix}
+= w_1 x + w_2 y + w_3 z = \text{model prediction}
+$$
+But what if we had many people? Let's look at what this would look like if we had three people:
+$$
+\begin{bmatrix}
+x_1 & y_1 & z_1\\
+x_2 & y_2 & z_2\\
+x_3 & y_3 & z_3
+\end{bmatrix}
+\begin{bmatrix}
+w_1\\
+w_2\\
+w_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+w_1 x_1 + w_2 y_1 + w_3 z_1\\
+w_1 x_2 + w_2 y_2 + w_3 z_2\\
+w_1 x_3 + w_2 y_3 + w_3 z_3\\
+\end{bmatrix}
+$$
+where each row is the model's prediction for each person (i.e. the first row is the model's prediction for the first person, second row is the prediction for the second person, etc.). An important note here is that at this point we're just doing matrix multiplication. The main advantage of doing this in matrices vs. a loop is the following:
+
+<p style="text-align: center;">**Programs can do this EXTREMELY fast**</p>
+
