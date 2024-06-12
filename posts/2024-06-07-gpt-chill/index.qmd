@@ -172,7 +172,7 @@ x &\text{ is the current weight}\\
 y &\text{ is the current height}\\
 z &\text{ is the parents' height}\\
 w_n &\text{ is the model weight}\\
-w_n &\text{ is the model bias}\\
+b &\text{ is the model bias}\\
 \end{align*}
 $$
 The "linear" part is from $h(x, y, z)$ being a linear equation. So there isn't anythng like $w_1 x^4$ or $w_2 \cos{y}$. This means that, in short, we have a *really fancy version of* $y = mx + b$, but $m$ and $x$ can have an arbitrary number of components or inputs.
