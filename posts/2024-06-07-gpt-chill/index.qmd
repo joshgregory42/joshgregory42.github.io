@@ -15,9 +15,9 @@ citation:
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
-# [Video 1](https://www.youtube.com/watch?v=bbYdqd6wemI): How Neural Networks Learn (Gradient Descent)
+# Video 1: How Neural Networks Learn (Gradient Descent)
 
-
+{{< video https://www.youtube.com/watch?v=bbYdqd6wemI >}}
 
 Let's assume that we have a model that takes two inputs: $x_1$ (your weight at age 10) and $x_2$ (your height at age 10) and outputs a prediction $y$ for your final height as an adult.
 
@@ -137,7 +137,9 @@ x_min: 2e-05, y_min: 2e-05
 ```
 which within rounding precision is equal to zero for both $x$ and $y$.
 
-# [Video 2](https://www.youtube.com/watch?v=K9xTjTP0vVw): Linear Regression: Full Explanation & Coding Problem
+# Video 2: Linear Regression: Full Explanation & Coding Problem
+
+{{< video https://www.youtube.com/watch?v=K9xTjTP0vVw >}}
 
 Linear regression is the foundation of neural networks and it behind many of the recent advancements in ChatGPT, self-driving, and deepfakes.
 
@@ -249,3 +251,4 @@ where each row is the model's prediction for each person (i.e. the first row is 
 
 <p style="text-align: center;">**Programs can do this EXTREMELY fast**</p>
 
+# 
