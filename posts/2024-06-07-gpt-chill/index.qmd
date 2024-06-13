@@ -15,7 +15,7 @@ citation:
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
-# Video 1: How Neural Networks Learn (Gradient Descent)
+# How Neural Networks Learn (Gradient Descent)
 
 {{< video https://www.youtube.com/watch?v=bbYdqd6wemI >}}
 
@@ -137,7 +137,7 @@ x_min: 2e-05, y_min: 2e-05
 ```
 which within rounding precision is equal to zero for both $x$ and $y$.
 
-# Video 2: Linear Regression: Full Explanation & Coding Problem
+# Linear Regression: Full Explanation & Coding Problem
 
 {{< video https://www.youtube.com/watch?v=K9xTjTP0vVw >}}
 
@@ -332,12 +332,12 @@ class Solution:
 ```
 I initially struggled with this problem due to some of the syntax and eventually had to look at the solution because I was so stuck. I was quite close in my solution (basing the derivative section off of what I did for multivariate gradient descent), however I originally thought that `desired_weight` was what we wanted the weights to be at the end of training, which was confusing. It's really just pointing to which weight we want to update (so for $w_1$, `desired_weight=0`. for $w_2$, `desired_weight=1`, etc.).
 
-# Video 3: Neural Networks in 10 Minutes - End to End Explanation
+# Neural Networks in 10 Minutes - End to End Explanation
 
 {{< video https://www.youtube.com/watch?v=KL2EaTs8r8I >}}
 
 
-![Neural network architecture](images/network2.svg){width=60%}
+![Neural network architecture](images/network.svg){width=60%}
 
 
 Input attributes:
@@ -381,3 +381,187 @@ $$
 BUT the difference here is that the $w$'s and the $b$ for $O_1$ are learned independently from $O_2$ and are going to be different. 
 
 If the point of the model is to predict someone's final height, that final prediction may be from averaging $O_1$ and $O_2$. Training then is figuring out what $w_1$, $w_2$, $w_3$, $w_4$, and $b$ should be for $y_1$ - $y_4$ such that the error is minimized. The same thing is done for $O_1$ and $O_2$.
+
+# Intro to PyTorch. Forget TensorFlow
+
+{{< video https://www.youtube.com/watch?v=SxwtCEDHXe8&list=PLf2BgkdQjMYsyPx7HPO4M6aqTfPl2iEPx&index=8 >}}
+
+```{python}
+#| eval: false
+#| echo: false
+import torch
+import torch.nn as nn
+```
+PyTorch might be the only library that is needed. Might need some other libraries like NumPy or Pandas, but can usually get away with only using PyTorch. Fundamental data type here is the **Tensor**. PyTorch (and the Tensor data type more specifically) will also take care of all the ugly math, like nasty derivatives and huge matrix multiplications.
+
+
+```python
+>>> a = torch.ones(5, 5)
+>>> print(a)
+
+tensor([[1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1.]])
+```
+
+First two important functions in PyTorch is `sum()` and `mean()`:
+
+```python
+>>> sum = torch.sum(a, axis=1) # Note that axis=1 corresponds to the rows, NOT the columns
+>>> print(sum) # Print the sum of each column
+
+tensor([5., 5., 5., 5., 5.])
+```
+Also have `squeeze()` and `unsqueeze()`, which is used when we have unnecessary dimensions
+
+```python
+>>> a = torch.ones(5, 1)
+>>> print(a.shape)
+
+torch.Size([5, 1])
+```
+But the 1 is kind of unnecessary. Saying 5 x 1 is kind of unnecessary. So if we want to get rid of the 1 we can use the `squeeze()` method:
+
+```python
+>>> print(a.shape)
+>>> squeezed = torch.squeeze(a)
+>>> print(squeezed.shape)
+
+torch.Size([5, 1])
+torch.Size([5])
+```
+
+While this may seem like a small difference, it will have an impact on functions later on. Here's the difference in a more visual way:
+
+```python
+>>> print(a)
+>>> print(squeezed)
+
+tensor([[1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.]])
+tensor([1., 1., 1., 1., 1.])
+```
+If we can squeeze something, we should also have some way to unsqueeze as well. If we're passing in two tensors, like one for training and one for validation, they both need to be the same size. We can't have one look like `a` and one look like `squeezed`.
+
+Here, the argument `dim` is where we want to insert that extra dimension. So to make our tensor `unsqueezed` 5x1 instead of just 5, we pass `dim=1`:
+
+```python
+>>> unsqueezed = torch.unsqueeze(squeezed, dim=1)
+>>> print(unsqueezed.shape)
+>>> print(unsqueezed)
+
+torch.Size([5, 1])
+tensor([[1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.]])
+```
+If instead we pass `dim=0`, we get the opposite:
+
+```python
+>>> unsqueezed = torch.unsqueeze(squeezed, dim=0)
+>>> print(unsqueezed.shape)
+>>> print(unsqueezed)
+
+torch.Size([1, 5])
+tensor([[1., 1., 1., 1., 1.]])
+```
+
+## Defining Neural Network Models in PyTorch
+
+We want something that looks like this:
+
+```python
+class MyModel:
+    # Constructor - layers
+
+    # Forward pass - get_model_prediction(example_datapoint)
+
+```
+
+### `Module` Class
+
+PyTorch has something like this, it's called the [`Module`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html) class. A `Module` is basically the same thing as a model. **Every model we create in PyTorch is going to inherit or subclass `torch.nn.Module`**.
+
+### `Linear` Class
+
+Remember that each layer in a neural network contains a bunch of nodes that are just doing linear regression based on the previous layer's input attributes, so we need some class that can take in the previous layer's input attributes, do linear regression, and then output them. That is what the [`Linear` ](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) class does. 
+
+
+### Example
+
+If you just Google "Neural network", you might find something like this:
+
+![Neural network architecture. [Source](https://victorzhou.com/series/neural-networks-from-scratch/)](images/neural_network.svg){width=60%}
+
+Let's build it!
+
+Looks like our input layer has four nodes, and we have two hidden layers and one output layer. So we're going to have three instances of `nn.Linear`.
+
+```python
+class MyModel(nn.Module):
+    # Create constructor
+    def __init__(self):
+        super().__init__()
+        self.first_layer = nn.Linear(in_features=4, out_features=6)
+        self.second_layer = nn.Linear(in_features=6, out_features=6)
+        self.final_layer = nn.Linear(in_features=6, out_features=2)
+
+    # Create forward pass
+    def forward(self, x):
+        # Calling the forward method from the nn.Module class
+    #  first_layer_output = self.first_layer.forward(x)
+       # Can also do the following:
+       #  first_layer_output = self.first_layer(x)
+
+        return self.final_layer(self.second_layer(self.first_layer.forward(x)))
+```
+
+```python
+>>> model = MyModel()
+>>> example_datapoint = torch.randn(1, 4)
+>>> model.forward(x=example_datapoint) # Can also write model(x=example_datapoint)
+
+tensor([[-0.4633, -0.0682]], grad_fn=<AddmmBackward0>)
+```
+Then we need to train the model for some number of iterations. We can then actually use the model to get predictions.
+
+
+## Coding Problem Solution
+
+```python
+import torch
+import torch.nn
+from torchtyping import TensorType
+
+# Helpful functions:
+# https://pytorch.org/docs/stable/generated/torch.reshape.html
+# https://pytorch.org/docs/stable/generated/torch.mean.html
+# https://pytorch.org/docs/stable/generated/torch.cat.html
+# https://pytorch.org/docs/stable/generated/torch.nn.functional.mse_loss.html
+
+# Round your answers to 4 decimal places using torch.round(input_tensor, decimals = 4)
+class Solution:
+    def reshape(self, to_reshape: TensorType[float]) -> TensorType[float]:
+    
+        return torch.reshape(to_reshape, (to_reshape.size(dim=1)*to_reshape.size(dim=0)//2, 2))
+
+
+    def average(self, to_avg: TensorType[float]) -> TensorType[float]:
+        
+        return torch.mean(to_avg, axis=0)
+
+    def concatenate(self, cat_one: TensorType[float], cat_two: TensorType[float]) -> TensorType[float]:
+
+        return torch.cat((cat_one, cat_two), dim=1)
+
+    def get_loss(self, prediction: TensorType[float], target: TensorType[float]) -> TensorType[float]:
+
+        return torch.nn.functional.mse_loss(input=prediction, target=target)
+```
