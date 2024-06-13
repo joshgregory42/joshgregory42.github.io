@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://www.joshgregory42.github.io/posts/2024-06-07-gpt-chill/index.html</loc>
-    <lastmod>2024-06-13T20:38:22.827Z</lastmod>
+    <lastmod>2024-06-13T23:43:08.543Z</lastmod>
   </url>
   <url>
     <loc>https://www.joshgregory42.github.io/posts/2024-06-07-gpt-chill/vid1_scripts/grad_descent.html</loc>
@@ -31,5 +31,9 @@
   <url>
     <loc>https://www.joshgregory42.github.io/scripts/pytorch_intro.html</loc>
     <lastmod>2024-06-13T19:28:25.296Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.joshgregory42.github.io/scripts/pytorch_train.html</loc>
+    <lastmod>2024-06-13T23:43:05.113Z</lastmod>
   </url>
 </urlset>

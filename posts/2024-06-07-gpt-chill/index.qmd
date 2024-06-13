@@ -569,6 +569,8 @@ class Solution:
 
 # Dropout
 
+{{< video https://www.youtube.com/watch?v=VAoYgMo4FcA&list=PLf2BgkdQjMYsyPx7HPO4M6aqTfPl2iEPx&index=9 >}}
+
 Dropout makes neural networks dumber on purpose. We do this to prevent overrfitting and to make a model generalize better.
 
 > **Overfitting**: When training accuracy is greater than testing accuracy.
@@ -601,3 +603,165 @@ In PyTorch, this would look like `nn.Dropout(p=0.2)`, where `p` is the propbabil
 Remember, overfitting occurs ebcause our model is too *complex*. So if dropout is to work, it has to *reduce* our model's complexity. And we can see that is exactly what is happening. In other words, what dropout is doing is making the model more stupid so it doesn't focus on unnecessary/irrelevant noise.
 
 Dropout has been found to increase teseting accuracy, especially as models get deeper (i.e. have more layers).
+
+## Coding Problem Solution
+
+This was a very poorly written question. It should have been stated as the following:
+
+Model architecture takes in a 28*28 image and sends that to 512 neurons (use a linar layer for this). This is then followed by a ReLU activation function and then a dropout layer with probability `p=0.2`. Then there is a final linear layer that shrinks 512 neurons down to 10, followed finally by a sigmoid activation function.
+
+```python
+import torch
+import torch.nn as nn
+from torchtyping import TensorType
+
+class Solution(nn.Module):
+    def __init__(self):
+        super().__init__()
+        torch.manual_seed(0)
+        self.first_linear = nn.Linear(in_features=784, out_features=512)
+        self.relu = nn.ReLU()
+        self.drop = nn.Dropout(p=0.2)
+        self.second_linear = nn.Linear(in_features=512, out_features=10)
+        self.sigmoid = nn.Sigmoid()
+        # Define the architecture here
+    
+    def forward(self, images: TensorType[float]) -> TensorType[float]:
+        torch.manual_seed(0)
+        out =  self.sigmoid(self.second_linear(self.drop(self.relu(self.first_linear(images)))))
+
+        # Return the model's prediction to 4 decimal places
+        return torch.round(out, decimals=4)
+```
+
+# Training Neural Networks in PyTorch
+
+{{< video https://www.youtube.com/watch?v=vVrASMLVBnY >}}
+
+```python
+import torch
+import torch.nn as nn
+
+torch.manual_seed(0)
+
+class DigitRecognition(nn.Module):
+    def __init__(self):
+        super().__init__()
+        torch.manual_seed(0)
+        self.first_linear = nn.Linear(in_features=784, out_features=512)
+        self.relu = nn.ReLU()
+        self.drop = nn.Dropout(p=0.2)
+        self.second_linear = nn.Linear(in_features=512, out_features=10)
+        self.sigmoid = nn.Sigmoid()
+        # Define the architecture here
+    
+    def forward(self, images: float) -> float:
+        torch.manual_seed(0)
+        out =  self.sigmoid(self.second_linear(self.drop(self.relu(self.first_linear(images)))))
+
+        return out
+```
+How do we actually update this model over many iterations? Here we're going to look at the training loop. The following code is the same regardless of the neural network:
+
+```python
+model = DigitRecognition()
+
+loss_function = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters())
+
+epochs = 5
+for epoch in range(epochs):
+    for images, labels in train_dataloader():
+        images = images.view(images.shape[0], 784)
+
+        # Training body
+        model_prediction = model(images)
+        optimizer.zero_grad()
+        loss.loss_function(model_prediction, labels)
+        loss.backward()
+        optimizer.step()
+```
+Let's break this down a bit:
+
+```python
+model = DigitRecognition()
+```
+This is instantiating our model. This could change depending on the task we are doing, but we still need to instantiate some kind of model.
+
+```python
+loss_function = nn.CrossEntropyLoss()
+```
+This is our loss function. Here it's cross-entropy loss instead of MSE since we are doing a classification problem instead of a regression problem. Again, the loss function will vary depending on the application, but we still need one.
+
+```python
+optimizer = torch.optim.Adam(model.parameters())
+```
+This is an object in PyTorch that does gradient descent for us. What we need to pass in are the weights (parameters). `Adam` is gradient descent on steroids. It is still doing gradient descent (with a default learning rate), but is optimized to dynamically change the learning rate.
+
+
+```python
+epochs = 5
+```
+An *epoch* is a single pass through the entire dataset. So here, the model is passing through the entire training dataset 5 times. Too many epochs might result in overfitting, too few might mean the weights haven't been updated enough.
+
+```python
+for images, labels in train_dataloader():
+```
+`train_dataloader()` is just a sequence of steps to take in the raw data and do any preprocessing on it before it is fed to the network (for images, this might be things like resizing, cropping, or random reflections).
+
+
+```python
+images = images.view(images.shape[0], 784)
+```
+Could have also used `images = images.reshape(...)`, but we're reshaping the image from 28 * 28 to a single vector with length 784 so that the network (which has a first layer with 784 neurons) can take it in.
+
+
+```python
+model_prediction = model(images)
+```
+This is calling the `forward()` method of the `model` class we defined earlier and gets our model predictions.
+
+```python
+optimizer.zero_grad()
+```
+This is a frustrating line that really shouldn't be required in PyTorch, but it cancels out all of the derivatives that were calculated from the previous iteration of gradient descent. This is done because for each iteration, we want to calculate the derivatives again so that we can update our weights. This line resets the derivatives so we can do this.
+
+
+```python
+loss.loss_function(model_prediction, labels)
+```
+This is calculating the loss/error based on our current model's prediction and the labels.
+
+
+```python
+loss.backward()
+```
+Potentially the most important line here. This will calculate every single derivative necessary to perform gradient descent. This is the most computationally intensive step of this entire program. It is calculating all of the derivatives and is storing them in such a way that we can use them later.
+
+```python
+optimizer.step()
+```
+This updates all of the weights, so essentially doing $\text{new weight} = \text{old weight} - \text{derivative} \cdot \text{learning rate}$. Next chunk:
+
+```python
+model.eval()
+
+for images, labels in test_dataloader:
+    images = images.view(images.shape[0], 784)
+
+    model_prediction = model(images)
+    max, idx = torch.max(model_prediction, dim=1)
+    for i in range(len(images)):
+        plt.imshow(images[i].view(28, 28))
+        plt.show()
+        print(idx[i].item())
+    break
+```
+This is showing us how well the model is doing once training is done.
+
+```python
+model.eval()
+```
+This puts the model in evaluation mode. We're telling PyTorch that we just want the model's predictions, so it doesn't need to calculate any derivatives for training.
+
+Then we iterate over our test dataloader, reshape our images, pass them into the model, and get our predictions. For every image, we're predicting a bunch of probabilities (specifically 10). So we should take the maximum probability and map that to the class. This lets us see the image and the corresponding digit the model thinks it is. Then iterate over each image and do this.
