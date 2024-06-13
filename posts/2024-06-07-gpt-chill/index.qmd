@@ -565,3 +565,39 @@ class Solution:
 
         return torch.nn.functional.mse_loss(input=prediction, target=target)
 ```
+
+
+# Dropout
+
+Dropout makes neural networks dumber on purpose. We do this to prevent overrfitting and to make a model generalize better.
+
+> **Overfitting**: When training accuracy is greater than testing accuracy.
+
+
+Said another way,: The model looks incredible when it is training and looking at training data, but the second you give it testing (i.e. real-world or non-training) data, it performs horribly. The model is essentially memorizing the training dataset and not really learning anything. Visually (and from a mathematical perspective), overfitting looks like this: 
+
+![Overfitting of data. [Source](https://www.buildalpha.com/how-to-use-out-of-sample-data/)](images/fitting.png){width=60%}
+
+Overfitting is usually caused by the model being too complex. Here, *complex* can mean a few things:
+
+* The model has too many layers
+* Each layer has too many nodes
+
+Essentially, the model is just an equation, and right now that equation is way too complex. This is like having data that can be fit with just a linear equation, but a 10th order Taylor series is being used to approximate it.
+
+Dropout aims to solve these problems. Let's say we have a network like this:
+
+
+![Dropout neural network architecture](images/dropout.svg){width=60%}
+
+Let's say that we apply dropout to the entire output layer, but dropout only ends up applying to the first output node, $O_1$. This means that this node is essentially turned off and its connections to the previous layer are severed (see the dotted lines). Mathematically, this equates to setting the equation for $O_1$ equal to zero:
+
+$$
+O_1 = w_1 x + w_2 y + w_3 z + b = 0
+$$
+
+In PyTorch, this would look like `nn.Dropout(p=0.2)`, where `p` is the propbability that the node is turned off. If we apply dropout to the entire output layer, each node would be turned off (set output or activation equal to zero) independently with probability $p$.
+
+Remember, overfitting occurs ebcause our model is too *complex*. So if dropout is to work, it has to *reduce* our model's complexity. And we can see that is exactly what is happening. In other words, what dropout is doing is making the model more stupid so it doesn't focus on unnecessary/irrelevant noise.
+
+Dropout has been found to increase teseting accuracy, especially as models get deeper (i.e. have more layers).

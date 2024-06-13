@@ -291,6 +291,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#coding-problem-solution" id="toc-coding-problem-solution" class="nav-link" data-scroll-target="#coding-problem-solution">Coding Problem Solution</a></li>
   </ul></li>
+  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout">Dropout</a></li>
   </ul>
 </nav>
     </div>
@@ -436,7 +437,7 @@ b &amp;\text{ is the model bias}\\
 \text{MSE} = \sum_{i = 1}^{N} \frac{\left( \text{prediction}_i - \text{label}_i \right)^2}{N}
 \]</span> where <span class="math inline">\(N\)</span> is the number of training examples, and recall that the label is defined as the “true” answer that we’re comparing our model’s prediction against.</p>
 <p>A common question to ask here is why don’t we use the absolute value instead of squaring to get our error? This is because the derivative won’t exist somewhere. If we look at the most basic absolute value function, <span class="math inline">\(y = |x|\)</span>, we get something like this:</p>
-<div id="6bff183b" class="cell" data-execution_count="1">
+<div id="b58263bb" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -738,9 +739,43 @@ O_2 &amp;= w_1 y_1 + w_2 y_2 + w_3 y_3 + w_4 y_4 + b\\
 <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_loss(<span class="va">self</span>, prediction: TensorType[<span class="bu">float</span>], target: TensorType[<span class="bu">float</span>]) <span class="op">-&gt;</span> TensorType[<span class="bu">float</span>]:</span>
 <span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.nn.functional.mse_loss(<span class="bu">input</span><span class="op">=</span>prediction, target<span class="op">=</span>target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
 </section>
+</section>
+<section id="dropout" class="level1">
+<h1>Dropout</h1>
+<p>Dropout makes neural networks dumber on purpose. We do this to prevent overrfitting and to make a model generalize better.</p>
+<blockquote class="blockquote">
+<p><strong>Overfitting</strong>: When training accuracy is greater than testing accuracy.</p>
+</blockquote>
+<p>Said another way,: The model looks incredible when it is training and looking at training data, but the second you give it testing (i.e.&nbsp;real-world or non-training) data, it performs horribly. The model is essentially memorizing the training dataset and not really learning anything. Visually (and from a mathematical perspective), overfitting looks like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fitting.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Overfitting of data. <a href="https://www.buildalpha.com/how-to-use-out-of-sample-data/">Source</a></figcaption>
+</figure>
+</div>
+<p>Overfitting is usually caused by the model being too complex. Here, <em>complex</em> can mean a few things:</p>
+<ul>
+<li>The model has too many layers</li>
+<li>Each layer has too many nodes</li>
+</ul>
+<p>Essentially, the model is just an equation, and right now that equation is way too complex. This is like having data that can be fit with just a linear equation, but a 10th order Taylor series is being used to approximate it.</p>
+<p>Dropout aims to solve these problems. Let’s say we have a network like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/dropout.svg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Dropout neural network architecture</figcaption>
+</figure>
+</div>
+<p>Let’s say that we apply dropout to the entire output layer, but dropout only ends up applying to the first output node, <span class="math inline">\(O_1\)</span>. This means that this node is essentially turned off and its connections to the previous layer are severed (see the dotted lines). Mathematically, this equates to setting the equation for <span class="math inline">\(O_1\)</span> equal to zero:</p>
+<p><span class="math display">\[
+O_1 = w_1 x + w_2 y + w_3 z + b = 0
+\]</span></p>
+<p>In PyTorch, this would look like <code>nn.Dropout(p=0.2)</code>, where <code>p</code> is the propbability that the node is turned off. If we apply dropout to the entire output layer, each node would be turned off (set output or activation equal to zero) independently with probability <span class="math inline">\(p\)</span>.</p>
+<p>Remember, overfitting occurs ebcause our model is too <em>complex</em>. So if dropout is to work, it has to <em>reduce</em> our model’s complexity. And we can see that is exactly what is happening. In other words, what dropout is doing is making the model more stupid so it doesn’t focus on unnecessary/irrelevant noise.</p>
+<p>Dropout has been found to increase teseting accuracy, especially as models get deeper (i.e.&nbsp;have more layers).</p>
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
