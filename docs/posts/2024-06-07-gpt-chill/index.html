@@ -269,8 +269,18 @@ window.Quarto = {
   <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
   </ul></li>
   <li><a href="#the-linear-part" id="toc-the-linear-part" class="nav-link" data-scroll-target="#the-linear-part">The “Linear” part</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a>
+  <ul class="collapse">
+  <li><a href="#solution---first-problem" id="toc-solution---first-problem" class="nav-link" data-scroll-target="#solution---first-problem">Solution - First Problem</a></li>
+  <li><a href="#solution---second-problem" id="toc-solution---second-problem" class="nav-link" data-scroll-target="#solution---second-problem">Solution - Second Problem</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul></li>
+  <li><a href="#video-3-neural-networks-in-10-minutes---end-to-end-explanation" id="toc-video-3-neural-networks-in-10-minutes---end-to-end-explanation" class="nav-link" data-scroll-target="#video-3-neural-networks-in-10-minutes---end-to-end-explanation">Video 3: Neural Networks in 10 Minutes - End to End Explanation</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a></li>
+  <li><a href="#hidden-layer" id="toc-hidden-layer" class="nav-link" data-scroll-target="#hidden-layer">Hidden Layer</a></li>
+  <li><a href="#output-layer" id="toc-output-layer" class="nav-link" data-scroll-target="#output-layer">Output Layer</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -401,7 +411,7 @@ x &amp;\text{ is the current weight}\\
 y &amp;\text{ is the current height}\\
 z &amp;\text{ is the parents' height}\\
 w_n &amp;\text{ is the model weight}\\
-w_n &amp;\text{ is the model bias}\\
+b &amp;\text{ is the model bias}\\
 \end{align*}
 \]</span> The “linear” part is from <span class="math inline">\(h(x, y, z)\)</span> being a linear equation. So there isn’t anythng like <span class="math inline">\(w_1 x^4\)</span> or <span class="math inline">\(w_2 \cos{y}\)</span>. This means that, in short, we have a <em>really fancy version of</em> <span class="math inline">\(y = mx + b\)</span>, but <span class="math inline">\(m\)</span> and <span class="math inline">\(x\)</span> can have an arbitrary number of components or inputs.</p>
 <p>Then, during training via gradient descent, the model will improve <span class="math inline">\(w_1, w_2, w_3, \ldots, w_n\)</span> and <span class="math inline">\(b\)</span> over some fixed number of iterations until the model is a pretty good way to predict someone’s final height given their current height, weight, and that of their parents.</p>
@@ -416,7 +426,7 @@ w_n &amp;\text{ is the model bias}\\
 \text{MSE} = \sum_{i = 1}^{N} \frac{\left( \text{prediction}_i - \text{label}_i \right)^2}{N}
 \]</span> where <span class="math inline">\(N\)</span> is the number of training examples, and recall that the label is defined as the “true” answer that we’re comparing our model’s prediction against.</p>
 <p>A common question to ask here is why don’t we use the absolute value instead of squaring to get our error? This is because the derivative won’t exist somewhere. If we look at the most basic absolute value function, <span class="math inline">\(y = |x|\)</span>, we get something like this:</p>
-<div id="ed3b8769" class="cell" data-execution_count="1">
+<div id="96dbdd4d" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -459,11 +469,128 @@ w_1 x_3 + w_2 y_3 + w_3 z_3\\
 <strong>Programs can do this EXTREMELY fast</strong>
 </p>
 </section>
+<section id="implementation" class="level2">
+<h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
+<section id="solution---first-problem" class="level3">
+<h3 class="anchored" data-anchor-id="solution---first-problem">Solution - First Problem</h3>
+<p>My solution to the first coding problem:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.typing <span class="im">import</span> NDArray</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Helpful functions:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># https://numpy.org/doc/stable/reference/generated/numpy.matmul.html</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># https://numpy.org/doc/stable/reference/generated/numpy.mean.html</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># https://numpy.org/doc/stable/reference/generated/numpy.square.html</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_model_prediction(<span class="va">self</span>, X: NDArray[np.float64], weights: NDArray[np.float64]) <span class="op">-&gt;</span> NDArray[np.float64]:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> np.matmul(X, weights)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.<span class="bu">round</span>(pred, <span class="dv">5</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># X is an Nx3 NumPy array</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># weights is a 3x1 NumPy array</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># HINT: np.matmul() will be useful</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return np.round(your_answer, 5)</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_error(<span class="va">self</span>, model_prediction: NDArray[np.float64], ground_truth: NDArray[np.float64]) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> np.mean(np.square(model_prediction <span class="op">-</span> ground_truth))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">round</span>(error, <span class="dv">5</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># model_prediction is an Nx1 NumPy array</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ground_truth is an Nx1 NumPy array</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># HINT: np.mean(), np.square() will be useful</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return round(your_answer, 5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="section" class="level1">
-<h1></h1>
+<section id="solution---second-problem" class="level3">
+<h3 class="anchored" data-anchor-id="solution---second-problem">Solution - Second Problem</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.typing <span class="im">import</span> NDArray</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_derivative(<span class="va">self</span>, model_prediction: NDArray[np.float64], ground_truth: NDArray[np.float64], N: <span class="bu">int</span>, X: NDArray[np.float64], desired_weight: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># note that N is just len(X)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">2</span> <span class="op">*</span> np.dot(ground_truth <span class="op">-</span> model_prediction, X[:, desired_weight]) <span class="op">/</span> N</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_model_prediction(<span class="va">self</span>, X: NDArray[np.float64], weights: NDArray[np.float64]) <span class="op">-&gt;</span> NDArray[np.float64]:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.squeeze(np.matmul(X, weights))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    learning_rate <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train_model(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>, </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        X: NDArray[np.float64], </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        Y: NDArray[np.float64], </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        num_iterations: <span class="bu">int</span>, </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        initial_weights: NDArray[np.float64]</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> NDArray[np.float64]:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(num_iterations):</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            model_pred <span class="op">=</span> <span class="va">self</span>.get_model_prediction(X, initial_weights)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            d1 <span class="op">=</span> <span class="va">self</span>.get_derivative(model_pred, Y, <span class="bu">len</span>(X), X, <span class="dv">0</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            d2 <span class="op">=</span> <span class="va">self</span>.get_derivative(model_pred, Y, <span class="bu">len</span>(X), X, <span class="dv">1</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            d3 <span class="op">=</span> <span class="va">self</span>.get_derivative(model_pred, Y, <span class="bu">len</span>(X), X, <span class="dv">2</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            initial_weights[<span class="dv">0</span>] <span class="op">=</span> initial_weights[<span class="dv">0</span>] <span class="op">-</span> d1 <span class="op">*</span> <span class="va">self</span>.learning_rate</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            initial_weights[<span class="dv">1</span>] <span class="op">=</span> initial_weights[<span class="dv">1</span>] <span class="op">-</span> d2 <span class="op">*</span> <span class="va">self</span>.learning_rate</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            initial_weights[<span class="dv">2</span>] <span class="op">=</span> initial_weights[<span class="dv">2</span>] <span class="op">-</span> d3 <span class="op">*</span> <span class="va">self</span>.learning_rate</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.<span class="bu">round</span>(initial_weights, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I initially struggled with this problem due to some of the syntax and eventually had to look at the solution because I was so stuck. I was quite close in my solution (basing the derivative section off of what I did for multivariate gradient descent), however I originally thought that <code>desired_weight</code> was what we wanted the weights to be at the end of training, which was confusing. It’s really just pointing to which weight we want to update (so for <span class="math inline">\(w_1\)</span>, <code>desired_weight=0</code>. for <span class="math inline">\(w_2\)</span>, <code>desired_weight=1</code>, etc.).</p>
+</section>
+</section>
+</section>
+<section id="video-3-neural-networks-in-10-minutes---end-to-end-explanation" class="level1">
+<h1>Video 3: Neural Networks in 10 Minutes - End to End Explanation</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/KL2EaTs8r8I" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/network2.svg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Neural network architecture</figcaption>
+</figure>
+</div>
+<p>Input attributes:</p>
+<p><span class="math display">\[
+\begin{align*}
+x_1 &amp;\colon \text{parents' heights}\\
+x_2 &amp;\colon \text{current height}\\
+x_3 &amp;\colon \text{current weight}\\
+\end{align*}
+\]</span></p>
+<section id="linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression">Linear Regression</h2>
+<p>Need linear regression to explain the connections and the hidden layer. Here’s the formula again:</p>
+<p><span class="math display">\[
+y = w_1 x_1 + w_2 x_2 + w_3 x_3 + b
+\]</span> Remember that <span class="math inline">\(x_n\)</span> are the input attributes and <span class="math inline">\(y\)</span> is the model’s output/prediction. The weights <span class="math inline">\(w_n\)</span> then determine the relative importance of each input parameter they are associated with. For example, <span class="math inline">\(w_1\)</span> determines how important <span class="math inline">\(x_1\)</span> (in this case the average parents’ height) is on someone’s final height (<span class="math inline">\(y\)</span>).</p>
+<p>What about the bias?</p>
+<p>In this context, it would probably be some base height, since a final height of zero doesn’t make much sense.</p>
+</section>
+<section id="hidden-layer" class="level2">
+<h2 class="anchored" data-anchor-id="hidden-layer">Hidden Layer</h2>
+<p>Each of the hidden nodes is doing linear regression. Each node is calculating some <span class="math inline">\(y\)</span> (<span class="math inline">\(y_1\)</span>, <span class="math inline">\(y_2\)</span>, <span class="math inline">\(y_3\)</span>, …) based on <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, and <span class="math inline">\(x_3\)</span> from the previous layer. This means that each node in the hidden layer (since it is calculating a <span class="math inline">\(y\)</span>) is learning a <span class="math inline">\(w_1\)</span>, <span class="math inline">\(w_2\)</span>, and <span class="math inline">\(w_3\)</span> independently of the other nodes in that same layer (i.e.&nbsp;<span class="math inline">\(y_1 \neq y_2\)</span>).</p>
+</section>
+<section id="output-layer" class="level2">
+<h2 class="anchored" data-anchor-id="output-layer">Output Layer</h2>
+<p>We can think of the two outputs as <span class="math inline">\(O_1\)</span> and <span class="math inline">\(O_2\)</span>. Just as in the previous layer, <span class="math inline">\(O_1\)</span> and <span class="math inline">\(O_2\)</span> are also calculated using a linear regression formula:</p>
+<p><span class="math display">\[
+\begin{align*}
+O_1 &amp;= w_1 y_1 + w_2 y_2 + w_3 y_3 + w_4 y_4 + b\\
+O_2 &amp;= w_1 y_1 + w_2 y_2 + w_3 y_3 + w_4 y_4 + b\\
+\end{align*}
+\]</span></p>
+<p>BUT the difference here is that the <span class="math inline">\(w\)</span>’s and the <span class="math inline">\(b\)</span> for <span class="math inline">\(O_1\)</span> are learned independently from <span class="math inline">\(O_2\)</span> and are going to be different.</p>
+<p>If the point of the model is to predict someone’s final height, that final prediction may be from averaging <span class="math inline">\(O_1\)</span> and <span class="math inline">\(O_2\)</span>. Training then is figuring out what <span class="math inline">\(w_1\)</span>, <span class="math inline">\(w_2\)</span>, <span class="math inline">\(w_3\)</span>, <span class="math inline">\(w_4\)</span>, and <span class="math inline">\(b\)</span> should be for <span class="math inline">\(y_1\)</span> - <span class="math inline">\(y_4\)</span> such that the error is minimized. The same thing is done for <span class="math inline">\(O_1\)</span> and <span class="math inline">\(O_2\)</span>.</p>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
