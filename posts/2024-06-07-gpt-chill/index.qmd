@@ -251,4 +251,133 @@ where each row is the model's prediction for each person (i.e. the first row is 
 
 <p style="text-align: center;">**Programs can do this EXTREMELY fast**</p>
 
-# 
+## Implementation
+
+### Solution - First Problem
+
+My solution to the first coding problem:
+
+```python
+import numpy as np
+from numpy.typing import NDArray
+
+
+# Helpful functions:
+# https://numpy.org/doc/stable/reference/generated/numpy.matmul.html
+# https://numpy.org/doc/stable/reference/generated/numpy.mean.html
+# https://numpy.org/doc/stable/reference/generated/numpy.square.html
+
+class Solution:
+    
+    def get_model_prediction(self, X: NDArray[np.float64], weights: NDArray[np.float64]) -> NDArray[np.float64]:
+        pred = np.matmul(X, weights)
+
+        return np.round(pred, 5)
+
+        # X is an Nx3 NumPy array
+        # weights is a 3x1 NumPy array
+        # HINT: np.matmul() will be useful
+        # return np.round(your_answer, 5)
+
+
+    def get_error(self, model_prediction: NDArray[np.float64], ground_truth: NDArray[np.float64]) -> float:
+
+        error = np.mean(np.square(model_prediction - ground_truth))
+
+        return round(error, 5)
+
+        # model_prediction is an Nx1 NumPy array
+        # ground_truth is an Nx1 NumPy array
+        # HINT: np.mean(), np.square() will be useful
+        # return round(your_answer, 5)
+```
+
+### Solution - Second Problem
+
+```python
+import numpy as np
+from numpy.typing import NDArray
+
+
+class Solution:
+    def get_derivative(self, model_prediction: NDArray[np.float64], ground_truth: NDArray[np.float64], N: int, X: NDArray[np.float64], desired_weight: int) -> float:
+        # note that N is just len(X)
+        return -2 * np.dot(ground_truth - model_prediction, X[:, desired_weight]) / N
+
+    def get_model_prediction(self, X: NDArray[np.float64], weights: NDArray[np.float64]) -> NDArray[np.float64]:
+        return np.squeeze(np.matmul(X, weights))
+
+    learning_rate = 0.01
+
+    def train_model(
+        self, 
+        X: NDArray[np.float64], 
+        Y: NDArray[np.float64], 
+        num_iterations: int, 
+        initial_weights: NDArray[np.float64]
+    ) -> NDArray[np.float64]:
+
+        for _ in range(num_iterations):
+            model_pred = self.get_model_prediction(X, initial_weights)
+
+            d1 = self.get_derivative(model_pred, Y, len(X), X, 0)
+            d2 = self.get_derivative(model_pred, Y, len(X), X, 1)
+            d3 = self.get_derivative(model_pred, Y, len(X), X, 2)
+
+            initial_weights[0] = initial_weights[0] - d1 * self.learning_rate
+            initial_weights[1] = initial_weights[1] - d2 * self.learning_rate
+            initial_weights[2] = initial_weights[2] - d3 * self.learning_rate
+
+        return np.round(initial_weights, 5)
+```
+I initially struggled with this problem due to some of the syntax and eventually had to look at the solution because I was so stuck. I was quite close in my solution (basing the derivative section off of what I did for multivariate gradient descent), however I originally thought that `desired_weight` was what we wanted the weights to be at the end of training, which was confusing. It's really just pointing to which weight we want to update (so for $w_1$, `desired_weight=0`. for $w_2$, `desired_weight=1`, etc.).
+
+# Video 3: Neural Networks in 10 Minutes - End to End Explanation
+
+{{< video https://www.youtube.com/watch?v=KL2EaTs8r8I >}}
+
+
+![Neural network architecture](images/network2.svg){width=60%}
+
+
+Input attributes:
+
+$$
+\begin{align*}
+x_1 &\colon \text{parents' heights}\\
+x_2 &\colon \text{current height}\\
+x_3 &\colon \text{current weight}\\
+\end{align*}
+$$
+
+## Linear Regression
+
+Need linear regression to explain the connections and the hidden layer. Here's the formula again:
+
+$$
+y = w_1 x_1 + w_2 x_2 + w_3 x_3 + b
+$$
+Remember that $x_n$ are the input attributes and $y$ is the model's output/prediction. The weights $w_n$ then determine the relative importance of each input parameter they are associated with. For example, $w_1$ determines how important $x_1$ (in this case the average parents' height) is on someone's final height ($y$).
+
+What about the bias?
+
+In this context, it would probably be some base height, since a final height of zero doesn't make much sense.
+
+## Hidden Layer
+
+Each of the hidden nodes is doing linear regression. Each node is calculating some $y$ ($y_1$, $y_2$, $y_3$, ...) based on $x_1$, $x_2$, and $x_3$ from the previous layer. This means that each node in the hidden layer (since it is calculating a $y$) is learning a $w_1$, $w_2$, and $w_3$ independently of the other nodes in that same layer (i.e. $y_1 \neq y_2$).
+
+## Output Layer
+
+We can think of the two outputs as $O_1$ and $O_2$. Just as in the previous layer, $O_1$ and $O_2$ are also calculated using a linear regression formula:
+
+$$
+\begin{align*}
+O_1 &= w_1 y_1 + w_2 y_2 + w_3 y_3 + w_4 y_4 + b\\
+O_2 &= w_1 y_1 + w_2 y_2 + w_3 y_3 + w_4 y_4 + b\\
+\end{align*}
+$$
+
+BUT the difference here is that the $w$'s and the $b$ for $O_1$ are learned independently from $O_2$ and are going to be different. 
+
+If the point of the model is to predict someone's final height, that final prediction may be from averaging $O_1$ and $O_2$. Training then is figuring out what $w_1$, $w_2$, $w_3$, $w_4$, and $b$ should be for $y_1$ - $y_4$ such that the error is minimized. The same thing is done for $O_1$ and $O_2$.
