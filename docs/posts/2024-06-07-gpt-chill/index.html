@@ -291,7 +291,11 @@ window.Quarto = {
   </ul></li>
   <li><a href="#coding-problem-solution" id="toc-coding-problem-solution" class="nav-link" data-scroll-target="#coding-problem-solution">Coding Problem Solution</a></li>
   </ul></li>
-  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout">Dropout</a></li>
+  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout">Dropout</a>
+  <ul class="collapse">
+  <li><a href="#coding-problem-solution-1" id="toc-coding-problem-solution-1" class="nav-link" data-scroll-target="#coding-problem-solution-1">Coding Problem Solution</a></li>
+  </ul></li>
+  <li><a href="#training-neural-networks-in-pytorch" id="toc-training-neural-networks-in-pytorch" class="nav-link" data-scroll-target="#training-neural-networks-in-pytorch">Training Neural Networks in PyTorch</a></li>
   </ul>
 </nav>
     </div>
@@ -437,7 +441,7 @@ b &amp;\text{ is the model bias}\\
 \text{MSE} = \sum_{i = 1}^{N} \frac{\left( \text{prediction}_i - \text{label}_i \right)^2}{N}
 \]</span> where <span class="math inline">\(N\)</span> is the number of training examples, and recall that the label is defined as the “true” answer that we’re comparing our model’s prediction against.</p>
 <p>A common question to ask here is why don’t we use the absolute value instead of squaring to get our error? This is because the derivative won’t exist somewhere. If we look at the most basic absolute value function, <span class="math inline">\(y = |x|\)</span>, we get something like this:</p>
-<div id="b58263bb" class="cell" data-execution_count="1">
+<div id="4cdc3d0c" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -743,6 +747,7 @@ O_2 &amp;= w_1 y_1 + w_2 y_2 + w_3 y_3 + w_4 y_4 + b\\
 </section>
 <section id="dropout" class="level1">
 <h1>Dropout</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/VAoYgMo4FcA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>Dropout makes neural networks dumber on purpose. We do this to prevent overrfitting and to make a model generalize better.</p>
 <blockquote class="blockquote">
 <p><strong>Overfitting</strong>: When training accuracy is greater than testing accuracy.</p>
@@ -774,6 +779,113 @@ O_1 = w_1 x + w_2 y + w_3 z + b = 0
 <p>In PyTorch, this would look like <code>nn.Dropout(p=0.2)</code>, where <code>p</code> is the propbability that the node is turned off. If we apply dropout to the entire output layer, each node would be turned off (set output or activation equal to zero) independently with probability <span class="math inline">\(p\)</span>.</p>
 <p>Remember, overfitting occurs ebcause our model is too <em>complex</em>. So if dropout is to work, it has to <em>reduce</em> our model’s complexity. And we can see that is exactly what is happening. In other words, what dropout is doing is making the model more stupid so it doesn’t focus on unnecessary/irrelevant noise.</p>
 <p>Dropout has been found to increase teseting accuracy, especially as models get deeper (i.e.&nbsp;have more layers).</p>
+<section id="coding-problem-solution-1" class="level2">
+<h2 class="anchored" data-anchor-id="coding-problem-solution-1">Coding Problem Solution</h2>
+<p>This was a very poorly written question. It should have been stated as the following:</p>
+<p>Model architecture takes in a 28*28 image and sends that to 512 neurons (use a linar layer for this). This is then followed by a ReLU activation function and then a dropout layer with probability <code>p=0.2</code>. Then there is a final linear layer that shrinks 512 neurons down to 10, followed finally by a sigmoid activation function.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchtyping <span class="im">import</span> TensorType</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution(nn.Module):</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first_linear <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">512</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.relu <span class="op">=</span> nn.ReLU()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.drop <span class="op">=</span> nn.Dropout(p<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second_linear <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigmoid <span class="op">=</span> nn.Sigmoid()</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define the architecture here</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, images: TensorType[<span class="bu">float</span>]) <span class="op">-&gt;</span> TensorType[<span class="bu">float</span>]:</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span>  <span class="va">self</span>.sigmoid(<span class="va">self</span>.second_linear(<span class="va">self</span>.drop(<span class="va">self</span>.relu(<span class="va">self</span>.first_linear(images)))))</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return the model's prediction to 4 decimal places</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.<span class="bu">round</span>(out, decimals<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="training-neural-networks-in-pytorch" class="level1">
+<h1>Training Neural Networks in PyTorch</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vVrASMLVBnY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DigitRecognition(nn.Module):</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first_linear <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">512</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.relu <span class="op">=</span> nn.ReLU()</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.drop <span class="op">=</span> nn.Dropout(p<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second_linear <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigmoid <span class="op">=</span> nn.Sigmoid()</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define the architecture here</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, images: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span>  <span class="va">self</span>.sigmoid(<span class="va">self</span>.second_linear(<span class="va">self</span>.drop(<span class="va">self</span>.relu(<span class="va">self</span>.first_linear(images)))))</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>How do we actually update this model over many iterations? Here we’re going to look at the training loop. The following code is the same regardless of the neural network:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> DigitRecognition()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>loss_function <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters())</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> images, labels <span class="kw">in</span> train_dataloader():</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        images <span class="op">=</span> images.view(images.shape[<span class="dv">0</span>], <span class="dv">784</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Training body</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        model_prediction <span class="op">=</span> model(images)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        loss.loss_function(model_prediction, labels)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s break this down a bit:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> DigitRecognition()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is instantiating our model. This could change depending on the task we are doing, but we still need to instantiate some kind of model.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>loss_function <span class="op">=</span> nn.CrossEntropyLoss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is our loss function. Here it’s cross-entropy loss instead of MSE since we are doing a classification problem instead of a regression problem. Again, the loss function will vary depending on the application, but we still need one.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is an object in PyTorch that does gradient descent for us. What we need to pass in are the weights (parameters). <code>Adam</code> is gradient descent on steroids. It is still doing gradient descent (with a default learning rate), but is optimized to dynamically change the learning rate.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An <em>epoch</em> is a single pass through the entire dataset. So here, the model is passing through the entire training dataset 5 times. Too many epochs might result in overfitting, too few might mean the weights haven’t been updated enough.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> images, labels <span class="kw">in</span> train_dataloader():</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>train_dataloader()</code> is just a sequence of steps to take in the raw data and do any preprocessing on it before it is fed to the network (for images, this might be things like resizing, cropping, or random reflections).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> images.view(images.shape[<span class="dv">0</span>], <span class="dv">784</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Could have also used <code>images = images.reshape(...)</code>, but we’re reshaping the image from 28 * 28 to a single vector with length 784 so that the network (which has a first layer with 784 neurons) can take it in.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model_prediction <span class="op">=</span> model(images)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is calling the <code>forward()</code> method of the <code>model</code> class we defined earlier and gets our model predictions.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is a frustrating line that really shouldn’t be required in PyTorch, but it cancels out all of the derivatives that were calculated from the previous iteration of gradient descent. This is done because for each iteration, we want to calculate the derivatives again so that we can update our weights. This line resets the derivatives so we can do this.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>loss.loss_function(model_prediction, labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is calculating the loss/error based on our current model’s prediction and the labels.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Potentially the most important line here. This will calculate every single derivative necessary to perform gradient descent. This is the most computationally intensive step of this entire program. It is calculating all of the derivatives and is storing them in such a way that we can use them later.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This updates all of the weights, so essentially doing <span class="math inline">\(\text{new weight} = \text{old weight} - \text{derivative} \cdot \text{learning rate}\)</span>. Next chunk:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> images, labels <span class="kw">in</span> test_dataloader:</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    images <span class="op">=</span> images.view(images.shape[<span class="dv">0</span>], <span class="dv">784</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    model_prediction <span class="op">=</span> model(images)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">max</span>, idx <span class="op">=</span> torch.<span class="bu">max</span>(model_prediction, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(images)):</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        plt.imshow(images[i].view(<span class="dv">28</span>, <span class="dv">28</span>))</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(idx[i].item())</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is showing us how well the model is doing once training is done.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This puts the model in evaluation mode. We’re telling PyTorch that we just want the model’s predictions, so it doesn’t need to calculate any derivatives for training.</p>
+<p>Then we iterate over our test dataloader, reshape our images, pass them into the model, and get our predictions. For every image, we’re predicting a bunch of probabilities (specifically 10). So we should take the maximum probability and map that to the class. This lets us see the image and the corresponding digit the model thinks it is. Then iterate over each image and do this.</p>
 
 
 </section>
