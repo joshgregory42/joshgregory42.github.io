@@ -1,6 +1,6 @@
 ---
 title: "GPT and Chill Notes"
-description: "Notes from the GPT and Chill [playlist](https://www.gptandchill.ai/codingproblems)"
+description: "My notes from the GPT and Chill playlist"
 author:
   - name: Josh Gregory
     url: https://joshgregory.github.io/
@@ -14,6 +14,8 @@ citation:
   url: https://joshgregory42.github.io/posts/2024-06-07-gpt-chill/ 
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
+
+> You can view the entire playlist [here](https://www.gptandchill.ai/codingproblems)
 
 # How Neural Networks Learn (Gradient Descent)
 
@@ -765,3 +767,60 @@ model.eval()
 This puts the model in evaluation mode. We're telling PyTorch that we just want the model's predictions, so it doesn't need to calculate any derivatives for training.
 
 Then we iterate over our test dataloader, reshape our images, pass them into the model, and get our predictions. For every image, we're predicting a bunch of probabilities (specifically 10). So we should take the maximum probability and map that to the class. This lets us see the image and the corresponding digit the model thinks it is. Then iterate over each image and do this.
+
+
+# Intro to NLP
+
+{{< video https://www.youtube.com/watch?v=mjeXXssPLOE >}}
+
+Solving a problem with no background in NLP that requires an understanding of NLP to complete is stupid. So I'm watching the video first.
+
+**Tokenization**: How text is broken up. Is it broken up into words, characters, parts of words, etc.
+* How will each token be **encoded**, or converted from a raw text string to an integer?
+
+what we need to do ehre is map each token to an integer. So we need some dictionary that maps tokens to integers.
+
+## The Setup
+
+First need to construct a list of all the unique words in the dataset. Something that can do this is a **hash set**, or a **set** in Python. We can then convert the set to a list, sort it, and create the dictionary.
+
+```python
+class Solution:
+    def get_dataset(self, positive: List[str], negative: List[str]) -> TensorType[float]:
+        vocabulary = set()
+        for sentence in positive: # Loop through each sentence in the positive dataset
+            for word in sentence.split(): # Extract each word in the sentence
+                vocabulary.add(word) # Use .add() instead of .append() since .add() is for sets, .append() is for lists
+        
+        for sentence in negative:
+            for word in senence.split():
+                vocabulary.add(word)
+
+        list_convert = list(vocabulary) # Convert vocabulary to a list
+        sorted_list = sorted(list_convert) # Get sorted list from low to high like we talked about earlier
+
+        # Now we want to build our dictionary to convert words to integers
+
+        word_to_int = {}
+
+        for i in range(len(sorted_list)):
+            word_to_int[sorted_list[i]] = i + 1 # Key is the index in the list, value is starting at the smallest and going up from there (i+1 since we have zero indexing)
+
+        # Encode every sentence as a tensor of integers
+        tensors = []
+
+        for sentence in positive:
+            current_list = []
+            for word in sentence.split():        
+                current_list.append(word_to_int[word]) # Getting the integer conversion for that word and putting it into a list
+            tensors.append(torch.tensor(current_list)) # Convert current_list to a tensor and append it to tensors
+        
+        for sentence in negative:
+            current_list = []
+            for word in sentence.split():        
+                current_list.append(word_to_int[word]) # Getting the integer conversion for that word and putting it into a list
+            tensors.append(torch.tensor(current_list)) # Convert current_list to a tensor and append it to tensors
+
+        return nn.utils.rnn.pad_sequence(tensors, batch_first=True) # Pad tensors with zeros so they are all the same length
+
+```
