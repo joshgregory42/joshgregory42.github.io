@@ -296,6 +296,10 @@ window.Quarto = {
   <li><a href="#coding-problem-solution-1" id="toc-coding-problem-solution-1" class="nav-link" data-scroll-target="#coding-problem-solution-1">Coding Problem Solution</a></li>
   </ul></li>
   <li><a href="#training-neural-networks-in-pytorch" id="toc-training-neural-networks-in-pytorch" class="nav-link" data-scroll-target="#training-neural-networks-in-pytorch">Training Neural Networks in PyTorch</a></li>
+  <li><a href="#intro-to-nlp" id="toc-intro-to-nlp" class="nav-link" data-scroll-target="#intro-to-nlp">Intro to NLP</a>
+  <ul class="collapse">
+  <li><a href="#the-setup" id="toc-the-setup" class="nav-link" data-scroll-target="#the-setup">The Setup</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -444,7 +448,7 @@ b &amp;\text{ is the model bias}\\
 \text{MSE} = \sum_{i = 1}^{N} \frac{\left( \text{prediction}_i - \text{label}_i \right)^2}{N}
 \]</span> where <span class="math inline">\(N\)</span> is the number of training examples, and recall that the label is defined as the “true” answer that we’re comparing our model’s prediction against.</p>
 <p>A common question to ask here is why don’t we use the absolute value instead of squaring to get our error? This is because the derivative won’t exist somewhere. If we look at the most basic absolute value function, <span class="math inline">\(y = |x|\)</span>, we get something like this:</p>
-<div id="552f72c0" class="cell" data-execution_count="1">
+<div id="5166b8ff" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -889,8 +893,56 @@ O_1 = w_1 x + w_2 y + w_3 z + b = 0
 <div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This puts the model in evaluation mode. We’re telling PyTorch that we just want the model’s predictions, so it doesn’t need to calculate any derivatives for training.</p>
 <p>Then we iterate over our test dataloader, reshape our images, pass them into the model, and get our predictions. For every image, we’re predicting a bunch of probabilities (specifically 10). So we should take the maximum probability and map that to the class. This lets us see the image and the corresponding digit the model thinks it is. Then iterate over each image and do this.</p>
+</section>
+<section id="intro-to-nlp" class="level1">
+<h1>Intro to NLP</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/mjeXXssPLOE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Solving a problem with no background in NLP that requires an understanding of NLP to complete is stupid. So I’m watching the video first.</p>
+<p><strong>Tokenization</strong>: How text is broken up. Is it broken up into words, characters, parts of words, etc. * How will each token be <strong>encoded</strong>, or converted from a raw text string to an integer?</p>
+<p>what we need to do ehre is map each token to an integer. So we need some dictionary that maps tokens to integers.</p>
+<section id="the-setup" class="level2">
+<h2 class="anchored" data-anchor-id="the-setup">The Setup</h2>
+<p>First need to construct a list of all the unique words in the dataset. Something that can do this is a <strong>hash set</strong>, or a <strong>set</strong> in Python. We can then convert the set to a list, sort it, and create the dictionary.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_dataset(<span class="va">self</span>, positive: List[<span class="bu">str</span>], negative: List[<span class="bu">str</span>]) <span class="op">-&gt;</span> TensorType[<span class="bu">float</span>]:</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        vocabulary <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> sentence <span class="kw">in</span> positive: <span class="co"># Loop through each sentence in the positive dataset</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> word <span class="kw">in</span> sentence.split(): <span class="co"># Extract each word in the sentence</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>                vocabulary.add(word) <span class="co"># Use .add() instead of .append() since .add() is for sets, .append() is for lists</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> sentence <span class="kw">in</span> negative:</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> word <span class="kw">in</span> senence.split():</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                vocabulary.add(word)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>        list_convert <span class="op">=</span> <span class="bu">list</span>(vocabulary) <span class="co"># Convert vocabulary to a list</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>        sorted_list <span class="op">=</span> <span class="bu">sorted</span>(list_convert) <span class="co"># Get sorted list from low to high like we talked about earlier</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Now we want to build our dictionary to convert words to integers</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>        word_to_int <span class="op">=</span> {}</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(sorted_list)):</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>            word_to_int[sorted_list[i]] <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span> <span class="co"># Key is the index in the list, value is starting at the smallest and going up from there (i+1 since we have zero indexing)</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encode every sentence as a tensor of integers</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>        tensors <span class="op">=</span> []</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> sentence <span class="kw">in</span> positive:</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>            current_list <span class="op">=</span> []</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> word <span class="kw">in</span> sentence.split():        </span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>                current_list.append(word_to_int[word]) <span class="co"># Getting the integer conversion for that word and putting it into a list</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>            tensors.append(torch.tensor(current_list)) <span class="co"># Convert current_list to a tensor and append it to tensors</span></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> sentence <span class="kw">in</span> negative:</span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>            current_list <span class="op">=</span> []</span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> word <span class="kw">in</span> sentence.split():        </span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>                current_list.append(word_to_int[word]) <span class="co"># Getting the integer conversion for that word and putting it into a list</span></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>            tensors.append(torch.tensor(current_list)) <span class="co"># Convert current_list to a tensor and append it to tensors</span></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> nn.utils.rnn.pad_sequence(tensors, batch_first<span class="op">=</span><span class="va">True</span>) <span class="co"># Pad tensors with zeros so they are all the same length</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
