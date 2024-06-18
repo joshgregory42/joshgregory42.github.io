@@ -893,3 +893,30 @@ $$
 \end{align*}
 $$
 We could create a new matrix where each how is the learned/trained representations of the model's covabulary in each row. If we matrix multiply these two matrices, we get the learned representations of our model's vocabulary. This is an example of **one-hot encoding** (or one-hot input).
+
+## Coding Problem Solution
+
+```python
+import torch
+import torch.nn as nn
+from torchtyping import TensorType
+
+class Solution(nn.Module):
+    def __init__(self, vocabulary_size: int):
+        super().__init__()
+        torch.manual_seed(0)
+        self.embedding_layer = nn.Embedding(vocabulary_size, 16)
+        self.linear_1 = nn.Linear(in_features=16, out_features=1)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x: TensorType[int]) -> TensorType[float]:
+        # Hint: The embedding layer outputs a B, T, embed_dim tensor
+        # but you should average it into a B, embed_dim tensor before using the Linear layer
+        embeddings = self.embedding_layer(x)
+        averages = torch.mean(embeddings, axis=1)
+        linear = self.linear_1(averages)
+        sigmoid_out = self.sigmoid(linear)
+
+        return torch.round(sigmoid_out, decimals=4)    
+```
+
