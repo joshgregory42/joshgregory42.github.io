@@ -105,6 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -300,6 +304,13 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#the-setup" id="toc-the-setup" class="nav-link" data-scroll-target="#the-setup">The Setup</a></li>
   </ul></li>
+  <li><a href="#machine-learning-on-tweets" id="toc-machine-learning-on-tweets" class="nav-link" data-scroll-target="#machine-learning-on-tweets">Machine Learning on Tweets</a>
+  <ul class="collapse">
+  <li><a href="#model-architecture" id="toc-model-architecture" class="nav-link" data-scroll-target="#model-architecture">Model Architecture</a>
+  <ul class="collapse">
+  <li><a href="#lookup-table" id="toc-lookup-table" class="nav-link" data-scroll-target="#lookup-table">Lookup Table</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -448,7 +459,7 @@ b &amp;\text{ is the model bias}\\
 \text{MSE} = \sum_{i = 1}^{N} \frac{\left( \text{prediction}_i - \text{label}_i \right)^2}{N}
 \]</span> where <span class="math inline">\(N\)</span> is the number of training examples, and recall that the label is defined as the “true” answer that we’re comparing our model’s prediction against.</p>
 <p>A common question to ask here is why don’t we use the absolute value instead of squaring to get our error? This is because the derivative won’t exist somewhere. If we look at the most basic absolute value function, <span class="math inline">\(y = |x|\)</span>, we get something like this:</p>
-<div id="5166b8ff" class="cell" data-execution_count="1">
+<div id="36cada4f" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -940,8 +951,80 @@ O_1 = w_1 x + w_2 y + w_3 z + b = 0
 <span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>            tensors.append(torch.tensor(current_list)) <span class="co"># Convert current_list to a tensor and append it to tensors</span></span>
 <span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> nn.utils.rnn.pad_sequence(tensors, batch_first<span class="op">=</span><span class="va">True</span>) <span class="co"># Pad tensors with zeros so they are all the same length</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="machine-learning-on-tweets" class="level1">
+<h1>Machine Learning on Tweets</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/8dRLaVOlTYA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><strong>Sentiment analysis</strong>: Given some text (sentence, paragraph, etc.), we want to feed this into some kind of model:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A(Text) --&gt; B(Neural network)
+    B --&gt; C{Evaluate}
+    C  --&gt; D(Positive)
+    C --&gt; E(Negative)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>There are many applications for this, like Tweets impacting the stock market. One important concept here is that of <strong>embeddings</strong>:</p>
+<p><strong>Embeddings</strong>: Learning a vectorized representation of every token in our model’s vocabulary.</p>
+<p>Example sentence: “I loved that movie” might be mapped in the following way:</p>
+<p><span class="math display">\[
+\begin{align*}
+\text{I} &amp;\rightarrow 0\\
+\text{loved} &amp;\rightarrow 2\\
+\text{that} &amp;\rightarrow 1\\
+\text{movie} &amp;\rightarrow 4
+\end{align*}
+\]</span> So we would feed the following vector into the model: [0, 2, 1, 4]. The first step is the model understanding the meaning of these tokens independently. Remember, the specific embeddings here are arbitrary; the important thing is the <em>relationship</em> between the embeddings. These embedding vectors are tweaked during training.</p>
+<p><strong>Embedding dimension</strong>: How long each embedding is (i.e.&nbsp;is a single token represented as [2], [2, 1, 4], [2, 1, 4, 6, 8], etc.) The higher this number, the more complex relationships our model can pick up on.</p>
+<p>Embeddings start off randomly, but are then closer to other, similar embeddings. Mathematically, embeddings that are more similar to each other have a dot product that is large. For example, the dot product between the embeddings for “man” and “woman” would be higher than the dot product between the embeddings for “leaf” and “chair”.</p>
+<section id="model-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="model-architecture">Model Architecture</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A(Input, size BxT) --&gt; B(Embedding layer)
+    B -- BxTxC --&gt; C(Avg.)
+    C -- BxC --&gt; D(Linear layer)
+    D -- Bx1 --&gt; E(Sigmoid)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>With the final output being a number between zero and one for every input example in our training batch. Example breaking down the variables:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\text{I} &amp; \text{loved} &amp; \text{that} &amp; \text{movie}\\
+\text{I} &amp; \text{hated} &amp; \text{that} &amp; \text{movie}\\
+\end{bmatrix}
+\]</span> here, <span class="math inline">\(B=2\)</span> and <span class="math inline">\(T = 4\)</span>, with <span class="math inline">\(C\)</span> being our embedding dimension.</p>
+<section id="lookup-table" class="level3">
+<h3 class="anchored" data-anchor-id="lookup-table">Lookup Table</h3>
+<p>Let’s say that the following mappings are true:</p>
+<p><span class="math display">\[
+\begin{align*}
+\text{I} &amp;\rightarrow 0 \rightarrow[0, 0, 1, 0, 0, 0]\\
+\text{loved} &amp;\rightarrow 2 \rightarrow[1, 0, 0, 0, 0, 0]\\
+\text{that} &amp;\rightarrow 1 \rightarrow[0, 0, 0, 1, 0, 0]\\
+\text{movie} &amp;\rightarrow 4 \rightarrow[0, 0, 0, 0, 1, 0]
+\end{align*}
+\]</span> We could create a new matrix where each how is the learned/trained representations of the model’s covabulary in each row. If we matrix multiply these two matrices, we get the learned representations of our model’s vocabulary. This is an example of <strong>one-hot encoding</strong> (or one-hot input).</p>
 
 
+</section>
 </section>
 </section>
 
