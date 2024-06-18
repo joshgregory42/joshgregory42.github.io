@@ -42,6 +42,9 @@ format:
     theme: 
       light: [litera, styles.scss]
       dark: [darkly, styles-dark.scss]
+    mermaid:
+      light: default
+      dark: dark
     highlight-style: a11y-dark
     # mainfont: 'SF Pro'
     toc: true

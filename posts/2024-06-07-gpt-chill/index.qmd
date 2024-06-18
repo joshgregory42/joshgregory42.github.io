@@ -824,3 +824,72 @@ class Solution:
         return nn.utils.rnn.pad_sequence(tensors, batch_first=True) # Pad tensors with zeros so they are all the same length
 
 ```
+
+
+# Machine Learning on Tweets
+
+
+{{< video https://www.youtube.com/watch?v=8dRLaVOlTYA >}}
+
+
+**Sentiment analysis**: Given some text (sentence, paragraph, etc.), we want to feed this into some kind of model:
+
+```{mermaid}
+flowchart LR
+    A(Text) --> B(Neural network)
+    B --> C{Evaluate}
+    C  --> D(Positive)
+    C --> E(Negative)
+```
+There are many applications for this, like Tweets impacting the stock market. One important concept here is that of **embeddings**:
+
+**Embeddings**: Learning a vectorized representation of every token in our model's vocabulary.
+
+Example sentence: "I loved that movie" might be mapped in the following way:
+
+$$
+\begin{align*}
+\text{I} &\rightarrow 0\\
+\text{loved} &\rightarrow 2\\
+\text{that} &\rightarrow 1\\
+\text{movie} &\rightarrow 4
+\end{align*}
+$$
+So we would feed the following vector into the model: [0, 2, 1, 4]. The first step is the model understanding the meaning of these tokens independently. Remember, the specific embeddings here are arbitrary; the important thing is the *relationship* between the embeddings. These embedding vectors are tweaked during training.
+
+**Embedding dimension**: How long each embedding is (i.e. is a single token represented as [2], [2, 1, 4], [2, 1, 4, 6, 8], etc.) The higher this number, the more complex relationships our model can pick up on.
+
+Embeddings start off randomly, but are then closer to other, similar embeddings. Mathematically, embeddings that are more similar to each other have a dot product that is large. For example, the dot product between the embeddings for "man" and "woman" would be higher than the dot product between the embeddings for "leaf" and "chair".
+
+## Model Architecture
+
+```{mermaid}
+flowchart LR
+    A(Input, size BxT) --> B(Embedding layer)
+    B -- BxTxC --> C(Avg.)
+    C -- BxC --> D(Linear layer)
+    D -- Bx1 --> E(Sigmoid)
+```
+With the final output being a number between zero and one for every input example in our training batch. Example breaking down the variables:
+
+$$
+\begin{bmatrix}
+\text{I} & \text{loved} & \text{that} & \text{movie}\\
+\text{I} & \text{hated} & \text{that} & \text{movie}\\
+\end{bmatrix}
+$$
+here, $B=2$ and $T = 4$, with $C$ being our embedding dimension.
+
+### Lookup Table
+
+Let's say that the following mappings are true:
+
+$$
+\begin{align*}
+\text{I} &\rightarrow 0 \rightarrow[0, 0, 1, 0, 0, 0]\\
+\text{loved} &\rightarrow 2 \rightarrow[1, 0, 0, 0, 0, 0]\\
+\text{that} &\rightarrow 1 \rightarrow[0, 0, 0, 1, 0, 0]\\ 
+\text{movie} &\rightarrow 4 \rightarrow[0, 0, 0, 0, 1, 0]
+\end{align*}
+$$
+We could create a new matrix where each how is the learned/trained representations of the model's covabulary in each row. If we matrix multiply these two matrices, we get the learned representations of our model's vocabulary. This is an example of **one-hot encoding** (or one-hot input).
