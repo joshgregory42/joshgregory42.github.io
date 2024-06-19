@@ -793,7 +793,7 @@ class Solution:
                 vocabulary.add(word) # Use .add() instead of .append() since .add() is for sets, .append() is for lists
         
         for sentence in negative:
-            for word in senence.split():
+            for word in setence.split():
                 vocabulary.add(word)
 
         list_convert = list(vocabulary) # Convert vocabulary to a list
@@ -920,3 +920,33 @@ class Solution(nn.Module):
         return torch.round(sigmoid_out, decimals=4)    
 ```
 
+# Illustrated Guide to Attention - How ChatGPT Reads
+
+{{< video https://www.youtube.com/watch?v=sjrvs7dJOvU >}}
+
+Let's start out by thinking of these large language models (LLMs)/generative pretrainted transformers (GPTs) as a black box:
+
+```{mermaid}
+flowchart LR
+    A(Words) --> B[LLM/GPT]
+    B --> C(Response)
+```
+
+To get computers to read, it makes sense to consider how humans read. We don't read word-by-word, but instead word-by-word while considering the relationships that came before the current one in a sentence. For example:
+
+> Gertrude lead the horse
+> The President has to lead
+> Lead shields against X-rays
+Here, "lead" is the same work but has different meanings. For each input string of length $T$, the model generates a score of how related two words are with each other.
+
+## The Mathematical Explanation
+
+Main idea: We want our model to be **context-aware** of the words in a sentence. Not just figure out the next word, but instead know how they're related. Each word has two vectors associated with it: a **key** and a **query**. A query vector represents what the word is searching for (querying), and a word's key vector might be what it has to offer the query.
+
+Here's an example sentence:
+
+> The tall man runs.
+
+The query vector associated with "tall" might say that it is looking for a noun to describe, and the key vector associated with "man" might give an indication that it is a noun. We then take the dot product between every (for example) noun's query and every (for example) adjective's key. Those values populate something called the **attention matrix*, which is a measure of how related any two words in a sentence are to each other. 
+
+The key and query vectors for every word are calculated via linear regression. Before each word is passed into the attention block, each word is converted into an **embedding vector**. So we have one network that takes in embeddings and outputs queries, and another that takes in embeddings and outputs keys. We also have a **value vector**, which is then multiplied with the attention matrix, giving us the final output of the attention layer: "The $\text{i}^{\text{th}}$ entry in the new representation of a word is just the average of all the $\text{i}^{\text{th}}$ entries of the value vectors for the neighboring words weighted by the attention score for each pair of words, which factors in how important that pair is. Put shortly, the output of the attention matrix is an updated vector for every word that factors in the importance of the neighboring words.
