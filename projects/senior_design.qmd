@@ -5,6 +5,17 @@ description: |
 image: senior_design/port_render_2.jpg
 image-width: 10em
 categories: [surgery, medical devices]
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 05-02-2024
+last-modified: today
+citation: 
+  url: https://joshgregory42.github.io/projects/senior_design/ 
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 Download a copy of the poster [here](senior_design/senior_design_poster.pdf)
 

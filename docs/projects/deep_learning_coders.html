@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Josh Gregory">
-<meta name="dcterms.date" content="2024-05-02">
-<meta name="description" content="Collaboration with Children’s Hospital Colorado to create a novel surgical port">
+<meta name="dcterms.date" content="2024-06-07">
+<meta name="description" content="Notes from the course “Practical Deep Learning for Coders”">
 
-<title>3mm Mini Laparoscopic Port</title>
+<title>Notes From Practical Deep Learning for Coders</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,13 +146,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a>
-  <ul class="collapse">
-  <li><a href="#babies-in-the-neonatal-itensive-care-unit-nicu" id="toc-babies-in-the-neonatal-itensive-care-unit-nicu" class="nav-link" data-scroll-target="#babies-in-the-neonatal-itensive-care-unit-nicu">Babies in the Neonatal Itensive Care Unit (NICU)</a></li>
-  </ul></li>
-  <li><a href="#the-design-challenge" id="toc-the-design-challenge" class="nav-link" data-scroll-target="#the-design-challenge">The design challenge</a></li>
-  <li><a href="#a-nearly-blank-piece-of-paper" id="toc-a-nearly-blank-piece-of-paper" class="nav-link" data-scroll-target="#a-nearly-blank-piece-of-paper">A (nearly) blank piece of paper</a></li>
-  <li><a href="#the-solution" id="toc-the-solution" class="nav-link" data-scroll-target="#the-solution">The solution</a></li>
+  <li><a href="#lesson-1" id="toc-lesson-1" class="nav-link active" data-scroll-target="#lesson-1">Lesson 1</a></li>
   </ul>
 </nav>
     </div>
@@ -161,16 +155,18 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">3mm Mini Laparoscopic Port</h1>
+<h1 class="title">Notes From Practical Deep Learning for Coders</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">surgery</div>
-    <div class="quarto-category">medical devices</div>
+    <div class="quarto-category">Notes</div>
+    <div class="quarto-category">Deep Learning</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Artificial Intelligence</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Collaboration with Children’s Hospital Colorado to create a novel surgical port</p>
+    <p>Notes from the course “Practical Deep Learning for Coders”</p>
   </div>
 </div>
 
@@ -196,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 2, 2024</p>
+      <p class="date">June 7, 2024</p>
     </div>
   </div>
   
@@ -208,62 +204,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Download a copy of the poster <a href="senior_design/senior_design_poster.pdf">here</a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="senior_design/lap_port.png" class="img-fluid figure-img" style="width:20.0%"></p>
-<figcaption>3mm laparoscopic port render</figcaption>
-</figure>
-</div>
-<section id="motivation" class="level1">
-<h1>Motivation</h1>
-<p>Laparoscopic surgery is a type of minimally-invasive surgery whereby incisions are made into the umbilicus (the belly button) and then several other incisions are made near this first incision. The umbilicus incision is made first, and then a 5 mm camera and light is inserted. The abdominal cavity is then insufflated, which is the process whereby gas (usually carbon dioxide) is pumped into the abdominal cavity to allow for easier manupulation of surgical instruments.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="senior_design/lap_surgery_clipart.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Laparoscopic surgery. <a href="https://healthjade.com/laparoscopy/">Source</a></figcaption>
-</figure>
-</div>
-<p>Core to all of these procedures is the laparoscopic port, one of which can be seen below:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="senior_design/trocar_image.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>VersaOne Optical Trocar, made by <a href="https://www.medtronic.com/covidien/en-us/products/trocars-access/versaone-access-system.html">MedTronic</a>. Note the insufflation valve on the right image on the left side of the port.</figcaption>
-</figure>
-</div>
-<p>These ports come in various ranges, such as 5 mm, 10 mm, and 12 mm. This number refers to the size of the instrument that can be used with the port itself, meaning that the diameter of a 10 mm port would be somewhere around 10.75 mm to allow for insertion and removal of 10 mm laparoscopic instruments.</p>
-<section id="babies-in-the-neonatal-itensive-care-unit-nicu" class="level2">
-<h2 class="anchored" data-anchor-id="babies-in-the-neonatal-itensive-care-unit-nicu">Babies in the Neonatal Itensive Care Unit (NICU)</h2>
-<p>These ports work great for adults, when the thickness of the abdominal cavity is enough to keep the port in place and the patient is large enough that there is enough room to maneuver the laparoscopic tools without the surgical field getting too crowded. Both of these go completely out the window when working on babies in the NICU, which is where Colorado Children’s Hospital comes into the picture.</p>
-<p>Our client for this project was a pediatric surgeon from Colorado Children’s Hospital, and one of the first things he told us was the size of the surgical field. It’s the size of a grapefruit. You read that right. A grapefruit.</p>
-</section>
-</section>
-<section id="the-design-challenge" class="level1">
-<h1>The design challenge</h1>
-<p>The design challenge corresponded of two main issues: crowding of the surgical field and port dislogement. The former arises from the incredibly small size of the surgical field, with the latter arising from the incredibly thin abdominal walls found in neonates.</p>
-</section>
-<section id="a-nearly-blank-piece-of-paper" class="level1">
-<h1>A (nearly) blank piece of paper</h1>
-<p>One thing that is important to mention here: none of us on the team had any experience with the design or testing of medical devices. Most of us didn’t even know what laparoscopic <strong>was</strong>, much less how to design an instrument that would be helpful for a surgeon who has already been performing these operations for years. On top of that, the surgeon came to us with a sketch that he had made on his dining room table. No specifications, no bill of materials. Nothing. Just a nearly blank piece of paper and an idea. Most of the other teams had clients that came to them with lists of specifications, other designs the company had tried, and usually a team of engineers. Not here. To be honest, that freedom and lightness allowed us as a team to create a design that was unique and one that each of us is proud of.</p>
-</section>
-<section id="the-solution" class="level1">
-<h1>The solution</h1>
-<p>The novelty in the design was that it features a large air channel towards the top which features a bumper that slides down, forcing the air into a reservoir below the abdominal wall that inflates a retention mechanism. Once the procedure has finished, the retaining mechanisms are removed and the air moves back up the shaft of the port and the procedure is completed. This is shown in pictoral form in the poster download at the top of this page. One of the highlights of this project was the feedback from other surgeons at CU’s Engineering Projects Expo. Multiple surgeons with decades of experience held the port and commented on how familiar it felt and how it addressed many of their personal concerns when working on smaller patients.</p>
-<p>This design is currently patent pending.</p>
+<blockquote class="blockquote">
+<p>The title image for this page was created using <a href="https://hotpot.ai">hotpot.ai</a> with the prompt “Create an image of an artificial neural network, only with nodes and connections between them. Make the image landscape.”</p>
+</blockquote>
+<section id="lesson-1" class="level1">
+<h1>Lesson 1</h1>
 
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
   author = {Gregory, Josh},
-  title = {3mm {Mini} {Laparoscopic} {Port}},
-  date = {2024-05-02},
-  url = {https://joshgregory42.github.io/projects/senior_design/},
+  title = {Notes {From} {Practical} {Deep} {Learning} for {Coders}},
+  date = {2024-06-07},
+  url = {https://joshgregory42.github.io/projects/deep_learning_coders/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gregory2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Gregory, Josh. 2024. <span>“3mm Mini Laparoscopic Port.”</span> May 2,
-2024. <a href="https://joshgregory42.github.io/projects/senior_design/">https://joshgregory42.github.io/projects/senior_design/</a>.
+Gregory, Josh. 2024. <span>“Notes From Practical Deep Learning for
+Coders.”</span> June 7, 2024. <a href="https://joshgregory42.github.io/projects/deep_learning_coders/">https://joshgregory42.github.io/projects/deep_learning_coders/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
