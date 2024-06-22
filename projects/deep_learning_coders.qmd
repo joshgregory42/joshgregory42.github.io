@@ -1,0 +1,24 @@
+---
+title: Notes From Practical Deep Learning for Coders
+description: |
+    Notes from the course "Practical Deep Learning for Coders"
+image: deep_learning_coders/neural_network_image.png
+image-width: 10em
+categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence]
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 06-07-2024
+last-modified: today
+citation: 
+  url: https://joshgregory42.github.io/projects/deep_learning_coders/ 
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+> The title image for this page was created using [hotpot.ai](https://hotpot.ai) with the prompt "Create an image of an artificial neural network, only with nodes and connections between them. Make the image landscape."
+
+# Lesson 1
+
