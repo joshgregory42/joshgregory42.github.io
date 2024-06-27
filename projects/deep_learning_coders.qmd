@@ -99,10 +99,6 @@ digraph {
 
 ## Notes from the book (ch. 1)
 
-Not much here, going to answer the questions instead
-
-Sure, here's your text updated to proper Markdown bulleted formatting with sub-bullets:
-
 1. Pretty straightforward, no answer needed
 2. - NLP (ChatGPT/Claude)
    - Playing games (AlphaGo/AlphaZero)
