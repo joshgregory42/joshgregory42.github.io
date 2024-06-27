@@ -460,5 +460,54 @@
     "title": "GPT and Chill Notes",
     "section": "The Mathematical Explanation",
     "text": "The Mathematical Explanation\nMain idea: We want our model to be context-aware of the words in a sentence. Not just figure out the next word, but instead know how they’re related. Each word has two vectors associated with it: a key and a query. A query vector represents what the word is searching for (querying), and a word’s key vector might be what it has to offer the query.\nHere’s an example sentence:\n\nThe tall man runs.\n\nThe query vector associated with “tall” might say that it is looking for a noun to describe, and the key vector associated with “man” might give an indication that it is a noun. We then take the dot product between every (for example) noun’s query and every (for example) adjective’s key. Those values populate something called the **attention matrix*, which is a measure of how related any two words in a sentence are to each other.\nThe key and query vectors for every word are calculated via linear regression. Before each word is passed into the attention block, each word is converted into an embedding vector. So we have one network that takes in embeddings and outputs queries, and another that takes in embeddings and outputs keys. We also have a value vector, which is then multiplied with the attention matrix, giving us the final output of the attention layer: “The \\(\\text{i}^{\\text{th}}\\) entry in the new representation of a word is just the average of all the \\(\\text{i}^{\\text{th}}\\) entries of the value vectors for the neighboring words weighted by the attention score for each pair of words, which factors in how important that pair is. Put shortly, the output of the attention matrix is an updated vector for every word that factors in the importance of the neighboring words."
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html",
+    "href": "projects/deep_learning_coders.html",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "",
+    "text": "The title image for this page was created using hotpot.ai with the prompt “Create an image of an artificial neural network, only with nodes and connections between them. Make the image landscape.”"
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html#explanation-of-the-fastai-library",
+    "href": "projects/deep_learning_coders.html#explanation-of-the-fastai-library",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "Explanation of the fastai library",
+    "text": "Explanation of the fastai library\n\nThe fastai library is built on top of PyTorch\nPyTorch is a solid fundamental library, and fastai makes things easier to interact with while keeping all of the benefits of PyTorch."
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html#tabular-data",
+    "href": "projects/deep_learning_coders.html#tabular-data",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "Tabular data",
+    "text": "Tabular data\n\nWant to use .fit_one_cycle instead of .finetune because pre-trained models typically don’t exist for tabular data."
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html#collaborative-filtering---recommendation-systems",
+    "href": "projects/deep_learning_coders.html#collaborative-filtering---recommendation-systems",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "Collaborative filtering - recommendation systems",
+    "text": "Collaborative filtering - recommendation systems\n\nTake data about which users use which products, then use that to predict which products a new user might like."
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html#miscellaneous-notes",
+    "href": "projects/deep_learning_coders.html#miscellaneous-notes",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "Miscellaneous notes",
+    "text": "Miscellaneous notes\nCalling .show_batch() will ideally show contextually correct information regardless of the dataset.\nCal also always call learn.show_results() to show contextually-accurate labels and predictions from the model."
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html#what-is-ml-doing-thats-different",
+    "href": "projects/deep_learning_coders.html#what-is-ml-doing-thats-different",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "What is ML doing that’s different?",
+    "text": "What is ML doing that’s different?\nNormally:\n\n\n\n\n\nflowchart LR\n    A(inputs) --&gt; B[program]\n    B --&gt; C(Results)\n\n\n\n\n\n\n\nBut ML:\nflowchart LR\n    A(inputs) --&gt; B[model]\n    G(weights) --&gt; B[model]\n    B --&gt; C(results)\n    C --&gt; D(loss)\n    D  --&gt; |update| G \n\nNote: The model box is able to approximate any computable function, the update block is typically done via gradient descent, and the model is now a function instead of a bunch of loops, like a traditional computer program."
+  },
+  {
+    "objectID": "projects/deep_learning_coders.html#notes-from-the-book-ch.-1",
+    "href": "projects/deep_learning_coders.html#notes-from-the-book-ch.-1",
+    "title": "Notes From Practical Deep Learning for Coders",
+    "section": "Notes from the book (ch. 1)",
+    "text": "Notes from the book (ch. 1)\nNot much here, going to answer the questions instead\nSure, here’s your text updated to proper Markdown bulleted formatting with sub-bullets:\n\nPretty straightforward, no answer needed\n\nNLP (ChatGPT/Claude)\nPlaying games (AlphaGo/AlphaZero)\nRecommendation systems (Google Search, YouTube recommendation algorithm)\nFinancial trading algorithms\nProtein folding (AlphaFold)\n\nWhat was the name of the first device that was based on the principle of the artificial neuron?\n\nThe Mark I Perceptron\n\nBased on the book of the same name, what are the requirements for parallel distributed processing (PDP)?\n\nA set of processing units\nA state of activation\nAn output function for each unit\nA pattern of connectivity among units\nA propagation rule\nAn activation rule\nA learning rule\nAn environment\n\nWhat were the two theoretical misunderstandings that held back the field of neural networks?\n\nThat a single layer of neurons couldn’t learn anything\nThat two layers of neurons would be too slow/big to be useful\n\nWhat is a GPU?\n\nA “Graphics Processing Unit”\nDoes matrix multiplication really fast, which allows for training and inference speedups compared to a CPU\n\nOpen a notebook and execute a cell containing: 1+1. What happens?\n\nAlready know how to use Jupyter Notebooks.\n\nFollow through each cell of the stripped version of the notebook for this chapter. Before executing each cell, guess what will happen.\nComplete the Jupyter Notebook online appendix.\nWhy is it hard to use a traditional computer program to recognize images in a photo?\n\nBecause we don’t know what features are important a priori.\n\nWhat did Samuel mean by “weight assignment”?\n\nWhat values the weights of a model take.\n\nWhat term do we normally use in deep learning for what Samuel called “weights”?\n\nParameters\n\nWhy is it hard to understand why a deep learning model makes a particular prediction?\n\nBecause we don’t get any insight into why a model makes a specific prediction other than by minimizing a loss function.\n\nWhat is the name of the theorem that shows that a neural network can solve any mathematical problem to any level of accuracy?\n\nThe universal approximation theorem\n\nWhat do you need in order to train a model?\n\nData and labels\n\nHow could a feedback loop impact the rollout of a predictive policing model?\n\nBiased data could cause a model to become even more biased\n\nDo we always have to use 224×224-pixel images with the cat recognition model?\n\nNo\n\nWhat is the difference between classification and regression?\n\nClassification is putting something into multiple categories; regression is used to predict more numerical/quantitative values.\n\nWhat is a validation set? What is a test set? Why do we need them?\n\nA validation set is used to measure the accuracy of a model.\nA test set is like double-blinded data that we don’t even see so we aren’t even blinded by it.\n\nWhat will fastai do if you don’t provide a validation set?\n\nRefuse to train\n\nCan we always use a random sample for a validation set? Why or why not?\n\nAs long as it is a representative random sample, yes.\n\nWhat is overfitting? Provide an example.\n\nFitting a 9th degree Taylor series to something that can be approximated by \\(y = \\sin(x)\\).\n\nWhat is a metric? How does it differ from loss?\n\nA way for a person to tell how well the model is performing on the validation set.\nThe loss is how well a model does on a single prediction during training.\n\nHow can pretrained models help?\n\nMake training faster\n\nWhat is the “head” of a model?\n\nThe part that is newly added to be specific to a new dataset.\n\nWhat kinds of features do the early layers of a CNN find? How about the later layers?\n\nEarly layers find things like parallel lines and edges.\nLater layers combine these to form more complex shapes, like faces.\n\nAre image models useful only for photos?\n\nNo. Can transform other things into images.\n\nWhat is an architecture?\n\nHow a model is laid out. Like how UNet or resnet18 actually works on a layer-by-layer basis.\n\nWhat is segmentation?\n\nSeparating different things in (usually) an image, like people and trees.\n\nWhat is y_range used for? When do we need it?\n\nWhat range a target has, like if we have a movie rating recommendation system that has continuous values.\n\nWhat are hyperparameters?\n\nThings we set to train the model (i.e., parameters about the parameters).\n\nWhat’s the best way to avoid failures when using AI in an organization?\n\nDon’t treat it as a black box. Garbage in = garbage out."
   }
 ]

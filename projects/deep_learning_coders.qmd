@@ -11,14 +11,174 @@ author:
     orcid: 0000-0002-4368-1171
     affiliation: College of Engineering & Applied Science, University of Colorado Boulder
     affiliation-url: https://www.colorado.edu/mechanical/ 
-date: 06-07-2024
-last-modified: today
+date: last-modified
 citation: 
   url: https://joshgregory42.github.io/projects/deep_learning_coders/ 
-draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 > The title image for this page was created using [hotpot.ai](https://hotpot.ai) with the prompt "Create an image of an artificial neural network, only with nodes and connections between them. Make the image landscape."
 
 # Lesson 1
+
+> [Link](https://course.fast.ai/Lessons/lesson1.html)
+
+**Question**: Why can we create a bird recognizer so quikly now, when we couldn't do it before? What's changed?
+
+Let's go back to 2012.
+
+Back then, there was a project at Stanford called the [Computational Pathologist](https://engineering.stanford.edu/magazine/article/stanford-team-trains-computers-evaluate-breast-cancers). It used a huge team of scientists and mathematicians, needed a lot of time and expertise to label the images, creating mathematical relationships within the images, etc. What's changed since then is *deep learning doesn't need any of this*. Deep networks *learn* these features.
+
+> We don't give a network features, we ask it to learn features instead.
+
+If we look inside of a deep computer vision model, we see that the first few layers start with really basic detectors, like corners, parallel lines, etc. These are then combined in later layers to allow for recognition of more complex things, like birds and cars. This is why networks need to be "deep", and we can't just use a single layer for everything (typically). This is the advancement: instead of hand-coding every single possible feature, they can be learned on the fly.
+
+## Explanation of the fastai library
+
+* The fastai library is built on top of PyTorch
+* PyTorch is a solid fundamental library, and fastai makes things easier to interact with while keeping all of the benefits of PyTorch.
+
+## Tabular data
+
+* Want to use `.fit_one_cycle` instead of `.finetune` because pre-trained models typically don't exist for tabular data.
+
+## Collaborative filtering - recommendation systems
+
+* Take data about which users use which products, then use that to predict which products a new user might like.
+
+## Miscellaneous notes
+
+Calling `.show_batch()` will ideally show contextually correct information regardless of the dataset.
+
+Cal also always call `learn.show_results()` to show contextually-accurate labels and predictions from the model.
+
+## What is ML doing that's different?
+
+Normally:
+
+```{mermaid}
+flowchart LR
+    A(inputs) --> B[program]
+    B --> C(Results)
+```
+
+<!-- ```{dot}
+digraph {
+    rankdir=LR;
+    program [shape=box3d width=1 height=0.7];
+    inputs -> program -> results;
+}
+``` -->
+But ML:
+
+```{mermaid}
+flowchart LR
+    A(inputs) --> B[model]
+    G(weights) --> B[model]
+    B --> C(results)
+    C --> D(loss)
+    D  --> |update| G 
+```
+
+<!-- ```{dot}
+digraph {
+    ordering=in;  // Set the input ordering
+    rankdir=LR;   // Set the layout direction to Left-to-Right
+    
+    model [shape=box3d width=1 height=0.7];
+    
+    inputs -> model -> results;
+    weights -> model;
+    results -> performance;
+    performance -> weights [constraint=false label=update];
+}
+``` -->
+
+**Note**: The `model` box is able to approximate any computable function, the `update` block is typically done via gradient descent, and the model is now a function instead of a bunch of loops, like a traditional computer program.
+
+
+## Notes from the book (ch. 1)
+
+Not much here, going to answer the questions instead
+
+Sure, here's your text updated to proper Markdown bulleted formatting with sub-bullets:
+
+1. Pretty straightforward, no answer needed
+2. - NLP (ChatGPT/Claude)
+   - Playing games (AlphaGo/AlphaZero)
+   - Recommendation systems (Google Search, YouTube recommendation algorithm)
+   - Financial trading algorithms
+   - Protein folding (AlphaFold)
+3. What was the name of the first device that was based on the principle of the artificial neuron?
+   - The Mark I Perceptron
+4. Based on the book of the same name, what are the requirements for parallel distributed processing (PDP)?
+   - A set of processing units
+   - A state of activation
+   - An output function for each unit
+   - A pattern of connectivity among units
+   - A propagation rule
+   - An activation rule
+   - A learning rule
+   - An environment
+5. What were the two theoretical misunderstandings that held back the field of neural networks?
+   - That a single layer of neurons couldn't learn anything
+   - That two layers of neurons would be too slow/big to be useful
+6. What is a GPU?
+   - A "Graphics Processing Unit"
+   - Does matrix multiplication really fast, which allows for training and inference speedups compared to a CPU
+7. Open a notebook and execute a cell containing: `1+1`. What happens?
+   - Already know how to use Jupyter Notebooks.
+8. Follow through each cell of the stripped version of the notebook for this chapter. Before executing each cell, guess what will happen.
+9. Complete the Jupyter Notebook online appendix.
+10. Why is it hard to use a traditional computer program to recognize images in a photo?
+    - Because we don't know what features are important *a priori*.
+11. What did Samuel mean by “weight assignment”?
+    - What values the weights of a model take.
+12. What term do we normally use in deep learning for what Samuel called “weights”?
+    - Parameters
+13. Why is it hard to understand why a deep learning model makes a particular prediction?
+    - Because we don't get any insight into why a model makes a specific prediction other than by minimizing a loss function.
+14. What is the name of the theorem that shows that a neural network can solve any mathematical problem to any level of accuracy?
+    - The universal approximation theorem
+15. What do you need in order to train a model?
+    - Data and labels
+16. How could a feedback loop impact the rollout of a predictive policing model?
+    - Biased data could cause a model to become even more biased
+17. Do we always have to use 224×224-pixel images with the cat recognition model?
+    - No
+18. What is the difference between classification and regression?
+    - Classification is putting something into multiple categories; regression is used to predict more numerical/quantitative values.
+19. What is a validation set? What is a test set? Why do we need them?
+    - A validation set is used to measure the accuracy of a model.
+    - A test set is like double-blinded data that we don't even see so we aren't even blinded by it.
+20. What will fastai do if you don’t provide a validation set?
+    - Refuse to train
+21. Can we always use a random sample for a validation set? Why or why not?
+    - As long as it is a representative random sample, yes.
+22. What is overfitting? Provide an example.
+    - Fitting a 9th degree Taylor series to something that can be approximated by $y = \sin(x)$.
+23. What is a metric? How does it differ from loss?
+    - A way for a person to tell how well the model is performing on the validation set.
+    - The loss is how well a model does on a single prediction during training.
+24. How can pretrained models help?
+    - Make training faster
+25. What is the “head” of a model?
+    - The part that is newly added to be specific to a new dataset.
+26. What kinds of features do the early layers of a CNN find? How about the later layers?
+    - Early layers find things like parallel lines and edges.
+    - Later layers combine these to form more complex shapes, like faces.
+27. Are image models useful only for photos?
+    - No. Can transform other things into images.
+28. What is an architecture?
+    - How a model is laid out. Like how UNet or resnet18 actually works on a layer-by-layer basis.
+29. What is segmentation?
+    - Separating different things in (usually) an image, like people and trees.
+30. What is `y_range` used for? When do we need it?
+    - What range a target has, like if we have a movie rating recommendation system that has continuous values.
+31. What are hyperparameters?
+    - Things we set to train the model (i.e., parameters about the parameters).
+32. What’s the best way to avoid failures when using AI in an organization?
+    - Don't treat it as a black box. Garbage in = garbage out.
+
+
 
