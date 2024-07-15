@@ -19,8 +19,8 @@
   {
     "listing": "/projects/index.html",
     "items": [
-      "/projects/aesthetics.html",
       "/projects/deep_learning_coders.html",
+      "/projects/aesthetics.html",
       "/projects/senior_design.html"
     ]
   }
