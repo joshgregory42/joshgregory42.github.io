@@ -1,0 +1,22 @@
+---
+title: NREL Internship
+description: |
+    Internship at the National Renewable Energy Laboratory (NREL) in Golden, Colorado
+image: nrel_internship/images/nrel_logo_scaled.jpg
+image-width: 20px
+categories: [internship, energy]
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 05-02-2024
+last-modified: today
+citation: 
+  url: https://joshgregory42.github.io/projects/nrel_internship/ 
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+Download a copy of the poster [here](senior_design/senior_design_poster.pdf)
+
+![3mm laparoscopic port render](senior_design/lap_port.png){width=20%}

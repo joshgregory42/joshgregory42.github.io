@@ -5,6 +5,7 @@ project:
 website:
   site-url: https://www.joshgregory42.github.io
   # title: 'Josh Gregory'
+  google-analytics: "G-TXK1ED55CF"
   navbar:
     title: "Josh Gregory" # this is the website title as it appears in the top left corner -- clicking on this will jump you back to your landing page from where ever you are
     # collapse-level: 1
