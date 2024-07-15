@@ -176,5 +176,7 @@ digraph {
 32. What’s the best way to avoid failures when using AI in an organization?
     - Don't treat it as a black box. Garbage in = garbage out.
 
+# Lesson 2
 
+Coming soon!
 
