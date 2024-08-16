@@ -1,0 +1,38 @@
+---
+title: "On Nuance and Humility"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory42.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: today
+categories: [Writings, Thoughts] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2024-08-09-nuance-humility/ 
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Throughout my time in university, and now graduate school, I have noticed the importance of both nuance as well as humility. These might seem like two separate subejcts, but together they allow for someone to keep their minds open while at the same time ensuring that they are keeping their minds open to *exactly* what someone else is being told. Which is typically **not** what one might hear the first time.
+
+# The importance of nuance
+
+When I was a freshman at Oregon State University in the fall of 2019, many of us on the floor would get together and talk. Eventually those conversations led into politics. OSU is pretty liberal, however there was one guy specifically that was pretty right-leaning. He later told me that I was the only person that he could talk politics with. That surprised me, and when I asked him why, he told me "because I know that we can have a conversation, you'll listen, and I won't come out of it angry". 
+
+I tend to lean center-left on most topics, but something that my parents always made sure to instill was the importance of talking to people I disagree with. It shocked me that I was one of the only people that friend felt like he could have an actual conversation with. Sure, we disagreed about most things, but what I came away with was that for many of the big issues, we agreed. And I think that's a really key point here. Ever since then, I've seen the media show more and more (from both sides) that whoever the "out" or "crazy" group is (liberals is you're watching Fox, conservatives if you're watching CNN) is destroying the country. Not only that, but **all** of them are. Every single one. I think this is happening for one main reason.
+
+## Generalizations are easy, nuance is hard
+
+Maybe it's not that complicated. It's so freaking easy to say that all people who are conservative are hillbillies, live in the South, and are racist, homophobic idiots who contribute little to the U.S. economy. To disprove that, let's just look at one industry: aerospace. Two major universities in the South, Georgia Tech and the University of Alabama Huntsville, which are world-class in rocket propulsion. End of story. But it's not easy to discuss that nuance. It's *so* much easier to think that everyone in the South is lazy. 
+
+> Another dimension of nuance here: the University of Alabama Huntsville's rocketry program was first founded by Wernher von Braun, a Nazi who came over to the United States during Operation Paperclip to help the United States win the Cold War (a great book on the topic is by Annie Jacobsen and is fittingly titled [Operation Paperclip](https://anniejacobsen.com/operation-paperclip/)).
+
+I think that's the challenge that we all have in this day and age. It's much more profitable for social media companies to make you angry than to encourage nuanced discourse (when was the last time you saw a fight on Twitter that featured someone saying "Oh I see your perspective now, I was wrong"?). But that's the challenge, and I believe it is a doable one. We just need to practice.
+
+## Nuance in science
+
+This is one of the areas that is close to me, mostly because I'm in STEM. And it's a double-edged sword; I have read multiple papers that require nuance to decipher properly (both to find the subtleties in someone's great work or to prove that someone else is full of shit and hiding it really well).
+
+## The positive side
+
+
