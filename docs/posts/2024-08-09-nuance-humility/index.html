@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Josh Gregory">
+<meta name="dcterms.date" content="2024-08-15">
 
-<title>Blog</title>
+<title>On Nuance and Humility</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TXK1ED55CF"></script>
 
 <script type="text/javascript">
@@ -109,35 +80,6 @@ gtag('js', new Date());
 gtag('config', 'G-TXK1ED55CF', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -148,7 +90,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Josh Gregory</span>
     </a>
   </div>
@@ -159,23 +101,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects/index.html"> 
+    <a class="nav-link" href="../../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./posts.html" aria-current="page"> 
+    <a class="nav-link" href="../../posts.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resume_jag.pdf"> 
+    <a class="nav-link" href="../../resume_jag.pdf"> 
 <span class="menu-text">Resume</span></a>
   </li>  
 </ul>
@@ -207,15 +149,39 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-            <p class="subtitle lead">Five words describing a blog</p>
-                      </div>
+      <h1 class="title">On Nuance and Humility</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Writings</div>
+                <div class="quarto-category">Thoughts</div>
+              </div>
+                  </div>
   </div>
     
-  
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://joshgregory42.github.io/">Josh Gregory</a> <a href="https://orcid.org/0000-0002-4368-1171" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.colorado.edu/mechanical/">
+              College of Engineering &amp; Applied Science, University of Colorado Boulder
+              </a>
+            </p>
+        </div>
+    </div>
+
   <div class="quarto-title-meta column-page-left">
 
-      
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 15, 2024</p>
+      </div>
+    </div>
     
       
     </div>
@@ -225,8 +191,19 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Advice">Advice <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Artificial Intelligence">Artificial Intelligence <span class="quarto-category-count">(3)</span></div><div class="category" data-category="College">College <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Deep Learning">Deep Learning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Machine Learning">Machine Learning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Notes">Notes <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Research">Research <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Thesis">Thesis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Thoughts">Thoughts <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Writings">Writings <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-importance-of-nuance" id="toc-the-importance-of-nuance" class="nav-link active" data-scroll-target="#the-importance-of-nuance">The importance of nuance</a>
+  <ul class="collapse">
+  <li><a href="#generalizations-are-easy-nuance-is-hard" id="toc-generalizations-are-easy-nuance-is-hard" class="nav-link" data-scroll-target="#generalizations-are-easy-nuance-is-hard">Generalizations are easy, nuance is hard</a></li>
+  <li><a href="#nuance-in-science" id="toc-nuance-in-science" class="nav-link" data-scroll-target="#nuance-in-science">Nuance in science</a></li>
+  <li><a href="#the-positive-side" id="toc-the-positive-side" class="nav-link" data-scroll-target="#the-positive-side">The positive side</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -234,254 +211,41 @@ window.Quarto = {
 
 
 
+<p>Throughout my time in university, and now graduate school, I have noticed the importance of both nuance as well as humility. These might seem like two separate subejcts, but together they allow for someone to keep their minds open while at the same time ensuring that they are keeping their minds open to <em>exactly</em> what someone else is being told. Which is typically <strong>not</strong> what one might hear the first time.</p>
+<section id="the-importance-of-nuance" class="level1">
+<h1>The importance of nuance</h1>
+<p>When I was a freshman at Oregon State University in the fall of 2019, many of us on the floor would get together and talk. Eventually those conversations led into politics. OSU is pretty liberal, however there was one guy specifically that was pretty right-leaning. He later told me that I was the only person that he could talk politics with. That surprised me, and when I asked him why, he told me “because I know that we can have a conversation, you’ll listen, and I won’t come out of it angry”.</p>
+<p>I tend to lean center-left on most topics, but something that my parents always made sure to instill was the importance of talking to people I disagree with. It shocked me that I was one of the only people that friend felt like he could have an actual conversation with. Sure, we disagreed about most things, but what I came away with was that for many of the big issues, we agreed. And I think that’s a really key point here. Ever since then, I’ve seen the media show more and more (from both sides) that whoever the “out” or “crazy” group is (liberals is you’re watching Fox, conservatives if you’re watching CNN) is destroying the country. Not only that, but <strong>all</strong> of them are. Every single one. I think this is happening for one main reason.</p>
+<section id="generalizations-are-easy-nuance-is-hard" class="level2">
+<h2 class="anchored" data-anchor-id="generalizations-are-easy-nuance-is-hard">Generalizations are easy, nuance is hard</h2>
+<p>Maybe it’s not that complicated. It’s so freaking easy to say that all people who are conservative are hillbillies, live in the South, and are racist, homophobic idiots who contribute little to the U.S. economy. To disprove that, let’s just look at one industry: aerospace. Two major universities in the South, Georgia Tech and the University of Alabama Huntsville, which are world-class in rocket propulsion. End of story. But it’s not easy to discuss that nuance. It’s <em>so</em> much easier to think that everyone in the South is lazy.</p>
+<blockquote class="blockquote">
+<p>Another dimension of nuance here: the University of Alabama Huntsville’s rocketry program was first founded by Wernher von Braun, a Nazi who came over to the United States during Operation Paperclip to help the United States win the Cold War (a great book on the topic is by Annie Jacobsen and is fittingly titled <a href="https://anniejacobsen.com/operation-paperclip/">Operation Paperclip</a>).</p>
+</blockquote>
+<p>I think that’s the challenge that we all have in this day and age. It’s much more profitable for social media companies to make you angry than to encourage nuanced discourse (when was the last time you saw a fight on Twitter that featured someone saying “Oh I see your perspective now, I was wrong”?). But that’s the challenge, and I believe it is a doable one. We just need to practice.</p>
+</section>
+<section id="nuance-in-science" class="level2">
+<h2 class="anchored" data-anchor-id="nuance-in-science">Nuance in science</h2>
+<p>This is one of the areas that is close to me, mostly because I’m in STEM. And it’s a double-edged sword; I have read multiple papers that require nuance to decipher properly (both to find the subtleties in someone’s great work or to prove that someone else is full of shit and hiding it really well).</p>
+</section>
+<section id="the-positive-side" class="level2">
+<h2 class="anchored" data-anchor-id="the-positive-side">The positive side</h2>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Writings,Thoughts" data-listing-date-sort="1723701600000" data-listing-file-modified-sort="1723780099649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="582">
-<div class="thumbnail">
-<p><a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external"></a></p><a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external">On Nuance and Humility</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Writings'); return false;">
-Writings
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Thoughts'); return false;">
-Thoughts
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external">Throughout my time in university, and now graduate school, I have noticed the importance of both nuance as well as humility. These might seem like two separate subejcts, but…<em></em><strong></strong></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-08-09-nuance-humility/index.html" class="no-external">
-<div class="listing-date">
-August 15, 2024
-</div>
-<div class="listing-author">
-Josh Gregory
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Notes,Deep Learning,Machine Learning,Artificial Intelligence" data-listing-date-sort="1717740000000" data-listing-file-modified-sort="1718759927998" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6368">
-<div class="thumbnail">
-<p><a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external"></a></p><a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-06-07-gpt-chill/index_files/figure-html/cell-2-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external">GPT and Chill Notes</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Notes'); return false;">
-Notes
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Deep Learning'); return false;">
-Deep Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Artificial Intelligence'); return false;">
-Artificial Intelligence
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external">My notes from the GPT and Chill playlist</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-06-07-gpt-chill/index.html" class="no-external">
-<div class="listing-date">
-June 7, 2024
-</div>
-<div class="listing-author">
-Josh Gregory
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Research,Advice" data-listing-date-sort="1717567200000" data-listing-file-modified-sort="1717614941792" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1890">
-<div class="thumbnail">
-<p><a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external"></a></p><a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-06-05-undergrad-advice/images/cu_campus.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external">Advice for Undergrads</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Research'); return false;">
-Research
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advice'); return false;">
-Advice
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external">Reflections on my undergraduate mechanical engineering career since graduating</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-06-05-undergrad-advice/index.html" class="no-external">
-<div class="listing-date">
-June 5, 2024
-</div>
-<div class="listing-author">
-Josh Gregory
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Notes,Deep Learning,Machine Learning,Artificial Intelligence" data-listing-date-sort="1714975200000" data-listing-file-modified-sort="1715025805430" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="615">
-<div class="thumbnail">
-<p><a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external"></a></p><a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external">Backpropagation Calculus</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Notes'); return false;">
-Notes
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Deep Learning'); return false;">
-Deep Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Artificial Intelligence'); return false;">
-Artificial Intelligence
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external">My notes from the 3Blue1Brown video on the calculus behind backpropagation</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-05-06-backprop-calc/index.html" class="no-external">
-<div class="listing-date">
-May 6, 2024
-</div>
-<div class="listing-author">
-Josh Gregory
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Notes,Deep Learning,Machine Learning,Artificial Intelligence,Thesis" data-listing-date-sort="1714975200000" data-listing-file-modified-sort="1715026963609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
-<div class="thumbnail">
-<p><a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external"></a></p><a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external">MS Thesis Resources</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Notes'); return false;">
-Notes
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Deep Learning'); return false;">
-Deep Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Artificial Intelligence'); return false;">
-Artificial Intelligence
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Thesis'); return false;">
-Thesis
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external">Resrouces for my MS Thesis</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-05-06-thesis-resources/index.html" class="no-external">
-<div class="listing-date">
-May 6, 2024
-</div>
-<div class="listing-author">
-Josh Gregory
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Research,College" data-listing-date-sort="1714888800000" data-listing-file-modified-sort="1717614676332" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1233">
-<div class="thumbnail">
-<p><a href="./posts/2024-05-05-research-award/index.html" class="no-external"></a></p><a href="./posts/2024-05-05-research-award/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-05-05-research-award/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-05-05-research-award/index.html" class="no-external">Research Excellence Award Statement</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-05-05-research-award/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Research'); return false;">
-Research
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('College'); return false;">
-College
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-05-05-research-award/index.html" class="no-external">Reflections on my research</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-05-05-research-award/index.html" class="no-external">
-<div class="listing-date">
-May 5, 2024
-</div>
-<div class="listing-author">
-Josh Gregory
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gregory2024,
+  author = {Gregory, Josh},
+  title = {On {Nuance} and {Humility}},
+  date = {2024-08-15},
+  url = {https://joshgregory42.github.io/posts/2024-08-09-nuance-humility/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gregory2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Gregory, Josh. 2024. <span>“On Nuance and Humility.”</span> August 15,
+2024. <a href="https://joshgregory42.github.io/posts/2024-08-09-nuance-humility/">https://joshgregory42.github.io/posts/2024-08-09-nuance-humility/</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
