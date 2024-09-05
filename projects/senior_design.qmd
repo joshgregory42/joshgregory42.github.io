@@ -8,9 +8,6 @@ categories: [surgery, medical devices]
 author:
   - name: Josh Gregory
     url: https://joshgregory.github.io/
-    orcid: 0000-0002-4368-1171
-    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
-    affiliation-url: https://www.colorado.edu/mechanical/ 
 date: 05-02-2024
 last-modified: today
 citation: 

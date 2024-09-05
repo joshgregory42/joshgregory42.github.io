@@ -4,9 +4,6 @@ description: "Reflections on my undergraduate mechanical engineering career sinc
 author:
   - name: Josh Gregory
     url: https://joshgregory42.github.io/
-    orcid: 0000-0002-4368-1171
-    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
-    affiliation-url: https://www.colorado.edu/mechanical/ 
 date: 06-05-2024
 categories: [Research, Advice] # self-defined categories
 citation: 

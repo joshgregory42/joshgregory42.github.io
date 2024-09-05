@@ -3,9 +3,6 @@ title: "On Nuance and Humility"
 author:
   - name: Josh Gregory
     url: https://joshgregory42.github.io/
-    orcid: 0000-0002-4368-1171
-    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
-    affiliation-url: https://www.colorado.edu/mechanical/ 
 date: today
 categories: [Writings, Thoughts] # self-defined categories
 citation: 

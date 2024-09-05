@@ -4,9 +4,6 @@ description: "Notes on the transformer architecture and the attention mechanism"
 author:
   - name: Josh Gregory
     url: https://joshgregory42.github.io/
-    orcid: 0000-0002-4368-1171
-    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
-    affiliation-url: https://www.colorado.edu/mechanical/ 
 date: 05-04-2024
 categories: [Machine learning, Artificial intelligence, Thesis] # self-defined categories
 citation: 
