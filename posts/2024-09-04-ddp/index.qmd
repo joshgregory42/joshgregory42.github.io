@@ -4,9 +4,6 @@ description: "How to implement DistributedDataParallel (DDP) in PyTorch"
 author:
   - name: Josh Gregory
     url: https://joshgregory.github.io/
-    orcid: 0000-0002-4368-1171
-    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
-    affiliation-url: https://www.colorado.edu/mechanical/ 
 date: 09-04-2024
 last-modified: today
 categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence] # self-defined categories
@@ -200,3 +197,128 @@ if __name__ == ""__main__"":
     world_size = torch.cuda.device_count()
     mp.spawn(main, args=(world_size, total_epochs, save_every), nprocs=world_size)
 ```
+
+# Multi-GPU DDP Training with Fault-Tolerance
+
+When scaling up to multiple devices, performance is increased, but the risk of failure is also increased. A single process failure can throw the entire training process out of sync. PyTorch addresses this using `Torchrun`, whereby the training script takes snapshots of your training job at regular intervals, so if something goes wrong the code doesn't shit itself. Torchrun will restart the processes and load the most recent snapshot instead of restarting from scratch. A snapshot includes the model's state (similar to a checkpoint) but also includes any attributes of the job, like the learning rate scheduler, optimizer state, last epoch run, etc.
+
+Let's update our code to use `torchrun`. This is really convenient because it handles all of the environment variables under the hood. As of now our `ddp_setup` function is the following:
+
+```python
+def ddp_setup(rank, world_size):
+    """
+    Args:
+        rank: Unique identifier of each process
+        world_size: Total number of processes
+    """
+
+    # IP address of local machine that is running the process
+    os.environ["MASTER_ADDR"] = "localhost" 
+    os.environ["MASTER_PORT"] = "12355"
+    init_process_group(backend="nccl", rank=rank, world_size=world_size)
+```
+But we can remove the `os.environ` parts and let torchrun handle the rest. We just need to include the backend that we're running on.
+
+```python
+def ddp_setup():
+    init_process_group(backend="nccl", rank=rank, world_size=world_size)
+```
+
+We also need to modify the `Trainer` class. As of now, we're passing the rank of the GPU. We don't need to do that anymore, since Torchrun will have an environment variable called `local_rank` that we can use. Here's the edited version:
+
+```python
+class Trainer:
+    def __init__(
+        self,
+        model: torch.nn.Module,
+        train_data: DataLoader,
+        optimizer: torch.optim.Optimizer,
+        save_every: int, 
+    ) -> None:
+        self.gpu_id = int(os.environ["LOCAL_RANK"])
+        self.model = model.to(self.gpu_id)
+        self.train_data = train_data
+        self.optimizer = optimizer
+        self.save_every = save_every
+        self.model = DDP(model, device_ids=[gpu_id])
+```
+
+Now we need to add the fault-tolerance part:
+
+```python
+class Trainer:
+    def __init__(
+        self,
+        model: torch.nn.Module,
+        train_data: DataLoader,
+        optimizer: torch.optim.Optimizer,
+        save_every: int, 
+    ) -> None:
+        self.gpu_id = int(os.environ["LOCAL_RANK"])
+        self.model = model.to(self.gpu_id)
+        self.train_data = train_data
+        self.optimizer = optimizer
+        self.save_every = save_every
+        self.epochs_run = 0
+        if os,path.exists(snapshot_path):
+            print('Loading snapshot')
+            self._load_snapshot(snapshot_path)
+        self.model = DDP(self.model, device_ids=[self.gpu_id])
+
+    def _load_snalshot(self, snapshot_path):
+        snapshot = torch.load(snapshot_path)
+        self.model.load_state_dict(snapshot["MODEL_STATE"])
+        self.epochs_run = snapshot["EPOCHS_RUN"]
+        print(f'Resuming training from snapshot at epoch {self.epochs_run}')
+
+    def _save_snapshot(self, epoch):
+        snapshot = {}
+        snapshot["MODEL_STATE"] = self.model.module.state_dict()
+        snapshot["EPOCHS_RUN"] = epoch
+        torch.save(snapshot, "snapshot.pt")
+        print(f'Epoch {epoch} | Training snapshot saved as snapshot.pt')
+```
+Now update the `train` def to start from `epochs_run`:
+
+```python
+def train(self, max_epochs: int):
+    for epoch in range(self.epochs_run, max_epochs):
+        self._run_epoch(epoch)
+        if self.gpu_id == 0 and epoch...
+
+```
+Everything else remains the same. We can remove the rank and world_size though:
+
+```python
+def main(save_every: int, total_epochs: int, batch_size: int, snapshot_path: str = "snapshot.pt"):
+    ddp_setup()
+    dataset, model, optimizer = load_train_objs()
+    train_data = prepare_dataloader(dataset, batch_size)
+    trainer = Trainer(model, train_data, optimizer, save_every, snapshot_path)
+    trainer.train(total_epochs)
+    destroy_process_group()
+```
+
+We can also remove the `mp.spawn` call in the `__main__`:
+
+```python
+if __name__ == "__main__":
+    import sys
+    total_epochs = int(sys.argv[1])
+    save_every = int(sys.argv[2])
+    main(save_every, total_epochs)
+```
+
+## Running with Torchrun
+
+Run it as
+
+```bash
+torchrun --standalone --nproc_per_node=gpu name_of_file.py
+```
+Flags:
+
+* `--standalone`: This is a single-machine setup (single node)
+* `--nproc_per_node`: Number of GPUs per node. Would pass the number of GPUs available. Can also just pass `gpu` and let PyTorch figure it out and use all available GPUs.
+
+

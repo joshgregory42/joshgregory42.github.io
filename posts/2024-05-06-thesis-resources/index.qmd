@@ -4,9 +4,6 @@ description: "Resrouces for my MS Thesis"
 author:
   - name: Josh Gregory
     url: https://joshgregory.github.io/
-    orcid: 0000-0002-4368-1171
-    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
-    affiliation-url: https://www.colorado.edu/mechanical/ 
 date: 05-06-2024
 categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence, Thesis] # self-defined categories
 citation: 
