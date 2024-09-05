@@ -1,0 +1,202 @@
+---
+title: "PyTorch with multiple GPUs"
+description: "How to implement DistributedDataParallel (DDP) in PyTorch"
+author:
+  - name: Josh Gregory
+    url: https://joshgregory.github.io/
+    orcid: 0000-0002-4368-1171
+    affiliation: College of Engineering & Applied Science, University of Colorado Boulder
+    affiliation-url: https://www.colorado.edu/mechanical/ 
+date: 09-04-2024
+last-modified: today
+categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence] # self-defined categories
+citation: 
+  url: https://joshgregory42.github.io/posts/2024-09-04-ddp/ 
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# DDP Tutorial Notes
+
+## Links
+
+* https://pytorch.org/tutorials/beginner/ddp_series_intro.html
+* https://www.youtube.com/watch?v=-K3bZYHYHEA&list=PL_lsbAsL_o2CSuhUhJIiW0IkdT5C2wGWj&pp=iAQB
+
+GitHub Repo link: https://github.com/subramen/minGPT-ddp
+
+## High-level overview
+
+When we launch a Distributed Data Parallel (DDP) process, DDP launches one process per GPU, where each GPU has its own local copy of the model. All replicas of the model and optimizers are identical. Everything uses the same random seed.
+
+What we change here is the data. We get our `InputBatch` from the `DataLoader`, but this time we use something called `DistributedSampler`, which ensures that each GPU gets a chunk of the data inputs, all in parallel.
+
+Each device gets a chunk of the data and locally runs the forward and backward pass. Because the devices have different data, running the optimizers wouldn't make sense, since the gradients would be different. To help with this, DDP then runs a synchronization step, where all of the gradients are synchronized with each other.
+
+Now each model has the same gradients. Then the optimizers are run.
+
+## Migrating single GPU code to DDP
+Need a few new modules:
+
+```python
+import torch.multiprocessing as mp
+```
+This is a wrapper around Python's native multiprocessing
+
+```python
+from torch.utils.data.distributed import DistributedSampler
+```
+This distributes our data across multiple GPUs
+
+```python
+from torch.nn.parallel import DistributedDataParallel as DDP
+```
+Main workhorse function
+
+```python
+from torch.distributed import init_process_group, destroy_process_group
+```
+These two functions initialize and destroy our distributed process group.
+
+
+First thing we want to do is initialize the distributed process group. Can do this with a small function that takes in two parameters. The first one is `world_size`, which is the total number of processes in the group, and the `rank` is a unique number that is assigned to each process:
+
+```python
+def ddp_setup(rank, world_size):
+    """
+    Args:
+        rank: Unique identifier of each process
+        world_size: Total number of processes
+    """
+
+    # IP address of local machine that is running the process
+    os.environ["MASTER_ADDR"] = "localhost" 
+    os.environ["MASTER_PORT"] = "12355"
+    init_process_group(backend="nccl", rank=rank, world_size=world_size)
+```
+The `backend` argument for `init_process_group` being `nccl` is the default one for NVIDIA GPUs to let them use CUDA in a distributed fashion. 
+
+Here is our `Trainer` class as of now:
+
+```python
+class Trainer:
+    def __init__(
+        self,
+        model: torch.nn.Module,
+        train_data: DataLoader,
+        optimizer: torch.optim.Optimizer,
+        gpu_id: int,
+        save_every: int, 
+    ) -> None:
+        self.gpu_id = gpu_id
+        self.model = model.to(gpu_id)
+        self.train_data = train_data
+        self.optimizer = optimizer
+        self.save_every = save_every
+```
+It remains mostly the same, but the model needs to be wrapped in the `DDP` class with the model and the device_ids, like so:
+
+```python
+self.model = DDP(self.model, device_ids=[self.gpu_id])
+```
+To save the model properly, we also need to edit our `_save_checkpoint` function. As of now it is:
+
+```python
+    def _save_checkpoint(self, epoch):
+        ckp = self.model.state_dict()
+        PATH = "checkpoint.pt"
+        torch.save(ckp, PATH)
+        print(f"Epoch {epoch} | Training checkpoint saved at {PATH}")
+```
+We just need to change `ckp = self.model.state_dict()` to `ckp = self.model.module.state_dict()`.
+
+Another note: When we run our training class, if we save the model, we're going to save a **bunch** of copies of the model, since they're all synched (since DDP is launching the same processes, remember). We don't want that, so for our `train` function, we want to save the model only from the rank 0 process. So go from this:
+
+```python
+    def train(self, max_epochs: int):
+        for epoch in range(max_epochs):
+            self._run_epoch(epoch)
+            if epoch % self.save_every == 0:
+                self._save_checkpoint(epoch)
+```
+To this:
+
+```python
+    def train(self, max_epochs: int):
+        for epoch in range(max_epochs):
+            self._run_epoch(epoch)
+            if self.gpu_id == 0 and epoch % self.save_every == 0:
+                self._save_checkpoint(epoch)
+```
+
+We also need to change our DataLoader function, which as of now is
+
+
+```python
+def prepare_dataloader(dataset: Dataset, batch_size: int):
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        pin_memory=True,
+        shuffle=True,
+    )
+```
+This needs to be changed to
+
+```python
+def prepare_dataloader(dataset: Dataset, batch_size: int):
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        pin_memory=True,
+        shuffle=False,
+        sampler=DistributedSampler(dataset)
+    )
+```
+We need to include the `DistributedSampler` to ensure that each input batch is chunked across each GPUs with no overlapping samples. Since we're passing a `sampler`, we need to set `shuffle` to `False`.
+
+Now we need to update our `main` function. Right now it's this:
+
+```python
+def main(device, total_epochs, save_every):
+    dataset_model, optimizer = load_train_objs()
+    train_data = prepare_dataloader(dataset, batch_size=32)
+    trainer = Trainer(model, train_data, optimizer, device, save_every)
+    trainer.train(total_epochs)
+```
+The first thing we need to do is add our distributed process group, so add
+
+```python
+ddp_setup(rank, world_size)
+```
+We also need to switch `device` to `rank`, and at the end add `destroy_process_group()`:
+
+```python
+def main(rank: int, world_size: int, total_epochs: int, save_every: int):
+    ddp_setup(rank, world_size)
+    dataset_model, optimizer = load_train_objs()
+    train_data = prepare_dataloader(dataset, batch_size=32)
+    trainer = Trainer(model, train_data, optimizer, rank, save_every)
+    trainer.train(total_epochs)
+    destroy_process_group()
+```
+
+Now we need to update our ``__main__`` function. Right now it is
+
+```python
+if __name__ == ""__main__"":
+    import sys
+    total_epochs = int(sys.argv[1])
+    save_every = int(sys.argv[2])
+    device = 0 # Shorthand for cuda:0
+    main(device, total_epochs, save_every)
+```
+Change this to
+
+```python
+if __name__ == ""__main__"":
+    import sys
+    total_epochs = int(sys.argv[1])
+    save_every = int(sys.argv[2])
+    world_size = torch.cuda.device_count()
+    mp.spawn(main, args=(world_size, total_epochs, save_every), nprocs=world_size)
+```
