@@ -7,7 +7,7 @@ date: today
 categories: [Writings, Thoughts] # self-defined categories
 citation: 
   url: https://joshgregory42.github.io/posts/2024-08-09-nuance-humility/ 
-draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 Throughout my time in university, and now graduate school, I have noticed the importance of both nuance as well as humility. These might seem like two separate subejcts, but together they allow for someone to keep their minds open while at the same time ensuring that they are keeping their minds open to *exactly* what someone else is being told. Which is typically **not** what one might hear the first time.

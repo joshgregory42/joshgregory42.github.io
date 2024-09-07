@@ -1,25 +1,25 @@
 ---
-title: "PyTorch with multiple GPUs"
+title: "PyTorch with Multiple GPUs"
 description: "How to implement DistributedDataParallel (DDP) in PyTorch"
 author:
   - name: Josh Gregory
     url: https://joshgregory.github.io/
-date: 09-04-2024
-last-modified: today
+date: today
 categories: [Notes, Deep Learning, Machine Learning, Artificial Intelligence] # self-defined categories
 citation: 
-  url: https://joshgregory42.github.io/posts/2024-09-04-ddp/ 
-draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+  url: https://joshgregory42.github.io/posts/2024-09-06-ddp/ 
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 # DDP Tutorial Notes
 
 ## Links
 
-* https://pytorch.org/tutorials/beginner/ddp_series_intro.html
-* https://www.youtube.com/watch?v=-K3bZYHYHEA&list=PL_lsbAsL_o2CSuhUhJIiW0IkdT5C2wGWj&pp=iAQB
+[PyTorch documentation](https://pytorch.org/tutorials/beginner/ddp_series_intro.html)
 
-GitHub Repo link: https://github.com/subramen/minGPT-ddp
+[YouTube playlist](https://www.youtube.com/watch?v=-K3bZYHYHEA&list=PL_lsbAsL_o2CSuhUhJIiW0IkdT5C2wGWj&pp=iAQB)
+
+[GitHub repo](https://github.com/subramen/minGPT-ddp)
 
 ## High-level overview
 
@@ -321,4 +321,99 @@ Flags:
 * `--standalone`: This is a single-machine setup (single node)
 * `--nproc_per_node`: Number of GPUs per node. Would pass the number of GPUs available. Can also just pass `gpu` and let PyTorch figure it out and use all available GPUs.
 
+# Multinode DDP Training with Torchrun
 
+Will be focusing on using multiple nodes with multiple GPUs to train.
+
+Can deploy two ways:
+
+* Multiple jobs by submitting one job per node
+* Using a workload scheduler like SLURM
+
+Torchrun makes things pretty convenient to move from multi-GPU to multiple nodes. Training code pretty much remains the same.
+
+Will need to add a few things for clarity. In the `Trainer` class, will add a `global_rank` variable that has a unique identifier for each process across all of our nodes:
+
+```python
+class Trainer:
+    def __init__(
+        self,
+        model: torch.nn.Module,
+        train_data: DataLoader,
+        optimizer: torch.optim.Optimizer,
+        save_every: int, 
+    ) -> None:
+        self.local_rank = int(os.environ["LOCAL_RANK"])
+        self.global_rank = int(os.environ["RANK"])
+        self.model = model.to(self.gpu_id)
+        self.train_data = train_data
+        self.optimizer = optimizer
+        self.save_every = save_every
+        self.epochs_run = 0
+        if os,path.exists(snapshot_path):
+            print('Loading snapshot')
+            self._load_snapshot(snapshot_path)
+        self.model = DDP(self.model, device_ids=[self.gpu_id])
+
+    def _load_snalshot(self, snapshot_path):
+        snapshot = torch.load(snapshot_path)
+        self.model.load_state_dict(snapshot["MODEL_STATE"])
+        self.epochs_run = snapshot["EPOCHS_RUN"]
+        print(f'Resuming training from snapshot at epoch {self.epochs_run}')
+
+    def _save_snapshot(self, epoch):
+        snapshot = {}
+        snapshot["MODEL_STATE"] = self.model.module.state_dict()
+        snapshot["EPOCHS_RUN"] = epoch
+        torch.save(snapshot, "snapshot.pt")
+        print(f'Epoch {epoch} | Training snapshot saved as snapshot.pt')
+```
+
+If I have two machines with 4 GPUs each, the local rank will range from 0 to 3 on both machine 1 and machine 2, but the global ranks will be 0-3 for machine 1 (first node) and 4-7 on machine 2 (second node).
+
+Will also update the `_run_epoch` function to use the global rank to know which process is printing:
+
+```python
+    def _run_epoch(self, epoch):
+        b_sz = len(next(iter(self.train_data))[0])
+        print(f"[GPU{self.global_rank}] Epoch {epoch} | Batchsize: {b_sz} | Steps: {len(self.train_data)}")
+        self.train_data.sampler.set_epoch(epoch)
+        for source, targets in self.train_data:
+            source = source.to(self.local_rank)
+            targets = targets.to(self.local_rank)
+            self._run_batch(source, targets)
+```
+
+## Method 1: Run Torchrun on each machine
+
+Use the command:
+
+```bash
+torchrun --nproc_per_node=4 --nnodes=2 --node_rank=0 --rdzv_id=456  --rdzv_backend=c10d --rdzv_endpoint=172.31.43.139:29603
+```
+where
+
+* `--nproc_per_node` is the number of GPUs we want to use on one specific node
+* `--nnodes` is the number of machines (or nodes)
+* `node_rank` is the rank of the machine/node. So if using two machines (`--nnodes=2`), the first machine would be set with `node_rank=0` and the second one would be set with `node_rank=1`
+
+We also need to specify rondezvous arguments so that all of the nodes can sync with each other, which should be identical for all of the nodes:
+* `--rdzv_id` is the rondezvous ID, which can be any random number
+* `--rdzv_backend` is the backend, recommended to be `c10d`.
+* `--rdzv_endpoint` is the IP address of any of the participating nodes. Recommended to choose a machine that has a high network bandwidth.
+
+The command on the other machine is the same, but adapt `nproc_per_node` if necessary, and make sure to change the `node_rank`. Torchrun supports heterogeneous distributed training, so two machines can have a different number of GPUs.
+
+### Common Troubleshooting
+
+* Make sure that the nodes are able to communicate with each other over TCP.
+* Can explicitly pass the network to nccl socket via
+
+```bash
+export NCCL_SOCKET_IFNAME=eth0
+```
+(I think this should work, not entirely sure though)
+
+## Method 2: Running torchnode on SLURM
+
+See [here](https://github.com/pytorch/examples/blob/main/distributed/ddp-tutorial-series/slurm/setup_pcluster_slurm.md)
